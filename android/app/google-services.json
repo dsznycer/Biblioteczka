@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "120668360326",
+    "project_id": "biblioteczka-da104",
+    "storage_bucket": "biblioteczka-da104.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120668360326:android:bdf448e8b2c0b5c3ed4b07",
+        "android_client_info": {
+          "package_name": "com.example.biblioteczka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120668360326-jhcvv1qq5doeie786sdje5rg4at36873.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM-fVMEzRI6I3vPY1e968i81HsRHnrYSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120668360326-jhcvv1qq5doeie786sdje5rg4at36873.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "120668360326-me55633jc3l8qer4mccrnlvplp4psouv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.biblioteczka"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
