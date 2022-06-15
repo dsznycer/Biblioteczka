@@ -8,3 +8,7 @@ const Color kCol2 = Color(0xFFD45555);
 //*** TextStyle ***//
 
 const TextStyle kH1 = TextStyle();
+
+//*** Input Decoration ***//
+
+const InputDecoration kInput1 = InputDecoration();

@@ -6,14 +6,6 @@ class bookShelf extends StatelessWidget {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  // void getData() async {
-  //   await for (var snapshot in db.collection('log').snapshots()) {
-  //     for (var info in snapshot.docs) {
-  //       print(info.data());
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +15,17 @@ class bookShelf extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(color: Colors.amber),
-                  width: 200,
-                  height: 200,
+                GestureDetector(
+                  onTap: () {
+                    db
+                        .collection('log')
+                        .add({'Gruby': Timestamp.now().seconds});
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(color: Colors.amber),
+                    width: 200,
+                    height: 200,
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {

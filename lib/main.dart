@@ -1,4 +1,5 @@
 import 'package:biblioteczka/bookshelf/bookshelfScreen.dart';
+import 'package:biblioteczka/startScreen/startScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteczka/loginScreen/loginScreen.dart';
 import 'package:biblioteczka/registrationScreen/registrationScreen.dart';
@@ -21,7 +22,8 @@ class Biblio extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (BuildContext context) => loginScreen(),
+        '/': (BuildContext context) => startScreen(),
+        'loginScreen': (BuildContext context) => loginScreen(),
         'registrationScreen': (BuildContext context) => registrationScreen(),
         'bookshelfScreen': (BuildContext context) => bookShelf(),
       },
