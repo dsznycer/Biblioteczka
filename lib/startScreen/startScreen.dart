@@ -1,3 +1,4 @@
+import 'package:biblioteczka/bookshelf/bookshelfScreen.dart';
 import 'package:flutter/material.dart';
 
 class startScreen extends StatelessWidget {
@@ -6,7 +7,20 @@ class startScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Witam'), Butt),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          GestureDetector(
+              onTap: () => Navigator.pushNamed(context, "bookshelfScreen"),
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.amberAccent,
+              )),
+          Text('Witam'),
+        ],
+      )),
     );
   }
 }

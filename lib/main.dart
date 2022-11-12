@@ -20,7 +20,7 @@ class Biblio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: 'loginScreen',
       routes: {
         '/': (BuildContext context) => startScreen(),
         'loginScreen': (BuildContext context) => loginScreen(),

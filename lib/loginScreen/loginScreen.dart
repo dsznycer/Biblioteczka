@@ -66,20 +66,32 @@ class loginScreen extends StatelessWidget {
                 child: Container(
                   width: 150,
                   height: 50,
-                  color: Colors.green,
+                  color: Colors.blueGrey,
                   child: Center(child: Text('Zaloguj się')),
                 ),
               ),
               SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, 'registrationScreen');
+                  Navigator.of(context).pushNamed('registrationScreen');
+                },
+                child: Container(
+                  width: 200,
+                  height: 60,
+                  color: Colors.blueAccent,
+                  child: Center(child: Text('Zarejestruj się')),
+                ),
+              ),
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  _auth.sendPasswordResetEmail(email: email);
                 },
                 child: Container(
                   width: 200,
                   height: 60,
                   color: Colors.black26,
-                  child: Center(child: Text('Zarejestruj się')),
+                  child: Center(child: Text('Zresetuj hasło')),
                 ),
               ),
             ],

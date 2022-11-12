@@ -7,7 +7,11 @@ class registrationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('jebać'),
+        child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('jebać')),
       ),
     );
   }
