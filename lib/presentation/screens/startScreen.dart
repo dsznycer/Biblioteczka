@@ -1,4 +1,4 @@
-import 'package:biblioteczka/bookshelf/bookshelfScreen.dart';
+import 'package:biblioteczka/presentation/screens/bookshelfScreen.dart';
 import 'package:flutter/material.dart';
 
 class startScreen extends StatelessWidget {
@@ -18,7 +18,7 @@ class startScreen extends StatelessWidget {
                 height: 100,
                 color: Colors.amberAccent,
               )),
-          Text('Witam'),
+          Text('Witamy Witamy'),
         ],
       )),
     );
