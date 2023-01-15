@@ -1,6 +1,7 @@
-import 'package:biblioteczka/presentation/screens/bookshelfScreen.dart';
-import 'package:biblioteczka/presentation/screens/loginScreen.dart';
-import 'package:biblioteczka/presentation/screens/profileScreen.dart';
+import 'package:biblioteczka/screens/bookshelf_screen.dart';
+import 'package:biblioteczka/screens/login_screen.dart';
+import 'package:biblioteczka/screens/profile_screen.dart';
+import 'package:biblioteczka/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -17,6 +18,11 @@ class AppRouter {
           return MaterialPageRoute(builder: (context) => profileScreen());
         }
         break;
+
+      case '/registartionScreen':
+        {
+          return MaterialPageRoute(builder: (context) => registrationScreen());
+        }
 
       default:
         return MaterialPageRoute(builder: (context) => loginScreen());

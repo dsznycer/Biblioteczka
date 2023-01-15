@@ -19,6 +19,7 @@ class loginScreen extends StatelessWidget {
         child: Container(
           width: width,
           height: height,
+          //TODO: add background photo
           decoration: BoxDecoration(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,6 +59,8 @@ class loginScreen extends StatelessWidget {
                     print(_auth.currentUser!.email);
                     if (_auth.currentUser!.email != null) {
                       Navigator.pushNamed(context, 'bookshelfScreen');
+                    } else {
+                      // TODO: show dialog wrong password or email
                     }
                   } catch (e) {
                     print(e);
@@ -73,7 +76,7 @@ class loginScreen extends StatelessWidget {
               SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('registrationScreen');
+                  Navigator.of(context).pushNamed('/registartionScreen');
                 },
                 child: Container(
                   width: 200,
@@ -92,6 +95,18 @@ class loginScreen extends StatelessWidget {
                   height: 60,
                   color: Colors.black26,
                   child: Center(child: Text('Zresetuj hasło')),
+                ),
+              ),
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/');
+                },
+                child: Container(
+                  width: 200,
+                  height: 60,
+                  color: Colors.black26,
+                  child: Center(child: Text('Biblio screen')),
                 ),
               ),
             ],
