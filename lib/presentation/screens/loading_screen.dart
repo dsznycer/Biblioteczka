@@ -1,4 +1,3 @@
-import 'package:biblioteczka/screens/bookshelf_screen.dart';
 import 'package:flutter/material.dart';
 
 class startScreen extends StatelessWidget {

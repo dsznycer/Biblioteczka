@@ -1,7 +1,8 @@
-import 'package:biblioteczka/screens/bookshelf_screen.dart';
-import 'package:biblioteczka/screens/login_screen.dart';
-import 'package:biblioteczka/screens/profile_screen.dart';
-import 'package:biblioteczka/screens/registration_screen.dart';
+import 'package:biblioteczka/presentation/screens/bookshelf_screen.dart';
+import 'package:biblioteczka/presentation/screens/registration/login_screen.dart';
+import 'package:biblioteczka/presentation/screens/profile_Screen.dart';
+import 'package:biblioteczka/presentation/screens/registration/registration_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class AppRouter {

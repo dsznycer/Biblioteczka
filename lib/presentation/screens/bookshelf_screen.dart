@@ -1,5 +1,8 @@
+import 'package:biblioteczka/presentation/screens/profile_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'loading_screen.dart';
 
 class bookShelf extends StatelessWidget {
   bookShelf({Key? key}) : super(key: key);
@@ -8,7 +11,8 @@ class bookShelf extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.pinkAccent,
-      bottomNavigationBar: NavigationBar(destinations: []),
+      bottomNavigationBar:
+          NavigationBar(destinations: [startScreen(), profileScreen()]),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -20,6 +24,8 @@ class bookShelf extends StatelessWidget {
                   width: 200,
                   height: 200,
                 ),
+                // ListView(
+                //   children: [],
               ],
             ),
           ),

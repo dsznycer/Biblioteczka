@@ -1,10 +1,8 @@
-import 'package:biblioteczka/screens/bookshelf_screen.dart';
-import 'package:biblioteczka/screens/start_screen.dart';
+import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
-import 'package:biblioteczka/screens/login_screen.dart';
-import 'package:biblioteczka/screens/registration_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,8 +10,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(Biblio(
-    router: AppRouter(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<BookCubit>(
+        create: (context) => BookCubit(),
+      )
+    ],
+    child: Biblio(
+      router: AppRouter(),
+    ),
   ));
 }
 
@@ -25,6 +30,7 @@ class Biblio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: router.onGenerateRoute,
     );
   }
