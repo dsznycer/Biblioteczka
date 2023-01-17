@@ -8,5 +8,9 @@ class BookCubit extends Cubit<BookState> {
   BookCubit() : super(BookState());
 
   void addNewBook(Book book) => emit(state.copyWith(
-      status: BookStatus.withData, books: state.books..add(book)));
+      status: BookStatus.withData, books: List.of(state.books)..add(book)));
+
+  void toInitial() => emit(BookState(status: BookStatus.initial));
+
+  void addIndex(value) => emit(state.copyWith(index: value));
 }

@@ -1,3 +1,4 @@
+import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,10 @@ class loginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Keep track of your book adventure.'),
+            Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(color: Colors.white),
+                child: Text('Keep track of your book adventure.')),
             SizedBox(height: 30),
             Container(
               height: 80,
@@ -60,7 +64,7 @@ class loginScreen extends StatelessWidget {
                       email: email, password: password);
                   print(_auth.currentUser!.email);
                   if (_auth.currentUser!.email != null) {
-                    Navigator.pushNamed(context, 'bookshelfScreen');
+                    Navigator.pushNamed(context, '0');
                   } else {
                     // TODO: show dialog wrong password or email
                   }
@@ -95,19 +99,19 @@ class loginScreen extends StatelessWidget {
               child: Container(
                 width: 200,
                 height: 60,
-                color: Colors.black26,
+                color: AppColors.kCol2,
                 child: Center(child: Text('Zresetuj hasło')),
               ),
             ),
             SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed('/');
+                Navigator.of(context).pushNamed('0');
               },
               child: Container(
                 width: 200,
                 height: 60,
-                color: Colors.black26,
+                color: AppColors.kCol2,
                 child: Center(child: Text('Biblio screen')),
               ),
             ),
