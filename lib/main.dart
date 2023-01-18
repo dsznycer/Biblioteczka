@@ -1,4 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
@@ -11,32 +12,28 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(Biblio(
-    router: AppRouter(),
-  ));
+  runApp(MultiRepositoryProvider(providers: [
+    RepositoryProvider(create: (context) => Navig()),
+    RepositoryProvider(lazy: false, create: (context) => AppRouter())
+  ], child: Biblio()));
 }
 
 class Biblio extends StatelessWidget {
-  Biblio({required this.router, Key? key}) : super(key: key);
-
-  AppRouter router;
+  Biblio({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider(create: (context) => Navig()),
+        BlocProvider<BookCubit>(
+          create: (context) => BookCubit(),
+        )
       ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<BookCubit>(
-            create: (context) => BookCubit(),
-          )
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: router.onGenerateRoute,
-        ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute:
+            RepositoryProvider.of<AppRouter>(context).mainNavigator,
+        navigatorKey: Utils.mainNavigator,
       ),
     );
   }

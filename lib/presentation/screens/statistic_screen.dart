@@ -11,7 +11,7 @@ class StatisticScreen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
-      body: Text('your statistic'),
+      body: Center(child: Text('W tym roku przeczytałeś:')),
     );
   }
 }
