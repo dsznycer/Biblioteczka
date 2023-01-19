@@ -1,7 +1,7 @@
-import 'package:biblioteczka/presentation/bookshelf/bookshelf_addBook.dart';
-import 'package:biblioteczka/presentation/bookshelf/bookshlef_basic.dart';
+import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBook.dart';
+import 'package:biblioteczka/presentation/screens/bookshelf/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/TEMP/temp_screen.dart';
-import 'package:biblioteczka/presentation/bookshelf/bookshelf_screen.dart';
+import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_screen.dart';
 import 'package:biblioteczka/presentation/screens/home_screen.dart';
 import 'package:biblioteczka/presentation/screens/profile_screen.dart';
 import 'package:biblioteczka/presentation/screens/registration/login_screen.dart';
@@ -53,7 +53,7 @@ class AppRouter {
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
-      transitionDuration: const Duration(milliseconds: 4),
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }

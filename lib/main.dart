@@ -1,10 +1,12 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,10 +14,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiRepositoryProvider(providers: [
-    RepositoryProvider(create: (context) => Navig()),
-    RepositoryProvider(lazy: false, create: (context) => AppRouter())
-  ], child: Biblio()));
+  runApp(MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(create: (context) => Navig()),
+        RepositoryProvider(create: (context) => AppRouter())
+      ],
+      child: MultiBlocProvider(providers: [
+        BlocProvider<BookCubit>(create: (context) => BookCubit()),
+        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
+      ], child: Biblio())));
 }
 
 class Biblio extends StatelessWidget {
@@ -23,18 +30,11 @@ class Biblio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<BookCubit>(
-          create: (context) => BookCubit(),
-        )
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute:
-            RepositoryProvider.of<AppRouter>(context).mainNavigator,
-        navigatorKey: Utils.mainNavigator,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      navigatorKey: Utils.mainNavigator,
+      theme: ThemeData(textTheme: GoogleFonts.notoSerifTextTheme()),
+      onGenerateRoute: RepositoryProvider.of<AppRouter>(context).mainNavigator,
     );
   }
 }

@@ -27,11 +27,12 @@ class _NavigState extends State<Navig> {
         return NavigationBar(
             onDestinationSelected: (value) {
               context.read<BookCubit>().addIndex(value);
-              Utils.mainNavigator.currentState!.pushNamed(routesMap[value]!);
+              Utils.mainNavigator.currentState!
+                  .popAndPushNamed(routesMap[value]!);
             },
             selectedIndex: state.index,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-            animationDuration: Duration(seconds: 1),
+            animationDuration: const Duration(seconds: 1),
             destinations: const [
               NavigationDestination(
                   icon: Icon(Icons.reset_tv_rounded), label: 'Home Screen'),

@@ -4,13 +4,13 @@ class Book {
   final int pages;
   final int yearOfEnd;
   final int score;
-  final String notes;
+  final List<String> notes;
 
   Book(
       {this.title = '',
       this.author = '',
-      this.notes = '',
       this.pages = 0,
+      this.notes = const [],
       this.yearOfEnd = 0,
       this.score = 0});
 }

@@ -1,10 +1,11 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
+import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/book_widget.dart';
+import '../../widgets/book_widget.dart';
 
 class BookShelf extends StatelessWidget {
   BookShelf({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class BookShelf extends StatelessWidget {
       backgroundColor: Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () =>
+            {Utils.biblioteczkaNavigator.currentState!.pushNamed('/addBook')},
       ),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {

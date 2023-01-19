@@ -19,6 +19,7 @@ class BookWidget extends StatelessWidget {
         child: Row(children: [
           Expanded(
               child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
             child: Image.asset(
               '/Users/dominiksznycer/StudioProjects/biblioteczka/assets/photo/bookShop.png',
               fit: BoxFit.fitWidth,
