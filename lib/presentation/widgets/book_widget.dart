@@ -32,6 +32,12 @@ class BookWidget extends StatelessWidget {
                 children: [
                   Text(book.title),
                   Text(book.author),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                    child: Divider(
+                      color: AppColors.kCol2,
+                    ),
+                  ),
                   Text(book.yearOfEnd),
                   Text('AND THE SCORE IS: ${book.score}')
                 ],
