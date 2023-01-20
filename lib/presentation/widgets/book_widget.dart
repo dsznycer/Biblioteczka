@@ -22,14 +22,19 @@ class BookWidget extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
             child: Image.asset(
               '/Users/dominiksznycer/StudioProjects/biblioteczka/assets/photo/bookShop.png',
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.contain,
             ),
           )),
           Expanded(
               flex: 2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [Text(book.title), Text(book.author)],
+                children: [
+                  Text(book.title),
+                  Text(book.author),
+                  Text(book.yearOfEnd),
+                  Text('AND THE SCORE IS: ${book.score}')
+                ],
               )),
         ]));
   }

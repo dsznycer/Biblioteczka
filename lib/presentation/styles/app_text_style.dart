@@ -4,7 +4,7 @@ class AppTextStyles {
   static const TextStyle H1 = TextStyle(
     fontSize: 28,
     color: Colors.black,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w500,
   );
 
   static const TextStyle H2 = TextStyle(

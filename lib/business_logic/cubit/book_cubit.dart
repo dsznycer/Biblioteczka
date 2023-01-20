@@ -1,5 +1,6 @@
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 part 'book_state.dart';
@@ -12,5 +13,6 @@ class BookCubit extends Cubit<BookState> {
 
   void toInitial() => emit(BookState(status: BookStatus.initial));
 
-  void addIndex(value) => emit(state.copyWith(index: value));
+  void removeLast() =>
+      emit(state.copyWith(books: List.of(state.books)..removeLast()));
 }

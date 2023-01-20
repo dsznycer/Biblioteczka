@@ -5,12 +5,10 @@ enum BookStatus { initial, withData, loadingData }
 
 class BookState {
   final BookStatus status;
-  final int index;
   final List<Book> books;
 
   BookState({
     this.status = BookStatus.initial,
-    this.index = 0,
     this.books = const [],
   });
 
@@ -21,7 +19,6 @@ class BookState {
   }) {
     return BookState(
       status: status ?? this.status,
-      index: index ?? this.index,
       books: books ?? this.books,
     );
   }

@@ -26,7 +26,7 @@ void main() async {
 }
 
 class Biblio extends StatelessWidget {
-  Biblio({Key? key}) : super(key: key);
+  const Biblio({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
