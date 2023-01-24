@@ -1,5 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
+import 'package:biblioteczka/data/models/book_api_model.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -91,13 +92,8 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-                  // Container(
-                  //   width: 400,
-                  //   height: 250,
-                  //   child: state.rode2023.first == Book
-                  //       ? BookWidget(book: state.rode2023.first)
-                  //       : CircularProgressIndicator.adaptive(),
-                  // ),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.access_alarm_rounded)),
                 ],
               ),
             ),

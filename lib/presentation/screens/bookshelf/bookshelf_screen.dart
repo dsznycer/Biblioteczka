@@ -2,7 +2,6 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/book_widget.dart';
