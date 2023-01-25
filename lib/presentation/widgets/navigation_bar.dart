@@ -13,9 +13,14 @@ Map<int, String> routesMap = {
   3: '/ProfileScreen',
 };
 
-class Navig extends StatelessWidget {
+class Navig extends StatefulWidget {
   const Navig({super.key});
 
+  @override
+  State<Navig> createState() => _NavigState();
+}
+
+class _NavigState extends State<Navig> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
@@ -29,6 +34,7 @@ class Navig extends StatelessWidget {
                 Utils.mainNavigator.currentState!
                     .popAndPushNamed(routesMap[value]!);
               },
+              elevation: 6,
               selectedIndex: state.index,
               backgroundColor:
                   state.darkMode ? AppColors.kCol1 : Colors.blueGrey,
@@ -52,10 +58,11 @@ class Navig extends StatelessWidget {
                     icon: Icon(BiblioteczkaIcons.chartIcon),
                     label: 'Statystyki'),
                 NavigationDestination(
-                    selectedIcon: Icon(BiblioteczkaIcons.settingsIcon,
-                        color: AppColors.kCol2),
-                    icon: Icon(BiblioteczkaIcons.settingsIcon),
-                    label: 'Profil')
+                  selectedIcon: Icon(BiblioteczkaIcons.settingsIcon,
+                      color: AppColors.kCol2),
+                  icon: Icon(BiblioteczkaIcons.settingsIcon),
+                  label: 'Profil',
+                )
               ]),
         );
       },
