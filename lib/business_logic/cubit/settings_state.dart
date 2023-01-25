@@ -16,4 +16,7 @@ class SettingsState {
       darkMode: darkMode ?? this.darkMode,
     );
   }
+
+  @override
+  String toString() => 'SettingsState(index: $index, darkMode: $darkMode)';
 }

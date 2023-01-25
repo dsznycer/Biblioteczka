@@ -3,6 +3,7 @@ import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/models/book_api_model.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -92,8 +93,20 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {}, icon: Icon(Icons.access_alarm_rounded)),
+                  Center(
+                    child: IconButton(
+                        onPressed: () {
+                          final jasonBook = BookApi(
+                                  Timestamp.now().seconds.toInt(),
+                                  title: 'Bracia karamazow',
+                                  author: 'Dostojewski')
+                              .toJson();
+
+                          print(mode.toString());
+                        },
+                        icon: Icon(BiblioteczkaIcons.biblioIcon,
+                            color: AppColors.kCol2, size: 49)),
+                  ),
                 ],
               ),
             ),

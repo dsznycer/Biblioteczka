@@ -20,6 +20,7 @@ BookApi _$BookApiFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookApi {
+  int get timestamp => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
 
@@ -33,7 +34,7 @@ abstract class $BookApiCopyWith<$Res> {
   factory $BookApiCopyWith(BookApi value, $Res Function(BookApi) then) =
       _$BookApiCopyWithImpl<$Res, BookApi>;
   @useResult
-  $Res call({String title, String author});
+  $Res call({int timestamp, String title, String author});
 }
 
 /// @nodoc
@@ -49,10 +50,15 @@ class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? timestamp = null,
     Object? title = null,
     Object? author = null,
   }) {
     return _then(_value.copyWith(
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -72,7 +78,7 @@ abstract class _$$_BookApiCopyWith<$Res> implements $BookApiCopyWith<$Res> {
       __$$_BookApiCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String author});
+  $Res call({int timestamp, String title, String author});
 }
 
 /// @nodoc
@@ -85,10 +91,15 @@ class __$$_BookApiCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? timestamp = null,
     Object? title = null,
     Object? author = null,
   }) {
     return _then(_$_BookApi(
+      null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -104,11 +115,13 @@ class __$$_BookApiCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
-  const _$_BookApi({required this.title, required this.author});
+  const _$_BookApi(this.timestamp, {required this.title, required this.author});
 
   factory _$_BookApi.fromJson(Map<String, dynamic> json) =>
       _$$_BookApiFromJson(json);
 
+  @override
+  final int timestamp;
   @override
   final String title;
   @override
@@ -116,7 +129,7 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookApi(title: $title, author: $author)';
+    return 'BookApi(timestamp: $timestamp, title: $title, author: $author)';
   }
 
   @override
@@ -124,6 +137,7 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'BookApi'))
+      ..add(DiagnosticsProperty('timestamp', timestamp))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('author', author));
   }
@@ -133,13 +147,15 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BookApi &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.author, author) || other.author == author));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, author);
+  int get hashCode => Object.hash(runtimeType, timestamp, title, author);
 
   @JsonKey(ignore: true)
   @override
@@ -156,11 +172,13 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
 }
 
 abstract class _BookApi implements BookApi {
-  const factory _BookApi(
+  const factory _BookApi(final int timestamp,
       {required final String title, required final String author}) = _$_BookApi;
 
   factory _BookApi.fromJson(Map<String, dynamic> json) = _$_BookApi.fromJson;
 
+  @override
+  int get timestamp;
   @override
   String get title;
   @override

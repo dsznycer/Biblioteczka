@@ -22,7 +22,7 @@ void main() async {
       child: MultiBlocProvider(providers: [
         BlocProvider<BookCubit>(create: (context) => BookCubit()),
         BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
-      ], child: Biblio())));
+      ], child: const Biblio())));
 }
 
 class Biblio extends StatelessWidget {

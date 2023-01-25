@@ -1,5 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,17 +32,30 @@ class Navig extends StatelessWidget {
               selectedIndex: state.index,
               backgroundColor:
                   state.darkMode ? AppColors.kCol1 : Colors.blueGrey,
-              labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+              labelBehavior:
+                  NavigationDestinationLabelBehavior.onlyShowSelected,
               animationDuration: const Duration(seconds: 1),
               destinations: const [
                 NavigationDestination(
-                    icon: Icon(Icons.reset_tv_rounded), label: 'Home Screen'),
+                    selectedIcon: Icon(BiblioteczkaIcons.homeIcon,
+                        color: AppColors.kCol2),
+                    icon: Icon(BiblioteczkaIcons.homeIcon),
+                    label: 'Home'),
                 NavigationDestination(
-                    icon: Icon(Icons.book), label: 'Biblioteczka'),
+                    selectedIcon: Icon(BiblioteczkaIcons.biblioIcon,
+                        color: AppColors.kCol2),
+                    icon: Icon(BiblioteczkaIcons.biblioIcon),
+                    label: 'Biblioteczka'),
                 NavigationDestination(
-                    icon: Icon(Icons.reset_tv_rounded), label: 'Statystyki'),
+                    selectedIcon: Icon(BiblioteczkaIcons.chartIcon,
+                        color: AppColors.kCol2),
+                    icon: Icon(BiblioteczkaIcons.chartIcon),
+                    label: 'Statystyki'),
                 NavigationDestination(
-                    icon: Icon(Icons.access_alarm), label: 'Profil')
+                    selectedIcon: Icon(BiblioteczkaIcons.settingsIcon,
+                        color: AppColors.kCol2),
+                    icon: Icon(BiblioteczkaIcons.settingsIcon),
+                    label: 'Profil')
               ]),
         );
       },
