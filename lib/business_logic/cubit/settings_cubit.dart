@@ -1,3 +1,4 @@
+import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 

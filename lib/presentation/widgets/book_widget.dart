@@ -3,39 +3,50 @@ import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatelessWidget {
-  const BookWidget({required this.book, super.key});
+  BookWidget({required this.book, this.onTap, super.key});
 
   final Book book;
+  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 300,
-        height: 150,
-        margin: EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: AppColors.kCol3, borderRadius: BorderRadius.circular(12)),
-        child: Row(children: [
-          Expanded(
-              child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-            child: Image.asset(
-              '/Users/dominiksznycer/StudioProjects/biblioteczka/assets/photo/bookShop.png',
-              fit: BoxFit.contain,
-            ),
-          )),
-          Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(book.title),
-                  Text(book.author),
-                  Text(book.yearOfEnd),
-                  Text('AND THE SCORE IS: ${book.score}')
-                ],
-              )),
-        ]));
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          width: 300,
+          height: 150,
+          margin: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: AppColors.kCol3, borderRadius: BorderRadius.circular(12)),
+          child: Row(children: [
+            Expanded(
+                child: Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(12)),
+              child: Image.asset(
+                '/Users/dominiksznycer/StudioProjects/biblioteczka/assets/photo/bookShop.png',
+                fit: BoxFit.contain,
+              ),
+            )),
+            Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(book.title),
+                    Text(book.author),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                      child: Divider(
+                        color: AppColors.kCol2,
+                      ),
+                    ),
+                    Text(book.yearOfEnd),
+                    Text('AND THE SCORE IS: ${book.score}')
+                  ],
+                )),
+          ])),
+    );
   }
 }
