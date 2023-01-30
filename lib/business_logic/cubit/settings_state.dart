@@ -4,16 +4,23 @@ part of 'settings_cubit.dart';
 class SettingsState {
   final int index;
   final bool darkMode;
+  final Book chosenBook;
 
-  SettingsState({this.index = 0, this.darkMode = false});
+  const SettingsState({
+    this.index = 0,
+    this.darkMode = false,
+    this.chosenBook = const Book(title: 'This is test book'),
+  });
 
   SettingsState copyWith({
     int? index,
     bool? darkMode,
+    Book? chosenBook,
   }) {
     return SettingsState(
       index: index ?? this.index,
       darkMode: darkMode ?? this.darkMode,
+      chosenBook: chosenBook ?? this.chosenBook,
     );
   }
 }

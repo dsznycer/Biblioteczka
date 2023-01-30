@@ -33,7 +33,10 @@ class Biblio extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: Utils.mainNavigator,
-      theme: ThemeData(textTheme: GoogleFonts.notoSerifTextTheme()),
+      theme: ThemeData(
+        textTheme: GoogleFonts.notoSerifTextTheme(),
+        navigationBarTheme: NavigationBarThemeData(),
+      ),
       onGenerateRoute: RepositoryProvider.of<AppRouter>(context).mainNavigator,
     );
   }

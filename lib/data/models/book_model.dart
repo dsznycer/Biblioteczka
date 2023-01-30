@@ -6,7 +6,7 @@ class Book {
   final int score;
   final List<String> notes;
 
-  Book(
+  const Book(
       {this.title = '',
       this.author = '',
       this.pages = '',
