@@ -58,17 +58,23 @@ class HomeScreen extends StatelessWidget {
                     width: 400,
                     height: 300,
                     child: state.status != BookStatus.initial
-                        ? BookWidget(book: state.books.last)
+                        ? BookWidget(book: state.booksRed.last)
                         : CircularProgressIndicator.adaptive(),
                   ),
                   Row(
                     children: [
                       Expanded(
                         child: IconButton(
-                            onPressed: () => context
-                                .read<BookCubit>()
-                                .addNewBook(
-                                    Book(title: Timestamp.now().toString())),
+                            onPressed: () =>
+                                context.read<BookCubit>().addNewBook(
+                                      Book(
+                                        title: Timestamp.now().toString(),
+                                        author: 'test',
+                                        yearOfEnd: '2023',
+                                        pages: '23',
+                                        notes: ['notes'],
+                                      ),
+                                    ),
                             icon: Icon(
                               Icons.add,
                               color: AppColors.kCol2,
@@ -96,13 +102,9 @@ class HomeScreen extends StatelessWidget {
                   Center(
                     child: IconButton(
                         onPressed: () {
-                          final jasonBook = BookApi(
-                                  Timestamp.now().seconds.toInt(),
-                                  title: 'Bracia karamazow',
-                                  author: 'Dostojewski')
-                              .toJson();
+                          final jasonBook = state.booksRed.last.toJson();
 
-                          print(mode.toString());
+                          print(jasonBook);
                         },
                         icon: Icon(BiblioteczkaIcons.biblioIcon,
                             color: AppColors.kCol2, size: 49)),

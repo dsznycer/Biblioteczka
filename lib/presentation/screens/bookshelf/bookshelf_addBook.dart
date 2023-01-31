@@ -66,6 +66,7 @@ class BookAdd extends StatelessWidget {
                             score: score,
                             pages: pages,
                             yearOfEnd: yearOfEnd,
+                            notes: notes,
                           ));
                       Utils.biblioteczkaNavigator.currentState!.pop();
                     },

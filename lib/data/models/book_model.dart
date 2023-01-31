@@ -1,16 +1,19 @@
-class Book {
-  final String title;
-  final String author;
-  final String pages;
-  final String yearOfEnd;
-  final int score;
-  final List<String> notes;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  const Book(
-      {this.title = '',
-      this.author = '',
-      this.pages = '',
-      this.notes = const [],
-      this.yearOfEnd = '',
-      this.score = 0});
+part 'book_model.freezed.dart';
+part 'book_model.g.dart';
+
+@freezed
+class Book with _$Book {
+  const factory Book({
+    required String title,
+    required String author,
+    required String pages,
+    required String yearOfEnd,
+    @Default(0) int score,
+    required List<String> notes,
+  }) = _Book;
+
+  factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 }

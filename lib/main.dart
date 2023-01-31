@@ -7,10 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -35,7 +39,9 @@ class Biblio extends StatelessWidget {
       navigatorKey: Utils.mainNavigator,
       theme: ThemeData(
         textTheme: GoogleFonts.notoSerifTextTheme(),
-        navigationBarTheme: NavigationBarThemeData(),
+        navigationBarTheme: NavigationBarThemeData(
+            labelTextStyle: MaterialStateTextStyle.resolveWith(
+                (states) => TextStyle(color: Colors.white))),
       ),
       onGenerateRoute: RepositoryProvider.of<AppRouter>(context).mainNavigator,
     );

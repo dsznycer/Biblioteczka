@@ -1,4 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/main.dart';
@@ -40,12 +41,17 @@ class BookShelf extends StatelessWidget {
                 height: 300,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: state.books.length,
+                    itemCount: state.booksRed.length,
                     itemBuilder: (context, int index) {
                       return BookWidget(
-                          book: state.books[index],
-                          onTap: () => Utils.biblioteczkaNavigator.currentState!
-                              .pushNamed('/editBook'));
+                          book: state.booksRed[index],
+                          onTap: () {
+                            context
+                                .read<SettingsCubit>()
+                                .choosenBook(state.booksRed[index]);
+                            Utils.biblioteczkaNavigator.currentState!
+                                .pushNamed('/editBook');
+                          });
                     }),
               ),
               Row(
@@ -53,7 +59,14 @@ class BookShelf extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () => context.read<BookCubit>().addNewBook(
-                          Book(title: 'Created on biblioteczka screen')),
+                            Book(
+                                title: 'Created on biblio screen',
+                                author: 'test',
+                                yearOfEnd: '2023',
+                                pages: '23',
+                                notes: ['notes'],
+                                score: 2),
+                          ),
                       icon: const Icon(
                         Icons.add,
                         color: Colors.blueAccent,

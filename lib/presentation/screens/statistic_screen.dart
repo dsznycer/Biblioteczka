@@ -16,7 +16,7 @@ class StatisticScreen extends StatelessWidget {
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
-          List<Book> bookList = state.books
+          List<Book> bookList = state.booksRed
               .where((element) => element.yearOfEnd == '2023')
               .toList();
 

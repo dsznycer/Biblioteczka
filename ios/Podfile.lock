@@ -726,14 +726,9 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-<<<<<<< HEAD
-  - path_provider_ios (0.0.1):
-    - Flutter
-=======
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
->>>>>>> new_router_biblio
   - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
@@ -792,11 +787,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-<<<<<<< HEAD
-  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
-=======
   path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
->>>>>>> new_router_biblio
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3

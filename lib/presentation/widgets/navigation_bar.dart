@@ -38,8 +38,6 @@ class _NavigState extends State<Navig> {
               selectedIndex: state.index,
               backgroundColor:
                   state.darkMode ? AppColors.kCol1 : Colors.blueGrey,
-              labelBehavior:
-                  NavigationDestinationLabelBehavior.onlyShowSelected,
               animationDuration: const Duration(seconds: 1),
               destinations: const [
                 NavigationDestination(

@@ -1,5 +1,6 @@
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatelessWidget {
@@ -15,36 +16,46 @@ class BookWidget extends StatelessWidget {
       child: Container(
           width: 300,
           height: 150,
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: AppColors.kCol3, borderRadius: BorderRadius.circular(12)),
+              color: AppColors.kCol3,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: const [AppShadows.Shad2]),
           child: Row(children: [
             Expanded(
                 child: Container(
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(12)),
               child: Image.asset(
-                '/Users/dominiksznycer/StudioProjects/biblioteczka/assets/photo/bookShop.png',
-                fit: BoxFit.contain,
+                'assets/photo/bookShop.png',
+                fit: BoxFit.fitHeight,
               ),
             )),
             Expanded(
                 flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(book.title),
-                    Text(book.author),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 38.0),
-                      child: Divider(
-                        color: AppColors.kCol2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(book.title),
+                      Row(
+                        children: [
+                          Text('Autor:'),
+                          Text(book.author),
+                        ],
                       ),
-                    ),
-                    Text(book.yearOfEnd),
-                    Text('AND THE SCORE IS: ${book.score}')
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                        child: Divider(
+                          color: AppColors.kCol2,
+                        ),
+                      ),
+                      Text(book.yearOfEnd),
+                      Text('AND THE SCORE IS: ${book.score}')
+                    ],
+                  ),
                 )),
           ])),
     );

@@ -217,14 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.4"
-  equatable:
-    dependency: "direct main"
-    description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -345,11 +337,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed:
-<<<<<<< HEAD
-    dependency: "direct dev"
-=======
     dependency: "direct main"
->>>>>>> new_router_biblio
     description:
       name: freezed
       sha256: e819441678f1679b719008ff2ff0ef045d66eed9f9ec81166ca0d9b02a187454
@@ -357,11 +345,7 @@ packages:
     source: hosted
     version: "2.3.2"
   freezed_annotation:
-<<<<<<< HEAD
-    dependency: "direct main"
-=======
     dependency: transitive
->>>>>>> new_router_biblio
     description:
       name: freezed_annotation
       sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
@@ -400,6 +384,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   http:
     dependency: transitive
     description:
@@ -424,6 +416,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  hydrated_bloc:
+    dependency: "direct main"
+    description:
+      name: hydrated_bloc
+      sha256: "5871204f14b24638dc9d18d5b94cf22a66fc4be40756925cafff3a7553c7d7b7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.0"
   intl:
     dependency: transitive
     description:
@@ -476,10 +476,10 @@ packages:
     dependency: transitive
     description:
       name: logging
-      sha256: c0bbfe94d46aedf9b8b3e695cf3bd48c8e14b35e3b2c639e0aa7755d589ba946
+      sha256: "04094f2eb032cbb06c6f6e8d3607edcfcb0455e2bb6cbc010cb01171dcb64e6d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   matcher:
     dependency: transitive
     description:
@@ -537,14 +537,10 @@ packages:
     source: hosted
     version: "1.8.2"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
-<<<<<<< HEAD
-      sha256: "050e8e85e4b7fecdf2bb3682c1c64c4887a183720c802d323de8a5fd76d372dd"
-=======
       sha256: dcea5feb97d8abf90cab9e9030b497fb7c3cbf26b7a1fe9e3ef7dcb0a1ddec95
->>>>>>> new_router_biblio
       url: "https://pub.dev"
     source: hosted
     version: "2.0.12"
@@ -559,13 +555,8 @@ packages:
   path_provider_foundation:
     dependency: transitive
     description:
-<<<<<<< HEAD
-      name: path_provider_ios
-      sha256: "03d639406f5343478352433f00d3c4394d52dac8df3d847869c5e2333e0bbce8"
-=======
       name: path_provider_foundation
       sha256: "62a68e7e1c6c459f9289859e2fae58290c981ce21d1697faf54910fe1faa4c74"
->>>>>>> new_router_biblio
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
@@ -577,17 +568,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
-<<<<<<< HEAD
-  path_provider_macos:
-    dependency: transitive
-    description:
-      name: path_provider_macos
-      sha256: cd57cb98a30ce9d12fdd1896d9d3b0517ce689f942de6ccd2708cd39b3d18a7c
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.7"
-=======
->>>>>>> new_router_biblio
   path_provider_platform_interface:
     dependency: transitive
     description:
@@ -737,6 +717,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "33b31b6beb98100bf9add464a36a8dd03eb10c7a8cf15aeec535e9b054aaf04b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   term_glyph:
     dependency: transitive
     description:
