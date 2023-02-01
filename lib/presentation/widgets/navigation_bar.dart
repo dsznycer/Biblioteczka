@@ -6,21 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/utils.dart';
 
-Map<int, String> routesMap = {
-  0: '/',
-  1: '/Biblioteczka',
-  2: '/StatisticScreen',
-  3: '/ProfileScreen',
-};
+class Navig extends StatelessWidget {
+  Navig({super.key});
 
-class Navig extends StatefulWidget {
-  const Navig({super.key});
+  Map<int, String> routesMap = {
+    0: '/',
+    1: '/Biblioteczka',
+    2: '/StatisticScreen',
+    3: '/ProfileScreen',
+  };
 
-  @override
-  State<Navig> createState() => _NavigState();
-}
-
-class _NavigState extends State<Navig> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
@@ -37,7 +32,7 @@ class _NavigState extends State<Navig> {
               elevation: 6,
               selectedIndex: state.index,
               backgroundColor:
-                  state.darkMode ? AppColors.kCol1 : Colors.blueGrey,
+                  state.darkMode ? AppColors.kCol1 : Colors.white70,
               animationDuration: const Duration(seconds: 1),
               destinations: const [
                 NavigationDestination(

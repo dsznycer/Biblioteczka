@@ -1,4 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -20,10 +21,19 @@ class StatisticScreen extends StatelessWidget {
               .where((element) => element.yearOfEnd == '2023')
               .toList();
 
-          return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Center(child: Text('W tym roku przeczytałeś:')),
-            Text(bookList.length.toString()),
-          ]);
+          return SafeArea(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'W tym roku przeczytałeś:',
+                    style: AppTextStyles.H2,
+                    textAlign: TextAlign.center,
+                  ),
+                  Text("książek ${bookList.length.toString()}!"),
+                ]),
+          );
         },
       ),
     );

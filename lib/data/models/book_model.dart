@@ -17,3 +17,14 @@ class Book with _$Book {
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 }
+
+@freezed
+class BookApi with _$BookApi {
+  const factory BookApi(
+      {required String name,
+      required String category,
+      required String cover}) = _BookApi;
+
+  factory BookApi.fromJson(Map<String, dynamic> json) =>
+      _$BookApiFromJson(json);
+}

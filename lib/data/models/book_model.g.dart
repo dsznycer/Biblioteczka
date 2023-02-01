@@ -23,3 +23,16 @@ Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'score': instance.score,
       'notes': instance.notes,
     };
+
+_$_BookApi _$$_BookApiFromJson(Map<String, dynamic> json) => _$_BookApi(
+      name: json['name'] as String,
+      category: json['category'] as String,
+      cover: json['cover'] as String,
+    );
+
+Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'category': instance.category,
+      'cover': instance.cover,
+    };

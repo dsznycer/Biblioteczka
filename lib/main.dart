@@ -1,6 +1,8 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
+import 'package:biblioteczka/data/APIs/HapiBooks_api.dart';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,8 @@ void main() async {
   runApp(MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (context) => Navig()),
-        RepositoryProvider(create: (context) => AppRouter())
+        RepositoryProvider(create: (context) => AppRouter()),
+        RepositoryProvider(create: (context) => HapiBooksApi()),
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider<BookCubit>(create: (context) => BookCubit()),
@@ -34,16 +37,22 @@ class Biblio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      navigatorKey: Utils.mainNavigator,
-      theme: ThemeData(
-        textTheme: GoogleFonts.notoSerifTextTheme(),
-        navigationBarTheme: NavigationBarThemeData(
-            labelTextStyle: MaterialStateTextStyle.resolveWith(
-                (states) => TextStyle(color: Colors.white))),
-      ),
-      onGenerateRoute: RepositoryProvider.of<AppRouter>(context).mainNavigator,
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: Utils.mainNavigator,
+          theme: ThemeData(
+            useMaterial3: true,
+            textTheme: GoogleFonts.notoSerifTextTheme(),
+            navigationBarTheme: NavigationBarThemeData(
+                labelTextStyle: MaterialStateTextStyle.resolveWith(
+                    (states) => TextStyle(color: Colors.blueGrey))),
+          ),
+          onGenerateRoute:
+              RepositoryProvider.of<AppRouter>(context).mainNavigator,
+        );
+      },
     );
   }
 }

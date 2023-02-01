@@ -266,3 +266,181 @@ abstract class _Book implements Book {
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;
 }
+
+BookApi _$BookApiFromJson(Map<String, dynamic> json) {
+  return _BookApi.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookApi {
+  String get name => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get cover => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookApiCopyWith<BookApi> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookApiCopyWith<$Res> {
+  factory $BookApiCopyWith(BookApi value, $Res Function(BookApi) then) =
+      _$BookApiCopyWithImpl<$Res, BookApi>;
+  @useResult
+  $Res call({String name, String category, String cover});
+}
+
+/// @nodoc
+class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
+    implements $BookApiCopyWith<$Res> {
+  _$BookApiCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? category = null,
+    Object? cover = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BookApiCopyWith<$Res> implements $BookApiCopyWith<$Res> {
+  factory _$$_BookApiCopyWith(
+          _$_BookApi value, $Res Function(_$_BookApi) then) =
+      __$$_BookApiCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, String category, String cover});
+}
+
+/// @nodoc
+class __$$_BookApiCopyWithImpl<$Res>
+    extends _$BookApiCopyWithImpl<$Res, _$_BookApi>
+    implements _$$_BookApiCopyWith<$Res> {
+  __$$_BookApiCopyWithImpl(_$_BookApi _value, $Res Function(_$_BookApi) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? category = null,
+    Object? cover = null,
+  }) {
+    return _then(_$_BookApi(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
+  const _$_BookApi(
+      {required this.name, required this.category, required this.cover});
+
+  factory _$_BookApi.fromJson(Map<String, dynamic> json) =>
+      _$$_BookApiFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String category;
+  @override
+  final String cover;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BookApi(name: $name, category: $category, cover: $cover)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BookApi'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('cover', cover));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BookApi &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.cover, cover) || other.cover == cover));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, category, cover);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BookApiCopyWith<_$_BookApi> get copyWith =>
+      __$$_BookApiCopyWithImpl<_$_BookApi>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookApiToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookApi implements BookApi {
+  const factory _BookApi(
+      {required final String name,
+      required final String category,
+      required final String cover}) = _$_BookApi;
+
+  factory _BookApi.fromJson(Map<String, dynamic> json) = _$_BookApi.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get category;
+  @override
+  String get cover;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BookApiCopyWith<_$_BookApi> get copyWith =>
+      throw _privateConstructorUsedError;
+}

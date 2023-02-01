@@ -21,15 +21,14 @@ class BookCubit extends HydratedCubit<BookState> {
   void removeBookAtIndex(index) =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeAt(index)));
 
+  // Methods to write and read state from json
   @override
   BookState? fromJson(Map<String, dynamic> json) {
     return _$BookStateFromJson(json);
-    throw UnimplementedError();
   }
 
   @override
   Map<String, dynamic>? toJson(BookState state) {
     return _$BookStateToJson(state);
-    throw UnimplementedError();
   }
 }
