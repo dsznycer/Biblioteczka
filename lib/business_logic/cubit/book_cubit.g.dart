@@ -17,12 +17,17 @@ BookState _$BookStateFromJson(Map<String, dynamic> json) => BookState(
               ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      recomendedBooks: (json['recomendedBooks'] as List<dynamic>?)
+              ?.map((e) => BookApi.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{
       'status': _$BookStatusEnumMap[instance.status]!,
       'booksRed': instance.booksRed,
       'booksToRead': instance.booksToRead,
+      'recomendedBooks': instance.recomendedBooks,
     };
 
 const _$BookStatusEnumMap = {

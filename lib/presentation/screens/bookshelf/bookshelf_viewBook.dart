@@ -18,59 +18,61 @@ class BookshelfViewBook extends StatelessWidget {
   Widget build(BuildContext context) {
     final Book book = context.watch<SettingsCubit>().state.chosenBook;
     final List<Book> list = context.watch<BookCubit>().state.booksRed;
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Material(
-        color: AppColors.kCol3,
-        borderRadius: BorderRadius.circular(14),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () =>
-                          Utils.biblioteczkaNavigator.currentState!.pop(),
-                      icon: Icon(Icons.close)),
-                  Text(
-                    'Twoja ksiązka',
-                    style: AppTextStyles.TextLarge,
-                  )
-                ],
-              ),
-              Container(
-                child: Image.asset('assets/photo/sampleBook.png'),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Material(
+          color: AppColors.kCol3,
+          borderRadius: BorderRadius.circular(14),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Text('Tytuł:'),
-                    Text(book.title),
-                    Text('Autor:'),
-                    Text(book.author),
-                    Text('Przeczytano w:'),
-                    Text(book.yearOfEnd)
+                    IconButton(
+                        onPressed: () =>
+                            Utils.biblioteczkaNavigator.currentState!.pop(),
+                        icon: Icon(Icons.close)),
+                    Text(
+                      'Twoja ksiązka',
+                      style: AppTextStyles.TextLarge,
+                    )
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        context
-                            .read<BookCubit>()
-                            .removeBookAtIndex(list.indexOf(book));
-                        Utils.biblioteczkaNavigator.currentState!.pop();
-                      },
-                      icon: const Icon(BiblioteczkaIcons.deleteIcon)),
-                ],
-              ),
-              const SizedBox(height: 20),
-            ],
+                Container(
+                  child: Image.asset('assets/photo/sampleBook.png'),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text('Tytuł:'),
+                      Text(book.title),
+                      Text('Autor:'),
+                      Text(book.author),
+                      Text('Przeczytano w:'),
+                      Text(book.yearOfEnd)
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          context
+                              .read<BookCubit>()
+                              .removeBookAtIndex(list.indexOf(book));
+                          Utils.biblioteczkaNavigator.currentState!.pop();
+                        },
+                        icon: const Icon(BiblioteczkaIcons.deleteIcon)),
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

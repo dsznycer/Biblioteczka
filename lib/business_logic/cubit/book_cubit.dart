@@ -1,3 +1,4 @@
+import 'package:biblioteczka/data/Repositories/book_repository.dart';
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -7,7 +8,9 @@ part 'book_state.dart';
 part 'book_cubit.g.dart';
 
 class BookCubit extends HydratedCubit<BookState> {
-  BookCubit() : super(BookState());
+  BookCubit(this._bookRepository) : super(BookState());
+
+  final BookRepository _bookRepository;
 
   void addNewBook(Book book) => emit(state.copyWith(
       status: BookStatus.withData,
@@ -20,6 +23,17 @@ class BookCubit extends HydratedCubit<BookState> {
 
   void removeBookAtIndex(index) =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeAt(index)));
+
+  void getBestBooksOfYear(String year) async {
+    List<BookApi> listOfBookApi = [];
+
+    emit(state.copyWith(status: BookStatus.loadingData));
+
+    listOfBookApi = await _bookRepository.getBestBooksYear('2022');
+
+    emit(state.copyWith(
+        status: BookStatus.withData, recomendedBooks: listOfBookApi));
+  }
 
   // Methods to write and read state from json
   @override

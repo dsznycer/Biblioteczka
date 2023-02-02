@@ -19,13 +19,11 @@ class BookShelfBasic extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         bottomNavigationBar: RepositoryProvider.of<Navig>(context),
-        body: SafeArea(
-          child: Navigator(
-            key: Utils.biblioteczkaNavigator,
-            initialRoute: '/',
-            onGenerateRoute:
-                RepositoryProvider.of<AppRouter>(context).biblioteczkaNavigator,
-          ),
+        body: Navigator(
+          key: Utils.biblioteczkaNavigator,
+          initialRoute: '/',
+          onGenerateRoute:
+              RepositoryProvider.of<AppRouter>(context).biblioteczkaNavigator,
         ));
   }
 }

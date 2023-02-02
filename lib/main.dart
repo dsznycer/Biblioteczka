@@ -1,6 +1,7 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/APIs/HapiBooks_api.dart';
+import 'package:biblioteczka/data/Repositories/book_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
@@ -20,16 +21,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(create: (context) => Navig()),
-        RepositoryProvider(create: (context) => AppRouter()),
-        RepositoryProvider(create: (context) => HapiBooksApi()),
-      ],
-      child: MultiBlocProvider(providers: [
-        BlocProvider<BookCubit>(create: (context) => BookCubit()),
-        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
-      ], child: const Biblio())));
+  runApp(MultiRepositoryProvider(providers: [
+    RepositoryProvider(create: (context) => Navig()),
+    RepositoryProvider(create: (context) => AppRouter()),
+    RepositoryProvider(create: (context) => BookRepository()),
+  ], child: const Biblio()));
 }
 
 class Biblio extends StatelessWidget {
@@ -37,22 +33,25 @@ class Biblio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: (context, state) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: Utils.mainNavigator,
-          theme: ThemeData(
-            useMaterial3: true,
-            textTheme: GoogleFonts.notoSerifTextTheme(),
-            navigationBarTheme: NavigationBarThemeData(
-                labelTextStyle: MaterialStateTextStyle.resolveWith(
-                    (states) => TextStyle(color: Colors.blueGrey))),
-          ),
-          onGenerateRoute:
-              RepositoryProvider.of<AppRouter>(context).mainNavigator,
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BookCubit>(
+            create: (context) => BookCubit(context.read<BookRepository>())),
+        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: Utils.mainNavigator,
+        theme: ThemeData(
+          useMaterial3: true,
+          textTheme: GoogleFonts.notoSerifTextTheme(),
+          navigationBarTheme: NavigationBarThemeData(
+              labelTextStyle: MaterialStateTextStyle.resolveWith(
+                  (states) => TextStyle(color: Colors.blueGrey))),
+        ),
+        onGenerateRoute:
+            RepositoryProvider.of<AppRouter>(context).mainNavigator,
+      ),
     );
   }
 }

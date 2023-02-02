@@ -20,9 +20,11 @@ class BookAdd extends StatelessWidget {
     return SafeArea(
       child: Material(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(
+              height: 50,
+            ),
             Row(
               children: [
                 IconButton(
