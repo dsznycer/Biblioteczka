@@ -11,7 +11,8 @@ class SmallBookWidget extends StatelessWidget {
       {this.bookAPi = const BookApi(
           name: 'title',
           category: 'author',
-          cover: 'https://ecsmedia.pl/c/bracia-karamazow-w-iext121646629.jpg'),
+          cover: 'https://ecsmedia.pl/c/bracia-karamazow-w-iext121646629.jpg',
+          bookId: '999'),
       super.key});
 
   final BookApi bookAPi;

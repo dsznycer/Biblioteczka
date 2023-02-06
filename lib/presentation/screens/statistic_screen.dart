@@ -1,9 +1,8 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/data/APIs/google_books_api.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/book_model.dart';
@@ -23,7 +22,7 @@ class StatisticScreen extends StatelessWidget {
 
           return SafeArea(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
@@ -32,6 +31,16 @@ class StatisticScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text("książek ${bookList.length.toString()}!"),
+                  SizedBox(
+                    width: 100,
+                    child: FloatingActionButton.small(
+                        child: Text('Get books'),
+                        onPressed: () {
+                          context
+                              .read<GoogleBooksApi>()
+                              .getBookWithTitleAuthor();
+                        }),
+                  ),
                 ]),
           );
         },

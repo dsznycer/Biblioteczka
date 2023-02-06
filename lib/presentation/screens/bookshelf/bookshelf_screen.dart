@@ -9,9 +9,33 @@ import '../../widgets/book_widget.dart';
 class BookShelf extends StatelessWidget {
   BookShelf({Key? key}) : super(key: key);
 
+  Map<String, String> snackBarInfo = {
+    '+': 'Udało się dodać książkę!',
+    '-': 'Udało się usunąc książkę.'
+  };
+
+  String messageOfSnackBar = 'empty';
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookCubit, BookState>(
+    return BlocConsumer<BookCubit, BookState>(
+      listenWhen: (previous, current) {
+        if (previous.booksRed.length < current.booksRed.length) {
+          messageOfSnackBar = snackBarInfo['+']!;
+          return true;
+        } else if (previous.booksRed.length > current.booksRed.length) {
+          messageOfSnackBar = snackBarInfo['-']!;
+          return true;
+        }
+
+        return false;
+      },
+      listener: (context, state) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            duration: const Duration(seconds: 2),
+            showCloseIcon: true,
+            content: Text(messageOfSnackBar)));
+      },
       builder: (context, state) {
         return SafeArea(
           child: Stack(children: [
@@ -90,27 +114,27 @@ class BookShelf extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 300,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.booksRed.length,
-                        itemBuilder: (context, int index) {
-                          if (state.booksToRead.length > 0) {
-                            return BookWidget(
-                                book: state.booksToRead[index],
-                                onTap: () {
-                                  context
-                                      .read<SettingsCubit>()
-                                      .choosenBook(state.booksRed[index]);
-                                  Utils.biblioteczkaNavigator.currentState!
-                                      .pushNamed('/editBook');
-                                });
-                          } else {
-                            CircularProgressIndicator();
-                          }
-                        }),
-                  ),
+                      width: 400,
+                      height: 300,
+                      child: state.booksToRead.isNotEmpty
+                          ? ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.booksRed.length,
+                              itemBuilder: (context, int index) {
+                                return BookWidget(
+                                    book: state.booksToRead[index],
+                                    onTap: () {
+                                      context
+                                          .read<SettingsCubit>()
+                                          .choosenBook(state.booksRed[index]);
+                                      Utils.biblioteczkaNavigator.currentState!
+                                          .pushNamed('/editBook');
+                                    });
+                              })
+                          : Center(
+                              child: const Text(
+                                  'Tutaj pojawią się książki, które chcesz przeczytać!'),
+                            )),
                 ],
               ),
             ),

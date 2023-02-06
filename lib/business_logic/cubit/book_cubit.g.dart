@@ -9,18 +9,9 @@ part of 'book_cubit.dart';
 BookState _$BookStateFromJson(Map<String, dynamic> json) => BookState(
       status: $enumDecodeNullable(_$BookStatusEnumMap, json['status']) ??
           BookStatus.initial,
-      booksRed: (json['booksRed'] as List<dynamic>?)
-              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      booksToRead: (json['booksToRead'] as List<dynamic>?)
-              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      recomendedBooks: (json['recomendedBooks'] as List<dynamic>?)
-              ?.map((e) => BookApi.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      booksRed: json['booksRed'] as List<dynamic>? ?? const [],
+      booksToRead: json['booksToRead'] as List<dynamic>? ?? const [],
+      recomendedBooks: json['recomendedBooks'] as List<dynamic>? ?? const [],
     );
 
 Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{

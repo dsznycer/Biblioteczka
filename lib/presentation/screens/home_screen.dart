@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                               : Center(
                                   child: Container(
                                     width: 300,
-                                    height: 100,
+                                    height: 80,
                                     child: Text(
                                       'Tutaj pojawią się aktualnie czytana książka!',
                                       textAlign: TextAlign.center,

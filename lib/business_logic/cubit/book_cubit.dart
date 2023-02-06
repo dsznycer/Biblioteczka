@@ -28,9 +28,7 @@ class BookCubit extends HydratedCubit<BookState> {
     List<BookApi> listOfBookApi = [];
 
     emit(state.copyWith(status: BookStatus.loadingData));
-
     listOfBookApi = await _bookRepository.getBestBooksYear('2022');
-
     emit(state.copyWith(
         status: BookStatus.withData, recomendedBooks: listOfBookApi));
   }

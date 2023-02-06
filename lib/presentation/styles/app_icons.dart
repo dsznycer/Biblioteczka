@@ -46,4 +46,6 @@ class BiblioteczkaIcons {
 
   static const IconData bookIcon =
       IconData(0xe001, fontFamily: _biblioteczkafont);
+  static const IconData pagesIcon =
+      IconData(0xe002, fontFamily: _biblioteczkafont);
 }

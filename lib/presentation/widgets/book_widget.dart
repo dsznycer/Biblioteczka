@@ -1,6 +1,7 @@
 import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
+import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatelessWidget {
@@ -39,7 +40,7 @@ class BookWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(book.title),
+                      Text(book.title, style: AppTextStyles.H2),
                       Row(
                         children: [
                           Text('Autor:'),
