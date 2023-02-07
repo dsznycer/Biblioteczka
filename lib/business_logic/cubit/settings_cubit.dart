@@ -1,14 +1,14 @@
-import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'dart:convert';
+import '../../data/Models/book_model.dart';
 import '../../router.dart';
 
 part 'settings_state.dart';
 
 class SettingsCubit extends HydratedCubit<SettingsState> {
-  SettingsCubit() : super(SettingsState()) {
+  SettingsCubit() : super(const SettingsState()) {
     if (state.index > 0) {
       changeIndex(0);
     }

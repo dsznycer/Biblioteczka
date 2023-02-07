@@ -1,6 +1,8 @@
 import 'package:biblioteczka/data/APIs/hapi_books_api.dart';
-import 'package:biblioteczka/data/models/book_model.dart';
+
 import 'dart:convert';
+
+import 'package:biblioteczka/data/Models/book_model.dart';
 
 class BookRepository {
   final HapiBooksApi _hapiApi = HapiBooksApi();
@@ -11,8 +13,6 @@ class BookRepository {
     final rawData = await _hapiApi.getBestBooks(year);
 
     final List lista = jsonDecode(rawData) as List;
-
-    print(lista);
 
     listOfBooks =
         lista.map((e) => BookApi.fromJson(e as Map<String, dynamic>)).toList();

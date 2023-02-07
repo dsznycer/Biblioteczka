@@ -1,11 +1,10 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/data/APIs/google_books_api.dart';
+import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/models/book_model.dart';
 
 class StatisticScreen extends StatelessWidget {
   const StatisticScreen({super.key});
@@ -31,6 +30,14 @@ class StatisticScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text("książek ${bookList.length.toString()}!"),
+                  IconButton(
+                      onPressed: () {
+                        var jejson = bookList.first.toJson();
+                        print(jejson);
+                        Book bokson = Book.fromJson(jejson);
+                        print(bokson);
+                      },
+                      icon: Icon(Icons.access_alarm)),
                   SizedBox(
                     width: 100,
                     child: FloatingActionButton.small(

@@ -1,8 +1,9 @@
-import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/Models/book_model.dart';
 
 class BookWidget extends StatelessWidget {
   BookWidget({required this.book, this.onTap, super.key});

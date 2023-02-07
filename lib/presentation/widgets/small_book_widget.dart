@@ -2,17 +2,19 @@ import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import '../../data/models/book_model.dart';
+
+import '../../data/Models/book_model.dart';
 import '../styles/app_colors.dart';
 import '../styles/app_shadows.dart';
 
 class SmallBookWidget extends StatelessWidget {
   const SmallBookWidget(
       {this.bookAPi = const BookApi(
-          name: 'title',
-          category: 'author',
-          cover: 'https://ecsmedia.pl/c/bracia-karamazow-w-iext121646629.jpg',
-          bookId: '999'),
+        book_id: '999',
+        name: 'title',
+        category: 'author',
+        cover: 'https://ecsmedia.pl/c/bracia-karamazow-w-iext121646629.jpg',
+      ),
       super.key});
 
   final BookApi bookAPi;

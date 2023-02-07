@@ -1,6 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
-import 'package:biblioteczka/data/models/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
@@ -94,8 +93,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: IconButton(
-                                  onPressed: () =>
-                                      context.read<BookCubit>().toInitial(),
+                                  onPressed: () => print(
+                                      context.read<BookCubit>().state.status),
                                   icon: Icon(
                                     Icons.delete,
                                     color: AppColors.kCol2,
