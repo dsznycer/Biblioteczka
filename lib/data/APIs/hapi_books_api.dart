@@ -7,6 +7,7 @@ class HapiBooksApi {
   };
   static const _hapiBooksUrl = 'hapi-books.p.rapidapi.com';
 
+  // Method to get best books of specific year
   Future<String> getBestBooks(String year) async {
     var uri = Uri.https(_hapiBooksUrl, 'top/$year');
 
@@ -15,7 +16,11 @@ class HapiBooksApi {
     if (responseBook.statusCode != 200) {
       print("Response status code is: ${responseBook.statusCode}");
       throw Error();
+    } else {
+      print('succeded downloaded data with HapiBookApi');
     }
+
+    print(responseBook.body);
 
     return responseBook.body;
   }

@@ -8,16 +8,53 @@ part of 'book_model.dart';
 
 GoogleBookItem _$GoogleBookItemFromJson(Map<String, dynamic> json) =>
     GoogleBookItem(
-      googleId: json['googleId'] as String,
-      etag: json['etag'] as String,
+      id: json['id'] as String,
       selfLink: json['selfLink'] as String,
+      volumeInfo:
+          GoogleVolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+      searchInfo: (json['searchInfo'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
     );
 
 Map<String, dynamic> _$GoogleBookItemToJson(GoogleBookItem instance) =>
     <String, dynamic>{
-      'googleId': instance.googleId,
-      'etag': instance.etag,
+      'id': instance.id,
       'selfLink': instance.selfLink,
+      'volumeInfo': instance.volumeInfo.toJson(),
+      'searchInfo': instance.searchInfo,
+    };
+
+GoogleVolumeInfo _$GoogleVolumeInfoFromJson(Map<String, dynamic> json) =>
+    GoogleVolumeInfo(
+      json['title'] as String,
+      (json['authors'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['publisher'] as String?,
+      json['publishedDate'] as String?,
+      json['description'] as String?,
+      (json['industryIdentifiers'] as List<dynamic>?)
+          ?.map((e) => Map<String, String>.from(e as Map))
+          .toList(),
+      json['pageCount'] as int?,
+      (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      (json['averageRating'] as num?)?.toDouble(),
+      (json['imageLinks'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+    );
+
+Map<String, dynamic> _$GoogleVolumeInfoToJson(GoogleVolumeInfo instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'authors': instance.authors,
+      'publisher': instance.publisher,
+      'publishedDate': instance.publishedDate,
+      'description': instance.description,
+      'industryIdentifiers': instance.industryIdentifiers,
+      'pageCount': instance.pageCount,
+      'categories': instance.categories,
+      'averageRating': instance.averageRating,
+      'imageLinks': instance.imageLinks,
     };
 
 _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(

@@ -30,22 +30,13 @@ class StatisticScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text("książek ${bookList.length.toString()}!"),
-                  IconButton(
-                      onPressed: () {
-                        var jejson = bookList.first.toJson();
-                        print(jejson);
-                        Book bokson = Book.fromJson(jejson);
-                        print(bokson);
-                      },
-                      icon: Icon(Icons.access_alarm)),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.access_alarm)),
                   SizedBox(
                     width: 100,
                     child: FloatingActionButton.small(
                         child: Text('Get books'),
                         onPressed: () {
-                          context
-                              .read<GoogleBooksApi>()
-                              .getBookWithTitleAuthor();
+                          context.read<BookCubit>().getBestBooksOfYear('2014');
                         }),
                   ),
                 ]),

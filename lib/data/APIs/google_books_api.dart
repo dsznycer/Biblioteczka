@@ -5,11 +5,12 @@ class GoogleBooksApi {
   static const String apiKey = 'AIzaSyBhEHykC7tKUaVSzriVjnbS3SQPQhPcmlM';
   static const String authorityUrl = 'www.googleapis.com';
 
-  Future<void> getBookWithTitleAuthor() async {
+  // Method to search books with specific title and author
+  Future<String> getBooksWithTitle(String text) async {
     Map<String, dynamic> queryMap = {
-      'q': 'girl with dragon inauthor:Stieg',
+      'q': text,
       'printType': 'books',
-      'projection': 'lite',
+      'maxResult': '10',
       'key': apiKey
     };
 
@@ -22,14 +23,11 @@ class GoogleBooksApi {
       throw Error();
     }
 
-    var decodedResponse = jsonDecode(response.body);
-
-    print(url);
-    print('Response is:');
-    print(decodedResponse);
+    return response.body;
   }
 
-  Future<void> getBookByGoogleId(String id) async {
+  // Method to get function by specific google ID
+  Future<String> getBookByGoogleId(String id) async {
     Map<String, dynamic> queryMap = {'projection': 'lite', 'key': apiKey};
 
     Uri url = Uri.https(authorityUrl, '/books/v1/volumes/$id', queryMap);
@@ -41,10 +39,6 @@ class GoogleBooksApi {
       throw Error();
     }
 
-    var decodedResponse = jsonDecode(response.body);
-
-    print(url);
-    print('Response is:');
-    print(decodedResponse);
+    return response.body;
   }
 }

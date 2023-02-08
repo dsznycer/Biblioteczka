@@ -2,11 +2,13 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
+import 'package:biblioteczka/presentation/widgets/google_book_mini.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/book_widget.dart';
-import '../widgets/small_book_widget.dart';
+import '../../widgets/book_widget.dart';
+import '../../widgets/small_book_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,6 +23,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
           Size size = MediaQuery.of(context).size;
+          String search = '';
           return SafeArea(
             child: Column(
               children: [
@@ -53,6 +56,32 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Container(
+                          height: 60,
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: CupertinoSearchTextField(
+                            onChanged: (text) => search = text,
+                            onSubmitted: (search) => context
+                                .read<BookCubit>()
+                                .searchGoogleBooks(search),
+                          ),
+                        ),
+                        Container(
+                          width: size.width,
+                          height: 300,
+                          child: state.googleBooks.isNotEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: state.googleBooks.length,
+                                  itemBuilder: (context, index) =>
+                                      GoogleBookMiniWidget(
+                                        book: state.googleBooks[index],
+                                      ))
+                              : Center(
+                                  child: Text(
+                                      'Tutaj pojawią się wyszukane książki')),
+                        ),
+                        Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 12, horizontal: 20),
                           alignment: Alignment.centerLeft,
@@ -61,6 +90,7 @@ class HomeScreen extends StatelessWidget {
                             style: AppTextStyles.H1,
                           ),
                         ),
+                        //TODO: put tile view here
                         Container(
                           width: size.width,
                           height: 300,

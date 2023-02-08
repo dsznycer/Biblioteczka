@@ -24,11 +24,22 @@ class BookCubit extends HydratedCubit<BookState> {
   void removeBookAtIndex(index) =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeAt(index)));
 
+  // Google Books Api methods
+  void searchGoogleBooks(String title) async {
+    List<GoogleBookItem> listOfGoogleItems = [];
+
+    emit(state.copyWith(status: BookStatus.loadingData));
+    listOfGoogleItems = await _bookRepository.searchGoogleBooks(title);
+    emit(state.copyWith(
+        status: BookStatus.withData, googleBooks: listOfGoogleItems));
+  }
+
+  // Hapi Books methods
   void getBestBooksOfYear(String year) async {
     List<BookApi> listOfBookApi = [];
 
     emit(state.copyWith(status: BookStatus.loadingData));
-    listOfBookApi = await _bookRepository.getBestBooksYear('2022');
+    listOfBookApi = await _bookRepository.getBestBooksYear(year);
     emit(state.copyWith(
         status: BookStatus.withData, recomendedBooks: listOfBookApi));
   }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -33,20 +35,52 @@ class BookApi with _$BookApi {
       _$BookApiFromJson(json);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class GoogleBookItem {
-  final String googleId;
-  final String etag;
+  final String id;
   final String selfLink;
+  final GoogleVolumeInfo volumeInfo;
+  final Map<String, String>? searchInfo;
 
-  const GoogleBookItem({
-    required this.googleId,
-    required this.etag,
-    required this.selfLink,
-  });
+  const GoogleBookItem(
+      {required this.id,
+      required this.selfLink,
+      required this.volumeInfo,
+      required this.searchInfo});
 
   factory GoogleBookItem.fromJson(Map<String, dynamic> json) =>
       _$GoogleBookItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$GoogleBookItemToJson(this);
+}
+
+@JsonSerializable()
+class GoogleVolumeInfo {
+  final String title;
+  final List<String>? authors;
+  final String? publisher;
+  final String? publishedDate;
+  final String? description;
+  final List<Map<String, String>>? industryIdentifiers;
+  final int? pageCount;
+  final List<String>? categories;
+  final double? averageRating;
+  final Map<String, String>? imageLinks;
+
+  const GoogleVolumeInfo(
+      this.title,
+      this.authors,
+      this.publisher,
+      this.publishedDate,
+      this.description,
+      this.industryIdentifiers,
+      this.pageCount,
+      this.categories,
+      this.averageRating,
+      this.imageLinks);
+
+  factory GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
+      _$GoogleVolumeInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GoogleVolumeInfoToJson(this);
 }

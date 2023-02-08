@@ -15,16 +15,17 @@ class BookshelfViewBook extends StatelessWidget {
   Widget build(BuildContext context) {
     final Book book = context.watch<SettingsCubit>().state.chosenBook;
     final List<Book> list = context.watch<BookCubit>().state.booksRed;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Material(
-          color: AppColors.kCol3,
-          borderRadius: BorderRadius.circular(14),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+      top: false,
+      child: Material(
+        color: AppColors.kCol3,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: 50),
                 Row(
                   children: [
                     IconButton(
@@ -38,21 +39,25 @@ class BookshelfViewBook extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  child: Image.asset('assets/photo/sampleBook.png'),
+                  height: 300,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                          fit: BoxFit.contain,
+                          image: NetworkImage(
+                              'https://s2982.pcdn.co/wp-content/uploads/2019/01/The-Binding-by-Bridget-Collins-709x1024.jpg.optimal.jpg'))),
                 ),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text('Tytuł:'),
-                      Text(book.title),
-                      Text('Autor:'),
-                      Text(book.author),
-                      Text('Przeczytano w:'),
-                      Text(book.yearOfEnd)
-                    ],
-                  ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Tytuł:'),
+                    Text(book.title),
+                    Text('Autor:'),
+                    Text(book.author),
+                    Text('Przeczytano w:'),
+                    Text(book.yearOfEnd)
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

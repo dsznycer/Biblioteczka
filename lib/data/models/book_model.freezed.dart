@@ -380,7 +380,8 @@ class __$$_BookApiCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
   const _$_BookApi(
       {required this.book_id,

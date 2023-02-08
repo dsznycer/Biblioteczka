@@ -2,7 +2,7 @@ import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBook.da
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_viewBook.dart';
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_screen.dart';
-import 'package:biblioteczka/presentation/screens/home_screen.dart';
+import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
 import 'package:biblioteczka/presentation/screens/profile_screen.dart';
 import 'package:biblioteczka/presentation/screens/registration/login_screen.dart';
 import 'package:biblioteczka/presentation/screens/statistic_screen.dart';

@@ -25,7 +25,6 @@ void main() async {
     RepositoryProvider(create: (context) => Navig()),
     RepositoryProvider(create: (context) => AppRouter()),
     RepositoryProvider(create: (context) => BookRepository()),
-    RepositoryProvider(create: (context) => GoogleBooksApi())
   ], child: const Biblio()));
 }
 
@@ -45,6 +44,7 @@ class Biblio extends StatelessWidget {
         navigatorKey: Utils.mainNavigator,
         theme: ThemeData(
           useMaterial3: true,
+          //NotoSerfitextTheme or monsteratt
           textTheme: GoogleFonts.notoSerifTextTheme(),
           navigationBarTheme: NavigationBarThemeData(
               labelTextStyle: MaterialStateTextStyle.resolveWith(

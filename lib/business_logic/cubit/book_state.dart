@@ -47,6 +47,8 @@ class BookState {
 }
 
 
+//Version of state with freezed anotation
+
 // @freezed
 // @JsonSerializable(explicitToJson: true)
 // class BookState with _$BookState {
