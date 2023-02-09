@@ -66,7 +66,7 @@ class BookshelfViewBook extends StatelessWidget {
                         onPressed: () {
                           context
                               .read<BookCubit>()
-                              .removeBookAtIndex(list.indexOf(book));
+                              .removeRedBookAtIndex(list.indexOf(book));
                           Utils.biblioteczkaNavigator.currentState!.pop();
                         },
                         icon: const Icon(BiblioteczkaIcons.deleteIcon)),

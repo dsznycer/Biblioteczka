@@ -34,10 +34,7 @@ class StatisticScreen extends StatelessWidget {
                   SizedBox(
                     width: 100,
                     child: FloatingActionButton.small(
-                        child: Text('Get books'),
-                        onPressed: () {
-                          context.read<BookCubit>().getBestBooksOfYear('2014');
-                        }),
+                        child: Text('Get books/empty func'), onPressed: () {}),
                   ),
                 ]),
           );

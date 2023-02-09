@@ -6,12 +6,12 @@ class AppTextInput extends StatelessWidget {
   AppTextInput(
       {required this.hintText,
       required this.iconData,
-      required this.labelValue,
+      required this.controller,
       super.key});
 
   final String hintText;
   final IconData iconData;
-  String labelValue;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,16 @@ class AppTextInput extends StatelessWidget {
             child: Text(hintText, style: AppTextStyles.H3),
           ),
           TextField(
-            onChanged: (value) => labelValue = value,
+            controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
               label: Icon(iconData),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              border: OutlineInputBorder(
+              border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   borderSide: BorderSide(color: Colors.tealAccent)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.kCol2, width: 2),
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),

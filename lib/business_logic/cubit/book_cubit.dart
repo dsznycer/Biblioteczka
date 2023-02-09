@@ -14,15 +14,21 @@ class BookCubit extends HydratedCubit<BookState> {
 
   final BookRepository _bookRepository;
 
+  // Add new book to the list of books red
   void addNewBook(Book book) => emit(state.copyWith(
       status: BookStatus.withData,
       booksRed: List.of(state.booksRed)..add(book)));
 
+  // Remove last book from booksRed
   void removeLast() =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeLast()));
 
-  void removeBookAtIndex(index) =>
+  // Remove book from
+  void removeRedBookAtIndex(index) =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeAt(index)));
+
+  // Delete list of searched books
+  void removeSearchedBooks() => emit(state.copyWith(googleBooks: List.empty()));
 
   // Google Books Api methods
   void searchGoogleBooks(String title) async {

@@ -1,11 +1,14 @@
 import 'package:biblioteczka/data/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
 import '../../data/Models/book_model.dart';
 import '../../router.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'settings_state.dart';
+part 'settings_cubit.g.dart';
 
 class SettingsCubit extends HydratedCubit<SettingsState> {
   SettingsCubit() : super(const SettingsState()) {
@@ -21,11 +24,11 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
   // Methods to write and read state from json
   @override
   SettingsState? fromJson(Map<String, dynamic> json) {
-    return SettingsState.fromMap(json);
+    return SettingsState.fromJson(json);
   }
 
   @override
   Map<String, dynamic>? toJson(SettingsState state) {
-    return state.toMap();
+    return state.toJson();
   }
 }

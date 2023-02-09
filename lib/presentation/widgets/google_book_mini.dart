@@ -20,7 +20,7 @@ class GoogleBookMiniWidget extends StatelessWidget {
     }
 
     return Container(
-      width: 250,
+      width: 200,
       padding: const EdgeInsets.all(8),
       child: Column(children: [
         Expanded(

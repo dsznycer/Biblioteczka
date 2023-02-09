@@ -29,8 +29,8 @@ class BookWidget extends StatelessWidget {
                 child: Container(
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(12)),
-              child: Image.asset(
-                'assets/photo/bookShop.png',
+              child: Image.network(
+                'https://ecsmedia.pl/c/sycylijczyk-b-iext123168017.jpg',
                 fit: BoxFit.cover,
               ),
             )),

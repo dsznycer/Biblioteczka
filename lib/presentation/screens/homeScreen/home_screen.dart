@@ -11,14 +11,17 @@ import '../../widgets/book_widget.dart';
 import '../../widgets/small_book_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final mode = context.select((SettingsCubit s) => s.state.darkMode);
 
     return Scaffold(
-      backgroundColor: mode == true ? Colors.grey : Colors.white,
+      backgroundColor:
+          mode == true ? Color.fromARGB(255, 224, 218, 218) : Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
@@ -33,8 +36,9 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                       width: 100,
                       height: 50,
-                      child: SwitchListTile(
-                          activeColor: Colors.black26,
+                      child: Switch(
+                          activeColor: Colors.white30,
+                          inactiveTrackColor: Colors.black12,
                           value: mode,
                           onChanged: (value) => context
                               .read<SettingsCubit>()
@@ -60,15 +64,26 @@ class HomeScreen extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: CupertinoSearchTextField(
-                            onChanged: (text) => search = text,
+                            controller: textEditingController,
+                            onChanged: (String text) {
+                              search = text;
+                              if (search == '') {
+                                context.read<BookCubit>().removeSearchedBooks();
+                              }
+                            },
                             onSubmitted: (search) => context
                                 .read<BookCubit>()
                                 .searchGoogleBooks(search),
+                            onSuffixTap: () {
+                              textEditingController.clear();
+                              context.read<BookCubit>().removeSearchedBooks();
+                            },
                           ),
                         ),
-                        Container(
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
                           width: size.width,
-                          height: 300,
+                          height: state.googleBooks.isNotEmpty ? 300 : 40,
                           child: state.googleBooks.isNotEmpty
                               ? ListView.builder(
                                   scrollDirection: Axis.horizontal,
@@ -77,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                                       GoogleBookMiniWidget(
                                         book: state.googleBooks[index],
                                       ))
-                              : Center(
+                              : const Center(
                                   child: Text(
                                       'Tutaj pojawią się wyszukane książki')),
                         ),
@@ -87,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             'Aktualnie czytasz:',
-                            style: AppTextStyles.H1,
+                            style: AppTextStyles.H2,
                           ),
                         ),
                         //TODO: put tile view here

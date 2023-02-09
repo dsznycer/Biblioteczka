@@ -45,7 +45,7 @@ class AppRouter {
         page = BookShelf();
         break;
       case '/addBook':
-        page = const BookAdd();
+        page = BookAdd();
         break;
       case '/editBook':
         page = BookshelfViewBook();

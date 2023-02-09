@@ -2,6 +2,7 @@
 
 part of 'settings_cubit.dart';
 
+@JsonSerializable()
 class SettingsState {
   final int index;
   final bool darkMode;
@@ -31,24 +32,8 @@ class SettingsState {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'index': index,
-      'darkMode': darkMode,
-      'chosenBook': chosenBook.toJson(),
-    };
-  }
+  factory SettingsState.fromJson(Map<String, dynamic> json) =>
+      _$SettingsStateFromJson(json);
 
-  factory SettingsState.fromMap(Map<String, dynamic> map) {
-    return SettingsState(
-      index: map['index'] as int,
-      darkMode: map['darkMode'] as bool,
-      chosenBook: Book.fromJson(map['chosenBook'] as Map<String, dynamic>),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory SettingsState.fromJson(String source) =>
-      SettingsState.fromMap(json.decode(source) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => _$SettingsStateToJson(this);
 }

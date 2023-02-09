@@ -4,6 +4,7 @@ import 'package:biblioteczka/data/APIs/google_books_api.dart';
 import 'package:biblioteczka/data/APIs/hapi_books_api.dart';
 import 'package:biblioteczka/data/Repositories/book_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class Biblio extends StatelessWidget {
         navigatorKey: Utils.mainNavigator,
         theme: ThemeData(
           useMaterial3: true,
-          //NotoSerfitextTheme or monsteratt
+          // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.kCol3),
           textTheme: GoogleFonts.notoSerifTextTheme(),
           navigationBarTheme: NavigationBarThemeData(
               labelTextStyle: MaterialStateTextStyle.resolveWith(

@@ -27,7 +27,6 @@ class BookShelf extends StatelessWidget {
           messageOfSnackBar = snackBarInfo['-']!;
           return true;
         }
-
         return false;
       },
       listener: (context, state) {
