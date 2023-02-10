@@ -37,7 +37,8 @@ class Biblio extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<BookCubit>(
-            create: (context) => BookCubit(context.read<BookRepository>())),
+            create: (context) =>
+                BookCubit(bookRepository: context.read<BookRepository>())),
         BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
       ],
       child: MaterialApp(

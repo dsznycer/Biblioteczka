@@ -7,4 +7,4 @@ class Utils {
   static GlobalKey<NavigatorState> profileNavigator = GlobalKey();
 }
 
-enum BookProgress { red, toRead, inprogress }
+enum BookProgress { red, toRead, inProgress }

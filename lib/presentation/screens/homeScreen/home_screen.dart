@@ -109,14 +109,14 @@ class HomeScreen extends StatelessWidget {
                         Container(
                           width: size.width,
                           height: 300,
-                          child: state.booksRed.isNotEmpty
-                              ? BookWidget(book: state.booksRed.last)
+                          child: state.booksReading.isNotEmpty
+                              ? BookWidget(book: state.booksReading.last)
                               : Center(
                                   child: Container(
                                     width: 300,
                                     height: 80,
                                     child: Text(
-                                      'Tutaj pojawią się aktualnie czytana książka!',
+                                      'Tutaj pojawi się aktualnie czytana książka!',
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
@@ -159,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.9,
                           height: 260,
-                          child: state.status == BookStatus.withData
+                          child: state.status == BookStateStatus.withData
                               ? ListView.builder(
                                   itemCount: state.recomendedBooks.length,
                                   scrollDirection: Axis.horizontal,

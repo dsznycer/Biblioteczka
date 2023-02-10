@@ -1,5 +1,5 @@
 import 'dart:ffi';
-
+import 'package:biblioteczka/data/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,11 +11,12 @@ class Book with _$Book {
   @JsonSerializable(explicitToJson: true)
   const factory Book({
     required String title,
-    required String author,
-    required String pages,
-    required String yearOfEnd,
+    @Default('') String author,
+    @Default('') String pages,
+    @Default('') String yearOfEnd,
     @Default(0) int score,
-    List<String>? notes,
+    @Default([]) List<String> notes,
+    required BookProgress bookProgress,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

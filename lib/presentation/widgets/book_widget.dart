@@ -41,11 +41,17 @@ class BookWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(book.title, style: AppTextStyles.H2),
+                      Text(book.title, style: AppTextStyles.H3),
                       Row(
                         children: [
-                          Text('Autor:'),
-                          Text(book.author),
+                          Text(
+                            'Autor:',
+                            style: AppTextStyles.TextLarge,
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                              child: Text(book.author,
+                                  style: AppTextStyles.TextLarge)),
                         ],
                       ),
                       Padding(

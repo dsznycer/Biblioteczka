@@ -17,6 +17,7 @@ SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) =>
               yearOfEnd: '2023',
               pages: '23',
               notes: ['notes'],
+              bookProgress: BookProgress.inProgress,
               score: 2)
           : Book.fromJson(json['chosenBook'] as Map<String, dynamic>),
     );

@@ -1,6 +1,7 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/Models/book_model.dart';
@@ -81,22 +82,24 @@ class BookShelf extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                          onPressed: () => context.read<BookCubit>().addNewBook(
-                                Book(
-                                    title: 'Created on biblio screen',
-                                    author: 'test',
-                                    yearOfEnd: '2023',
-                                    pages: '23',
-                                    notes: ['notes'],
-                                    score: 2),
-                              ),
+                          onPressed: () =>
+                              context.read<BookCubit>().addNewBookToRed(
+                                    Book(
+                                        title: 'Created on biblio screen',
+                                        author: 'test',
+                                        yearOfEnd: '2023',
+                                        pages: '23',
+                                        notes: ['notes'],
+                                        bookProgress: BookProgress.inProgress,
+                                        score: 2),
+                                  ),
                           icon: const Icon(
                             Icons.add,
                             color: Colors.blueAccent,
                           )),
                       IconButton(
                           onPressed: () =>
-                              context.read<BookCubit>().removeLast(),
+                              context.read<BookCubit>().removeLastBooksRed(),
                           icon: const Icon(
                             Icons.delete,
                             color: Colors.blueAccent,
@@ -118,14 +121,13 @@ class BookShelf extends StatelessWidget {
                       child: state.booksToRead.isNotEmpty
                           ? ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: state.booksRed.length,
+                              itemCount: state.booksToRead.length,
                               itemBuilder: (context, int index) {
                                 return BookWidget(
                                     book: state.booksToRead[index],
                                     onTap: () {
-                                      context
-                                          .read<SettingsCubit>()
-                                          .choosenBook(state.booksRed[index]);
+                                      context.read<SettingsCubit>().choosenBook(
+                                          state.booksToRead[index]);
                                       Utils.biblioteczkaNavigator.currentState!
                                           .pushNamed('/editBook');
                                     });
@@ -134,6 +136,10 @@ class BookShelf extends StatelessWidget {
                               child: const Text(
                                   'Tutaj pojawią się książki, które chcesz przeczytać!'),
                             )),
+                  IconButton(
+                      onPressed: () =>
+                          context.read<BookCubit>().removeLastBooksToRed(),
+                      icon: Icon(BiblioteczkaIcons.deleteIcon))
                 ],
               ),
             ),

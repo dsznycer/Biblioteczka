@@ -25,7 +25,8 @@ mixin _$Book {
   String get pages => throw _privateConstructorUsedError;
   String get yearOfEnd => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
-  List<String>? get notes => throw _privateConstructorUsedError;
+  List<String> get notes => throw _privateConstructorUsedError;
+  BookProgress get bookProgress => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       int score,
-      List<String>? notes});
+      List<String> notes,
+      BookProgress bookProgress});
 }
 
 /// @nodoc
@@ -64,7 +66,8 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
-    Object? notes = freezed,
+    Object? notes = null,
+    Object? bookProgress = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -87,10 +90,14 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
+      notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
+      bookProgress: null == bookProgress
+          ? _value.bookProgress
+          : bookProgress // ignore: cast_nullable_to_non_nullable
+              as BookProgress,
     ) as $Val);
   }
 }
@@ -107,7 +114,8 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       int score,
-      List<String>? notes});
+      List<String> notes,
+      BookProgress bookProgress});
 }
 
 /// @nodoc
@@ -124,7 +132,8 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
-    Object? notes = freezed,
+    Object? notes = null,
+    Object? bookProgress = null,
   }) {
     return _then(_$_Book(
       title: null == title
@@ -147,10 +156,14 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
-      notes: freezed == notes
+      notes: null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
+      bookProgress: null == bookProgress
+          ? _value.bookProgress
+          : bookProgress // ignore: cast_nullable_to_non_nullable
+              as BookProgress,
     ));
   }
 }
@@ -161,11 +174,12 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
 class _$_Book with DiagnosticableTreeMixin implements _Book {
   const _$_Book(
       {required this.title,
-      required this.author,
-      required this.pages,
-      required this.yearOfEnd,
+      this.author = '',
+      this.pages = '',
+      this.yearOfEnd = '',
       this.score = 0,
-      final List<String>? notes})
+      final List<String> notes = const [],
+      required this.bookProgress})
       : _notes = notes;
 
   factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
@@ -173,27 +187,32 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
   @override
   final String title;
   @override
+  @JsonKey()
   final String author;
   @override
+  @JsonKey()
   final String pages;
   @override
+  @JsonKey()
   final String yearOfEnd;
   @override
   @JsonKey()
   final int score;
-  final List<String>? _notes;
+  final List<String> _notes;
   @override
-  List<String>? get notes {
-    final value = _notes;
-    if (value == null) return null;
+  @JsonKey()
+  List<String> get notes {
     if (_notes is EqualUnmodifiableListView) return _notes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_notes);
   }
 
   @override
+  final BookProgress bookProgress;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, notes: $notes)';
+    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, notes: $notes, bookProgress: $bookProgress)';
   }
 
   @override
@@ -206,7 +225,8 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       ..add(DiagnosticsProperty('pages', pages))
       ..add(DiagnosticsProperty('yearOfEnd', yearOfEnd))
       ..add(DiagnosticsProperty('score', score))
-      ..add(DiagnosticsProperty('notes', notes));
+      ..add(DiagnosticsProperty('notes', notes))
+      ..add(DiagnosticsProperty('bookProgress', bookProgress));
   }
 
   @override
@@ -220,13 +240,15 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
             (identical(other.yearOfEnd, yearOfEnd) ||
                 other.yearOfEnd == yearOfEnd) &&
             (identical(other.score, score) || other.score == score) &&
-            const DeepCollectionEquality().equals(other._notes, _notes));
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
+            (identical(other.bookProgress, bookProgress) ||
+                other.bookProgress == bookProgress));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, author, pages, yearOfEnd,
-      score, const DeepCollectionEquality().hash(_notes));
+      score, const DeepCollectionEquality().hash(_notes), bookProgress);
 
   @JsonKey(ignore: true)
   @override
@@ -245,11 +267,12 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
 abstract class _Book implements Book {
   const factory _Book(
       {required final String title,
-      required final String author,
-      required final String pages,
-      required final String yearOfEnd,
+      final String author,
+      final String pages,
+      final String yearOfEnd,
       final int score,
-      final List<String>? notes}) = _$_Book;
+      final List<String> notes,
+      required final BookProgress bookProgress}) = _$_Book;
 
   factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
 
@@ -264,7 +287,9 @@ abstract class _Book implements Book {
   @override
   int get score;
   @override
-  List<String>? get notes;
+  List<String> get notes;
+  @override
+  BookProgress get bookProgress;
   @override
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;

@@ -17,8 +17,15 @@ class SettingsState {
         yearOfEnd: '2023',
         pages: '23',
         notes: ['notes'],
+        bookProgress: BookProgress.inProgress,
         score: 2),
   });
+
+  // Methods to convert state to json and from json
+  factory SettingsState.fromJson(Map<String, dynamic> json) =>
+      _$SettingsStateFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SettingsStateToJson(this);
 
   SettingsState copyWith({
     int? index,
@@ -31,9 +38,4 @@ class SettingsState {
       chosenBook: chosenBook ?? this.chosenBook,
     );
   }
-
-  factory SettingsState.fromJson(Map<String, dynamic> json) =>
-      _$SettingsStateFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SettingsStateToJson(this);
 }

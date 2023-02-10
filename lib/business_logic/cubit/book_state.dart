@@ -2,24 +2,33 @@
 
 part of 'book_cubit.dart';
 
-enum BookStatus { initial, withData, loadingData }
+enum BookStateStatus { initial, withData, loadingData }
 
 @JsonSerializable(explicitToJson: true)
 class BookState {
-  final BookStatus status;
+  final BookStateStatus status;
   final List<Book> booksRed;
   final List<Book> booksToRead;
   final List<Book> booksReading;
   final List<BookApi> recomendedBooks;
   final List<GoogleBookItem> googleBooks;
+  final Book bookForm;
 
   BookState({
-    this.status = BookStatus.initial,
+    this.status = BookStateStatus.initial,
     this.booksRed = const [],
     this.booksToRead = const [],
     this.booksReading = const [],
     this.recomendedBooks = const [],
     this.googleBooks = const [],
+    this.bookForm = const Book(
+        title: 'This is test book',
+        author: 'test',
+        yearOfEnd: '2023',
+        pages: '23',
+        notes: ['notes'],
+        bookProgress: BookProgress.inProgress,
+        score: 2),
   });
 
   factory BookState.fromJson(Map<String, dynamic> json) =>
@@ -28,12 +37,13 @@ class BookState {
   Map<String, dynamic> toJson() => _$BookStateToJson(this);
 
   BookState copyWith({
-    BookStatus? status,
+    BookStateStatus? status,
     List<Book>? booksRed,
     List<Book>? booksToRead,
     List<Book>? booksReading,
     List<BookApi>? recomendedBooks,
     List<GoogleBookItem>? googleBooks,
+    Book? bookForm,
   }) {
     return BookState(
       status: status ?? this.status,
@@ -42,6 +52,7 @@ class BookState {
       booksReading: booksReading ?? this.booksReading,
       recomendedBooks: recomendedBooks ?? this.recomendedBooks,
       googleBooks: googleBooks ?? this.googleBooks,
+      bookForm: bookForm ?? this.bookForm,
     );
   }
 }

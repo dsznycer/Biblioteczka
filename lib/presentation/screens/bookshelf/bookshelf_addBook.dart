@@ -1,4 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
@@ -10,18 +11,6 @@ import '../../../data/Models/book_model.dart';
 
 class BookAdd extends StatelessWidget {
   BookAdd({super.key});
-
-  String title = '';
-  String author = '';
-  String pages = '0';
-  String yearOfEnd = '0';
-  int score = 3;
-  List<String> notes = const [];
-  BookProgress _bookProgress = BookProgress.toRead;
-
-  TextEditingController controllerTitle = TextEditingController();
-  TextEditingController controllerAuthor = TextEditingController();
-  TextEditingController controllerPages = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,46 +42,56 @@ class BookAdd extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         AppTextInput(
-                          controller: controllerTitle,
-                          hintText: 'Tytuł',
-                          iconData: BiblioteczkaIcons.bookIcon,
-                        ),
+                            hintText: 'Tytuł',
+                            iconData: BiblioteczkaIcons.bookIcon,
+                            onChanged: (value) => context
+                                .read<BookCubit>()
+                                .updateFormTitle(value)),
                         AppTextInput(
-                          controller: controllerAuthor,
                           hintText: 'Autor',
                           iconData: BiblioteczkaIcons.quoteIcon,
+                          onChanged: (value) =>
+                              context.read<BookCubit>().updateFormAuthor(value),
                         ),
-                        // AppTextInput(
-                        //     hintText: 'Ilość stron',
-                        //     iconData: BiblioteczkaIcons.pagesIcon,
-                        //     labelValue: pages),
-                        // AppTextInput(
-                        //     hintText: 'Rok ukończenia',
-                        //     iconData: BiblioteczkaIcons.calendarIcon,
-                        //     labelValue: author),
-                        ChooseLine(object: _bookProgress),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AppTextInput(
+                                hintText: 'Ilość stron',
+                                iconData: BiblioteczkaIcons.pagesIcon,
+                                onChanged: (value) => context
+                                    .read<BookCubit>()
+                                    .updateFormPages(value),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: AppTextInput(
+                                hintText: 'Rok ukończenia',
+                                iconData: BiblioteczkaIcons.calendarIcon,
+                                onChanged: (value) => context
+                                    .read<BookCubit>()
+                                    .updateFormYearOfEnd(value),
+                              ),
+                            ),
+                          ],
+                        ),
+                        ChooseLine(),
                         FloatingActionButton.small(
-                            onPressed: () =>
-                                print(_bookProgress.toString() + yearOfEnd)),
+                            onPressed: () => print(
+                                context.read<BookCubit>().state.bookForm)),
                         const SizedBox(height: 20),
                         FloatingActionButton.extended(
                           backgroundColor: AppColors.kCol3,
                           focusColor: AppColors.kCol2,
                           onPressed: () {
-                            context.read<BookCubit>().addNewBook(Book(
-                                author: author,
-                                title: controllerTitle.text,
-                                score: score,
-                                pages: pages,
-                                yearOfEnd: yearOfEnd,
-                                notes: notes));
-                            controllerAuthor.dispose();
+                            context.read<BookCubit>().addNewBookFromForm();
                             Utils.biblioteczkaNavigator.currentState!.pop();
                           },
                           label: Text('Dodaj do biblioteczki'),
@@ -112,30 +111,29 @@ class BookAdd extends StatelessWidget {
 }
 
 //TODO: refactore it to separated class
-class ChooseLine extends StatefulWidget {
-  ChooseLine({required this.object, super.key});
+class ChooseLine extends StatelessWidget {
+  ChooseLine({super.key});
 
-  BookProgress object;
+  BookProgress object = BookProgress.inProgress;
 
-  @override
-  State<ChooseLine> createState() => _ChooseLineState();
-}
-
-class _ChooseLineState extends State<ChooseLine> {
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton(
-      segments: const [
-        ButtonSegment(value: BookProgress.red, label: Text('Przeczytane')),
-        ButtonSegment(
-            value: BookProgress.toRead, label: Text('Chcę przeczytać')),
-        ButtonSegment(value: BookProgress.inprogress, label: Text('W trakcie')),
-      ],
-      selected: {widget.object},
-      onSelectionChanged: (Set<BookProgress> newSelection) {
-        setState(() {
-          widget.object = newSelection.first;
-        });
+    return BlocBuilder<BookCubit, BookState>(
+      builder: (context, state) {
+        return SegmentedButton(
+          segments: const [
+            ButtonSegment(value: BookProgress.red, label: Text('Przeczytane')),
+            ButtonSegment(
+                value: BookProgress.toRead, label: Text('Chcę przeczytać')),
+            ButtonSegment(
+                value: BookProgress.inProgress, label: Text('W trakcie')),
+          ],
+          selected: {state.bookForm.bookProgress},
+          onSelectionChanged: (Set<BookProgress> newSelection) {
+            object = newSelection.first;
+            context.read<BookCubit>().updateBookFormProgress(object);
+          },
+        );
       },
     );
   }
