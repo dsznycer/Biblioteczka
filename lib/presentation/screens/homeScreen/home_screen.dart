@@ -20,8 +20,7 @@ class HomeScreen extends StatelessWidget {
     final mode = context.select((SettingsCubit s) => s.state.darkMode);
 
     return Scaffold(
-      backgroundColor:
-          mode == true ? Color.fromARGB(255, 224, 218, 218) : Colors.white,
+      backgroundColor: mode == true ? AppColors.kCol5 : Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
@@ -114,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                               : Center(
                                   child: Container(
                                     width: 300,
-                                    height: 80,
+                                    height: 60,
                                     child: Text(
                                       'Tutaj pojawi się aktualnie czytana książka!',
                                       textAlign: TextAlign.center,
@@ -131,16 +130,17 @@ class HomeScreen extends StatelessWidget {
                                         .read<BookCubit>()
                                         .getBestBooksOfYear('2021');
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     color: AppColors.kCol2,
                                   )),
                             ),
                             Expanded(
                               child: IconButton(
-                                  onPressed: () => print(
-                                      context.read<BookCubit>().state.status),
-                                  icon: Icon(
+                                  onPressed: () => context
+                                      .read<BookCubit>()
+                                      .removeLastBookReading(),
+                                  icon: const Icon(
                                     Icons.delete,
                                     color: AppColors.kCol2,
                                   )),
@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 20),
                           alignment: Alignment.centerLeft,
                           child: Text(

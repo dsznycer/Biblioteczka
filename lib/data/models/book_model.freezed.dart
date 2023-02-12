@@ -25,6 +25,7 @@ mixin _$Book {
   String get pages => throw _privateConstructorUsedError;
   String get yearOfEnd => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
+  String get urlPhoto => throw _privateConstructorUsedError;
   List<String> get notes => throw _privateConstructorUsedError;
   BookProgress get bookProgress => throw _privateConstructorUsedError;
 
@@ -44,6 +45,7 @@ abstract class $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       int score,
+      String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
 }
@@ -66,6 +68,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
+    Object? urlPhoto = null,
     Object? notes = null,
     Object? bookProgress = null,
   }) {
@@ -90,6 +93,10 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      urlPhoto: null == urlPhoto
+          ? _value.urlPhoto
+          : urlPhoto // ignore: cast_nullable_to_non_nullable
+              as String,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -114,6 +121,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       int score,
+      String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
 }
@@ -132,6 +140,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
+    Object? urlPhoto = null,
     Object? notes = null,
     Object? bookProgress = null,
   }) {
@@ -156,6 +165,10 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      urlPhoto: null == urlPhoto
+          ? _value.urlPhoto
+          : urlPhoto // ignore: cast_nullable_to_non_nullable
+              as String,
       notes: null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -178,6 +191,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       this.pages = '',
       this.yearOfEnd = '',
       this.score = 0,
+      this.urlPhoto = Utils.basicBookPhoto,
       final List<String> notes = const [],
       required this.bookProgress})
       : _notes = notes;
@@ -198,6 +212,9 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
   @override
   @JsonKey()
   final int score;
+  @override
+  @JsonKey()
+  final String urlPhoto;
   final List<String> _notes;
   @override
   @JsonKey()
@@ -212,7 +229,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, notes: $notes, bookProgress: $bookProgress)';
+    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, urlPhoto: $urlPhoto, notes: $notes, bookProgress: $bookProgress)';
   }
 
   @override
@@ -225,6 +242,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       ..add(DiagnosticsProperty('pages', pages))
       ..add(DiagnosticsProperty('yearOfEnd', yearOfEnd))
       ..add(DiagnosticsProperty('score', score))
+      ..add(DiagnosticsProperty('urlPhoto', urlPhoto))
       ..add(DiagnosticsProperty('notes', notes))
       ..add(DiagnosticsProperty('bookProgress', bookProgress));
   }
@@ -240,6 +258,8 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
             (identical(other.yearOfEnd, yearOfEnd) ||
                 other.yearOfEnd == yearOfEnd) &&
             (identical(other.score, score) || other.score == score) &&
+            (identical(other.urlPhoto, urlPhoto) ||
+                other.urlPhoto == urlPhoto) &&
             const DeepCollectionEquality().equals(other._notes, _notes) &&
             (identical(other.bookProgress, bookProgress) ||
                 other.bookProgress == bookProgress));
@@ -247,8 +267,16 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, author, pages, yearOfEnd,
-      score, const DeepCollectionEquality().hash(_notes), bookProgress);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      author,
+      pages,
+      yearOfEnd,
+      score,
+      urlPhoto,
+      const DeepCollectionEquality().hash(_notes),
+      bookProgress);
 
   @JsonKey(ignore: true)
   @override
@@ -271,6 +299,7 @@ abstract class _Book implements Book {
       final String pages,
       final String yearOfEnd,
       final int score,
+      final String urlPhoto,
       final List<String> notes,
       required final BookProgress bookProgress}) = _$_Book;
 
@@ -286,6 +315,8 @@ abstract class _Book implements Book {
   String get yearOfEnd;
   @override
   int get score;
+  @override
+  String get urlPhoto;
   @override
   List<String> get notes;
   @override

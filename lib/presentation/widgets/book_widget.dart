@@ -26,14 +26,11 @@ class BookWidget extends StatelessWidget {
               boxShadow: const [AppShadows.Shad2]),
           child: Row(children: [
             Expanded(
-                child: Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(12)),
-              child: Image.network(
-                'https://ecsmedia.pl/c/sycylijczyk-b-iext123168017.jpg',
-                fit: BoxFit.cover,
-              ),
-            )),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Hero(
+                        tag: 'photoWidget',
+                        child: Image.network(book.urlPhoto)))),
             Expanded(
                 flex: 2,
                 child: Padding(

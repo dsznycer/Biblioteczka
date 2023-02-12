@@ -15,6 +15,7 @@ class Book with _$Book {
     @Default('') String pages,
     @Default('') String yearOfEnd,
     @Default(0) int score,
+    @Default(Utils.basicBookPhoto) String urlPhoto,
     @Default([]) List<String> notes,
     required BookProgress bookProgress,
   }) = _Book;

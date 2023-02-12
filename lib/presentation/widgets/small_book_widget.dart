@@ -25,6 +25,7 @@ class SmallBookWidget extends StatelessWidget {
         width: 150,
         height: 230,
         margin: EdgeInsets.all(12),
+        padding: EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
             color: AppColors.kCol3,
             borderRadius: BorderRadius.circular(12),
@@ -33,8 +34,8 @@ class SmallBookWidget extends StatelessWidget {
           children: [
             Expanded(
                 flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
                   child: Image.network(bookAPi.cover),
                 )),
             Expanded(
@@ -50,13 +51,14 @@ class SmallBookWidget extends StatelessWidget {
                           softWrap: true,
                           textAlign: TextAlign.center,
                           style: AppTextStyles.TextMedium.copyWith(
-                              fontSize: 11, fontWeight: FontWeight.w600),
+                              fontSize: 12, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
                   ),
                   Text(
                     bookAPi.category,
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 10),
                   ),
                 ],

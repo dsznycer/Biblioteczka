@@ -14,7 +14,7 @@ class BookshelfViewBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Book book = context.watch<SettingsCubit>().state.chosenBook;
-    final List<Book> list = context.watch<BookCubit>().state.booksRed;
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       top: false,
@@ -38,20 +38,24 @@ class BookshelfViewBook extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  height: 300,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              'https://s2982.pcdn.co/wp-content/uploads/2019/01/The-Binding-by-Bridget-Collins-709x1024.jpg.optimal.jpg'))),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    width: size.width,
+                    height: size.height / 2,
+                    child: Hero(
+                        tag: 'photoWidget',
+                        child: Image.network(book.urlPhoto)),
+                  ),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('Tytuł:'),
+                    Text(
+                      'Tytuł:',
+                      style: AppTextStyles.H3,
+                    ),
                     Text(book.title),
                     Text('Autor:'),
                     Text(book.author),
@@ -64,9 +68,8 @@ class BookshelfViewBook extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () {
-                          context
-                              .read<BookCubit>()
-                              .removeRedBookAtIndex(list.indexOf(book));
+                          context.read<BookCubit>().removeBookFromList(book);
+
                           Utils.biblioteczkaNavigator.currentState!.pop();
                         },
                         icon: const Icon(BiblioteczkaIcons.deleteIcon)),

@@ -49,8 +49,8 @@ class Biblio extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.kCol3),
           textTheme: GoogleFonts.notoSerifTextTheme(),
           navigationBarTheme: NavigationBarThemeData(
-              labelTextStyle: MaterialStateTextStyle.resolveWith(
-                  (states) => TextStyle(color: Colors.blueGrey))),
+              labelTextStyle: MaterialStateTextStyle.resolveWith((states) =>
+                  TextStyle(color: AppColors.kCol2.withOpacity(0.5)))),
         ),
         onGenerateRoute:
             RepositoryProvider.of<AppRouter>(context).mainNavigator,

@@ -19,6 +19,7 @@ class BookShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size _size = MediaQuery.of(context).size;
     return BlocConsumer<BookCubit, BookState>(
       listenWhen: (previous, current) {
         if (previous.booksRed.length < current.booksRed.length) {
@@ -61,22 +62,27 @@ class BookShelf extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 300,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.booksRed.length,
-                        itemBuilder: (context, int index) {
-                          return BookWidget(
-                              book: state.booksRed[index],
-                              onTap: () {
-                                context
-                                    .read<SettingsCubit>()
-                                    .choosenBook(state.booksRed[index]);
-                                Utils.biblioteczkaNavigator.currentState!
-                                    .pushNamed('/editBook');
-                              });
-                        }),
+                    width: _size.width,
+                    height: 280,
+                    child: state.booksRed.isEmpty
+                        ? const Center(
+                            child: Text(
+                                'Tu pojawia się przeczytane w tym roku książki.'),
+                          )
+                        : ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.booksRed.length,
+                            itemBuilder: (context, int index) {
+                              return BookWidget(
+                                  book: state.booksRed[index],
+                                  onTap: () {
+                                    context
+                                        .read<SettingsCubit>()
+                                        .choosenBook(state.booksRed[index]);
+                                    Utils.biblioteczkaNavigator.currentState!
+                                        .pushNamed('/editBook');
+                                  });
+                            }),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

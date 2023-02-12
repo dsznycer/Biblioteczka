@@ -39,15 +39,21 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundImage:
-                          AssetImage('assets/photo/profile_pick.jpg'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundImage:
+                            const AssetImage('assets/photo/profile_pick.jpg'),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
+            Center(
+              child: Image.asset('assets/photo/logo-biblio.png'),
+            )
           ],
         ));
   }

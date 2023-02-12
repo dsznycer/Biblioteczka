@@ -20,7 +20,7 @@ class BookCubit extends HydratedCubit<BookState> {
       status: BookStateStatus.withData,
       booksRed: List.of(state.booksRed)..add(book)));
 
-  void addNewBookFromForm() {
+  void addNewBookToList() {
     switch (state.bookForm.bookProgress) {
       case BookProgress.red:
         {
@@ -38,6 +38,28 @@ class BookCubit extends HydratedCubit<BookState> {
         {
           emit(state.copyWith(
               booksToRead: List.of(state.booksToRead)..add(state.bookForm)));
+        }
+        break;
+    }
+  }
+
+  void removeBookFromList(Book book) {
+    switch (book.bookProgress) {
+      case BookProgress.red:
+        {
+          emit(state.copyWith(booksRed: List.of(state.booksRed)..remove(book)));
+        }
+        break;
+      case BookProgress.inProgress:
+        {
+          emit(state.copyWith(
+              booksReading: List.of(state.booksReading)..remove(book)));
+        }
+        break;
+      case BookProgress.toRead:
+        {
+          emit(state.copyWith(
+              booksToRead: List.of(state.booksToRead)..remove(book)));
         }
         break;
     }

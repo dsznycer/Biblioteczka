@@ -63,6 +63,7 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       pages: json['pages'] as String? ?? '',
       yearOfEnd: json['yearOfEnd'] as String? ?? '',
       score: json['score'] as int? ?? 0,
+      urlPhoto: json['urlPhoto'] as String? ?? Utils.basicBookPhoto,
       notes:
           (json['notes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
@@ -75,6 +76,7 @@ Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'pages': instance.pages,
       'yearOfEnd': instance.yearOfEnd,
       'score': instance.score,
+      'urlPhoto': instance.urlPhoto,
       'notes': instance.notes,
       'bookProgress': _$BookProgressEnumMap[instance.bookProgress]!,
     };
