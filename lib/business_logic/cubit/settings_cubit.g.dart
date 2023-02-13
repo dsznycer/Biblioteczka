@@ -20,6 +20,7 @@ SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) =>
               bookProgress: BookProgress.inProgress,
               score: 2)
           : Book.fromJson(json['chosenBook'] as Map<String, dynamic>),
+      heroTag: json['heroTag'] as String? ?? 'test123',
     );
 
 Map<String, dynamic> _$SettingsStateToJson(SettingsState instance) =>
@@ -27,4 +28,5 @@ Map<String, dynamic> _$SettingsStateToJson(SettingsState instance) =>
       'index': instance.index,
       'darkMode': instance.darkMode,
       'chosenBook': instance.chosenBook,
+      'heroTag': instance.heroTag,
     };

@@ -24,7 +24,7 @@ mixin _$Book {
   String get author => throw _privateConstructorUsedError;
   String get pages => throw _privateConstructorUsedError;
   String get yearOfEnd => throw _privateConstructorUsedError;
-  int get score => throw _privateConstructorUsedError;
+  double get score => throw _privateConstructorUsedError;
   String get urlPhoto => throw _privateConstructorUsedError;
   List<String> get notes => throw _privateConstructorUsedError;
   BookProgress get bookProgress => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $BookCopyWith<$Res> {
       String author,
       String pages,
       String yearOfEnd,
-      int score,
+      double score,
       String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
@@ -92,7 +92,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       urlPhoto: null == urlPhoto
           ? _value.urlPhoto
           : urlPhoto // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String author,
       String pages,
       String yearOfEnd,
-      int score,
+      double score,
       String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
@@ -164,7 +164,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       urlPhoto: null == urlPhoto
           ? _value.urlPhoto
           : urlPhoto // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
   final String yearOfEnd;
   @override
   @JsonKey()
-  final int score;
+  final double score;
   @override
   @JsonKey()
   final String urlPhoto;
@@ -298,7 +298,7 @@ abstract class _Book implements Book {
       final String author,
       final String pages,
       final String yearOfEnd,
-      final int score,
+      final double score,
       final String urlPhoto,
       final List<String> notes,
       required final BookProgress bookProgress}) = _$_Book;
@@ -314,7 +314,7 @@ abstract class _Book implements Book {
   @override
   String get yearOfEnd;
   @override
-  int get score;
+  double get score;
   @override
   String get urlPhoto;
   @override
@@ -523,5 +523,403 @@ abstract class _BookApi implements BookApi {
   @override
   @JsonKey(ignore: true)
   _$$_BookApiCopyWith<_$_BookApi> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GoogleVolumeInfo _$GoogleVolumeInfoFromJson(Map<String, dynamic> json) {
+  return _GoogleVolumeInfo.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GoogleVolumeInfo {
+  String get title => throw _privateConstructorUsedError;
+  List<String> get authors => throw _privateConstructorUsedError;
+  String get publisher => throw _privateConstructorUsedError;
+  String get publishedDate => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<Map<String, String>> get industryIdentifiers =>
+      throw _privateConstructorUsedError;
+  int get pageCount => throw _privateConstructorUsedError;
+  List<String> get categories => throw _privateConstructorUsedError;
+  double get averageRating => throw _privateConstructorUsedError;
+  Map<String, String> get imageLinks => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GoogleVolumeInfoCopyWith<GoogleVolumeInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GoogleVolumeInfoCopyWith<$Res> {
+  factory $GoogleVolumeInfoCopyWith(
+          GoogleVolumeInfo value, $Res Function(GoogleVolumeInfo) then) =
+      _$GoogleVolumeInfoCopyWithImpl<$Res, GoogleVolumeInfo>;
+  @useResult
+  $Res call(
+      {String title,
+      List<String> authors,
+      String publisher,
+      String publishedDate,
+      String description,
+      List<Map<String, String>> industryIdentifiers,
+      int pageCount,
+      List<String> categories,
+      double averageRating,
+      Map<String, String> imageLinks});
+}
+
+/// @nodoc
+class _$GoogleVolumeInfoCopyWithImpl<$Res, $Val extends GoogleVolumeInfo>
+    implements $GoogleVolumeInfoCopyWith<$Res> {
+  _$GoogleVolumeInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? authors = null,
+    Object? publisher = null,
+    Object? publishedDate = null,
+    Object? description = null,
+    Object? industryIdentifiers = null,
+    Object? pageCount = null,
+    Object? categories = null,
+    Object? averageRating = null,
+    Object? imageLinks = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      publishedDate: null == publishedDate
+          ? _value.publishedDate
+          : publishedDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      industryIdentifiers: null == industryIdentifiers
+          ? _value.industryIdentifiers
+          : industryIdentifiers // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, String>>,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      imageLinks: null == imageLinks
+          ? _value.imageLinks
+          : imageLinks // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_GoogleVolumeInfoCopyWith<$Res>
+    implements $GoogleVolumeInfoCopyWith<$Res> {
+  factory _$$_GoogleVolumeInfoCopyWith(
+          _$_GoogleVolumeInfo value, $Res Function(_$_GoogleVolumeInfo) then) =
+      __$$_GoogleVolumeInfoCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String title,
+      List<String> authors,
+      String publisher,
+      String publishedDate,
+      String description,
+      List<Map<String, String>> industryIdentifiers,
+      int pageCount,
+      List<String> categories,
+      double averageRating,
+      Map<String, String> imageLinks});
+}
+
+/// @nodoc
+class __$$_GoogleVolumeInfoCopyWithImpl<$Res>
+    extends _$GoogleVolumeInfoCopyWithImpl<$Res, _$_GoogleVolumeInfo>
+    implements _$$_GoogleVolumeInfoCopyWith<$Res> {
+  __$$_GoogleVolumeInfoCopyWithImpl(
+      _$_GoogleVolumeInfo _value, $Res Function(_$_GoogleVolumeInfo) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? authors = null,
+    Object? publisher = null,
+    Object? publishedDate = null,
+    Object? description = null,
+    Object? industryIdentifiers = null,
+    Object? pageCount = null,
+    Object? categories = null,
+    Object? averageRating = null,
+    Object? imageLinks = null,
+  }) {
+    return _then(_$_GoogleVolumeInfo(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value._authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      publishedDate: null == publishedDate
+          ? _value.publishedDate
+          : publishedDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      industryIdentifiers: null == industryIdentifiers
+          ? _value._industryIdentifiers
+          : industryIdentifiers // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, String>>,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      imageLinks: null == imageLinks
+          ? _value._imageLinks
+          : imageLinks // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GoogleVolumeInfo
+    with DiagnosticableTreeMixin
+    implements _GoogleVolumeInfo {
+  const _$_GoogleVolumeInfo(
+      {required this.title,
+      final List<String> authors = const ['brak'],
+      this.publisher = '',
+      this.publishedDate = '',
+      this.description = 'Brak opisu :(',
+      final List<Map<String, String>> industryIdentifiers = const [
+        {'brak': 'brak'}
+      ],
+      this.pageCount = 0,
+      final List<String> categories = const ['brak'],
+      this.averageRating = 0,
+      final Map<String, String> imageLinks = Utils.basicBookGoogle})
+      : _authors = authors,
+        _industryIdentifiers = industryIdentifiers,
+        _categories = categories,
+        _imageLinks = imageLinks;
+
+  factory _$_GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
+      _$$_GoogleVolumeInfoFromJson(json);
+
+  @override
+  final String title;
+  final List<String> _authors;
+  @override
+  @JsonKey()
+  List<String> get authors {
+    if (_authors is EqualUnmodifiableListView) return _authors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authors);
+  }
+
+  @override
+  @JsonKey()
+  final String publisher;
+  @override
+  @JsonKey()
+  final String publishedDate;
+  @override
+  @JsonKey()
+  final String description;
+  final List<Map<String, String>> _industryIdentifiers;
+  @override
+  @JsonKey()
+  List<Map<String, String>> get industryIdentifiers {
+    if (_industryIdentifiers is EqualUnmodifiableListView)
+      return _industryIdentifiers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_industryIdentifiers);
+  }
+
+  @override
+  @JsonKey()
+  final int pageCount;
+  final List<String> _categories;
+  @override
+  @JsonKey()
+  List<String> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
+  @override
+  @JsonKey()
+  final double averageRating;
+  final Map<String, String> _imageLinks;
+  @override
+  @JsonKey()
+  Map<String, String> get imageLinks {
+    if (_imageLinks is EqualUnmodifiableMapView) return _imageLinks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_imageLinks);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GoogleVolumeInfo(title: $title, authors: $authors, publisher: $publisher, publishedDate: $publishedDate, description: $description, industryIdentifiers: $industryIdentifiers, pageCount: $pageCount, categories: $categories, averageRating: $averageRating, imageLinks: $imageLinks)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GoogleVolumeInfo'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('authors', authors))
+      ..add(DiagnosticsProperty('publisher', publisher))
+      ..add(DiagnosticsProperty('publishedDate', publishedDate))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('industryIdentifiers', industryIdentifiers))
+      ..add(DiagnosticsProperty('pageCount', pageCount))
+      ..add(DiagnosticsProperty('categories', categories))
+      ..add(DiagnosticsProperty('averageRating', averageRating))
+      ..add(DiagnosticsProperty('imageLinks', imageLinks));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GoogleVolumeInfo &&
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._authors, _authors) &&
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher) &&
+            (identical(other.publishedDate, publishedDate) ||
+                other.publishedDate == publishedDate) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._industryIdentifiers, _industryIdentifiers) &&
+            (identical(other.pageCount, pageCount) ||
+                other.pageCount == pageCount) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
+            const DeepCollectionEquality()
+                .equals(other._imageLinks, _imageLinks));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      const DeepCollectionEquality().hash(_authors),
+      publisher,
+      publishedDate,
+      description,
+      const DeepCollectionEquality().hash(_industryIdentifiers),
+      pageCount,
+      const DeepCollectionEquality().hash(_categories),
+      averageRating,
+      const DeepCollectionEquality().hash(_imageLinks));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GoogleVolumeInfoCopyWith<_$_GoogleVolumeInfo> get copyWith =>
+      __$$_GoogleVolumeInfoCopyWithImpl<_$_GoogleVolumeInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GoogleVolumeInfoToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GoogleVolumeInfo implements GoogleVolumeInfo {
+  const factory _GoogleVolumeInfo(
+      {required final String title,
+      final List<String> authors,
+      final String publisher,
+      final String publishedDate,
+      final String description,
+      final List<Map<String, String>> industryIdentifiers,
+      final int pageCount,
+      final List<String> categories,
+      final double averageRating,
+      final Map<String, String> imageLinks}) = _$_GoogleVolumeInfo;
+
+  factory _GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =
+      _$_GoogleVolumeInfo.fromJson;
+
+  @override
+  String get title;
+  @override
+  List<String> get authors;
+  @override
+  String get publisher;
+  @override
+  String get publishedDate;
+  @override
+  String get description;
+  @override
+  List<Map<String, String>> get industryIdentifiers;
+  @override
+  int get pageCount;
+  @override
+  List<String> get categories;
+  @override
+  double get averageRating;
+  @override
+  Map<String, String> get imageLinks;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GoogleVolumeInfoCopyWith<_$_GoogleVolumeInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }

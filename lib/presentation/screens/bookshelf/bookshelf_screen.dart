@@ -74,11 +74,12 @@ class BookShelf extends StatelessWidget {
                             itemCount: state.booksRed.length,
                             itemBuilder: (context, int index) {
                               return BookWidget(
+                                  heroTag: index.toString() + 'z',
                                   book: state.booksRed[index],
                                   onTap: () {
-                                    context
-                                        .read<SettingsCubit>()
-                                        .choosenBook(state.booksRed[index]);
+                                    context.read<SettingsCubit>().choosenBook(
+                                        state.booksRed[index],
+                                        index.toString() + 'z');
                                     Utils.biblioteczkaNavigator.currentState!
                                         .pushNamed('/editBook');
                                   });
@@ -90,7 +91,7 @@ class BookShelf extends StatelessWidget {
                       IconButton(
                           onPressed: () =>
                               context.read<BookCubit>().addNewBookToRed(
-                                    Book(
+                                    const Book(
                                         title: 'Created on biblio screen',
                                         author: 'test',
                                         yearOfEnd: '2023',
@@ -130,10 +131,12 @@ class BookShelf extends StatelessWidget {
                               itemCount: state.booksToRead.length,
                               itemBuilder: (context, int index) {
                                 return BookWidget(
+                                    heroTag: index.toString() + 'a',
                                     book: state.booksToRead[index],
                                     onTap: () {
                                       context.read<SettingsCubit>().choosenBook(
-                                          state.booksToRead[index]);
+                                          state.booksToRead[index],
+                                          index.toString() + 'a');
                                       Utils.biblioteczkaNavigator.currentState!
                                           .pushNamed('/editBook');
                                     });

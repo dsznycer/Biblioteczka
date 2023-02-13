@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/screens/registration/registration_screen.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -14,7 +15,7 @@ class Book with _$Book {
     @Default('') String author,
     @Default('') String pages,
     @Default('') String yearOfEnd,
-    @Default(0) int score,
+    @Default(0) double score,
     @Default(Utils.basicBookPhoto) String urlPhoto,
     @Default([]) List<String> notes,
     required BookProgress bookProgress,
@@ -56,33 +57,64 @@ class GoogleBookItem {
   Map<String, dynamic> toJson() => _$GoogleBookItemToJson(this);
 }
 
-@JsonSerializable()
-class GoogleVolumeInfo {
-  final String title;
-  final List<String>? authors;
-  final String? publisher;
-  final String? publishedDate;
-  final String? description;
-  final List<Map<String, String>>? industryIdentifiers;
-  final int? pageCount;
-  final List<String>? categories;
-  final double? averageRating;
-  final Map<String, String>? imageLinks;
-
-  const GoogleVolumeInfo(
-      this.title,
-      this.authors,
-      this.publisher,
-      this.publishedDate,
-      this.description,
-      this.industryIdentifiers,
-      this.pageCount,
-      this.categories,
-      this.averageRating,
-      this.imageLinks);
+@freezed
+class GoogleVolumeInfo with _$GoogleVolumeInfo {
+  const factory GoogleVolumeInfo({
+    required String title,
+    @Default(['brak'])
+        List<String> authors,
+    @Default('')
+        String publisher,
+    @Default('')
+        String publishedDate,
+    @Default('Brak opisu :(')
+        String description,
+    @Default([
+      {'brak': 'brak'}
+    ])
+        List<Map<String, String>> industryIdentifiers,
+    @Default(0)
+        int pageCount,
+    @Default(['brak'])
+        List<String> categories,
+    @Default(0)
+        double averageRating,
+    @Default(Utils.basicBookGoogle)
+        Map<String, String> imageLinks,
+  }) = _GoogleVolumeInfo;
 
   factory GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
       _$GoogleVolumeInfoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GoogleVolumeInfoToJson(this);
 }
+
+// Jsons serializable google volume info
+// @JsonSerializable()
+// class GoogleVolumeInfo {
+//   final String title;
+//   final List<String>? authors;
+//   final String? publisher;
+//   final String? publishedDate;
+//   final String? description;
+//   final List<Map<String, String>>? industryIdentifiers;
+//   final int? pageCount;
+//   final List<String>? categories;
+//   final double? averageRating;
+//   final Map<String, String>? imageLinks;
+
+//   const GoogleVolumeInfo(
+//       this.title,
+//       this.authors,
+//       this.publisher,
+//       this.publishedDate,
+//       this.description,
+//       this.industryIdentifiers,
+//       this.pageCount,
+//       this.categories,
+//       this.averageRating,
+//       this.imageLinks);
+
+//   factory GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
+//       _$GoogleVolumeInfoFromJson(json);
+
+//   Map<String, dynamic> toJson() => _$GoogleVolumeInfoToJson(this);
+// }

@@ -78,8 +78,11 @@ class BookCubit extends HydratedCubit<BookState> {
   void updateFormPages(String pages) =>
       emit(state.copyWith(bookForm: state.bookForm.copyWith(pages: pages)));
 
-  void updateFormScore(int score) =>
+  void updateFormScore(double score) =>
       emit(state.copyWith(bookForm: state.bookForm.copyWith(score: score)));
+
+  void updateFormPhoto(String photo) =>
+      emit(state.copyWith(bookForm: state.bookForm.copyWith(urlPhoto: photo)));
 
   // Remove last book from booksRed
   void removeLastBooksRed() =>
@@ -90,10 +93,6 @@ class BookCubit extends HydratedCubit<BookState> {
 
   void removeLastBookReading() => emit(state.copyWith(
       booksReading: List.from(state.booksReading)..removeLast()));
-
-  // Remove book from
-  void removeRedBookAtIndex(index) =>
-      emit(state.copyWith(booksRed: List.of(state.booksRed)..removeAt(index)));
 
   // Delete list of searched books
   void removeSearchedBooks() => emit(state.copyWith(googleBooks: List.empty()));

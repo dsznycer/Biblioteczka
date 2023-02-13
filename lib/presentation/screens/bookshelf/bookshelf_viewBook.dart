@@ -14,6 +14,7 @@ class BookshelfViewBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Book book = context.watch<SettingsCubit>().state.chosenBook;
+    final String heroTag = context.watch<SettingsCubit>().state.heroTag;
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -34,24 +35,27 @@ class BookshelfViewBook extends StatelessWidget {
                         icon: Icon(Icons.close)),
                     Text(
                       'Twoja ksiązka',
-                      style: AppTextStyles.TextLarge,
+                      style: AppTextStyles.H3,
                     )
                   ],
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    width: size.width,
-                    height: size.height / 2,
+                Container(
+                  height: size.height / 2.25,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
                     child: Hero(
-                        tag: 'photoWidget',
-                        child: Image.network(book.urlPhoto)),
+                        tag: heroTag,
+                        child: Image.network(
+                          book.urlPhoto,
+                          fit: BoxFit.fill,
+                        )),
                   ),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    SizedBox(height: 10),
                     Text(
                       'Tytuł:',
                       style: AppTextStyles.H3,

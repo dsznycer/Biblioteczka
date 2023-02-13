@@ -1,11 +1,12 @@
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBook.dart';
+import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBookPhoto.dart';
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_viewBook.dart';
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_screen.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
 import 'package:biblioteczka/presentation/screens/profile_screen.dart';
 import 'package:biblioteczka/presentation/screens/registration/login_screen.dart';
-import 'package:biblioteczka/presentation/screens/statistic_screen.dart';
+import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -48,7 +49,10 @@ class AppRouter {
         page = BookAdd();
         break;
       case '/editBook':
-        page = BookshelfViewBook();
+        page = const BookshelfViewBook();
+        break;
+      case '/addBookPhoto':
+        page = const AddBookPhoto();
         break;
 
       default:
@@ -56,7 +60,7 @@ class AppRouter {
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
-      transitionDuration: const Duration(milliseconds: 0),
+      transitionDuration: const Duration(milliseconds: 500),
     );
   }
 }

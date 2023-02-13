@@ -25,6 +25,10 @@ class BookRepository {
   Future<List<GoogleBookItem>> searchGoogleBooks(String title) async {
     List<GoogleBookItem> listOfBooksGoogle = [];
 
+    if (title == '') {
+      return listOfBooksGoogle;
+    }
+
     final String rawData = await _googleBooksApi.getBooksWithTitle(title);
 
     final Map repsonseMap = jsonDecode(rawData) as Map<String, dynamic>;

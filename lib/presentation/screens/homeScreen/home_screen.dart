@@ -109,7 +109,9 @@ class HomeScreen extends StatelessWidget {
                           width: size.width,
                           height: 300,
                           child: state.booksReading.isNotEmpty
-                              ? BookWidget(book: state.booksReading.last)
+                              ? BookWidget(
+                                  book: state.booksReading.last,
+                                  heroTag: 'main')
                               : Center(
                                   child: Container(
                                     width: 300,
@@ -123,18 +125,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Expanded(
-                              child: IconButton(
-                                  onPressed: () {
-                                    context
-                                        .read<BookCubit>()
-                                        .getBestBooksOfYear('2021');
-                                  },
-                                  icon: const Icon(
-                                    Icons.add,
-                                    color: AppColors.kCol2,
-                                  )),
-                            ),
                             Expanded(
                               child: IconButton(
                                   onPressed: () => context

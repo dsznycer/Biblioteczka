@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import '../../data/Models/book_model.dart';
 
 class BookWidget extends StatelessWidget {
-  BookWidget({required this.book, this.onTap, super.key});
+  BookWidget(
+      {required this.book, this.onTap, required this.heroTag, super.key});
 
   final Book book;
   void Function()? onTap;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,7 @@ class BookWidget extends StatelessWidget {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Hero(
-                        tag: 'photoWidget',
-                        child: Image.network(book.urlPhoto)))),
+                        tag: heroTag, child: Image.network(book.urlPhoto)))),
             Expanded(
                 flex: 2,
                 child: Padding(
@@ -58,7 +59,7 @@ class BookWidget extends StatelessWidget {
                         ),
                       ),
                       Text(book.yearOfEnd),
-                      Text('AND THE SCORE IS: ${book.score}')
+                      Text('Ocena: ${book.score}')
                     ],
                   ),
                 )),

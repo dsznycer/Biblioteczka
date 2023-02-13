@@ -25,44 +25,12 @@ Map<String, dynamic> _$GoogleBookItemToJson(GoogleBookItem instance) =>
       'searchInfo': instance.searchInfo,
     };
 
-GoogleVolumeInfo _$GoogleVolumeInfoFromJson(Map<String, dynamic> json) =>
-    GoogleVolumeInfo(
-      json['title'] as String,
-      (json['authors'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      json['publisher'] as String?,
-      json['publishedDate'] as String?,
-      json['description'] as String?,
-      (json['industryIdentifiers'] as List<dynamic>?)
-          ?.map((e) => Map<String, String>.from(e as Map))
-          .toList(),
-      json['pageCount'] as int?,
-      (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      (json['averageRating'] as num?)?.toDouble(),
-      (json['imageLinks'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
-    );
-
-Map<String, dynamic> _$GoogleVolumeInfoToJson(GoogleVolumeInfo instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'authors': instance.authors,
-      'publisher': instance.publisher,
-      'publishedDate': instance.publishedDate,
-      'description': instance.description,
-      'industryIdentifiers': instance.industryIdentifiers,
-      'pageCount': instance.pageCount,
-      'categories': instance.categories,
-      'averageRating': instance.averageRating,
-      'imageLinks': instance.imageLinks,
-    };
-
 _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       title: json['title'] as String,
       author: json['author'] as String? ?? '',
       pages: json['pages'] as String? ?? '',
       yearOfEnd: json['yearOfEnd'] as String? ?? '',
-      score: json['score'] as int? ?? 0,
+      score: (json['score'] as num?)?.toDouble() ?? 0,
       urlPhoto: json['urlPhoto'] as String? ?? Utils.basicBookPhoto,
       notes:
           (json['notes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
@@ -100,4 +68,46 @@ Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
       'name': instance.name,
       'category': instance.category,
       'cover': instance.cover,
+    };
+
+_$_GoogleVolumeInfo _$$_GoogleVolumeInfoFromJson(Map<String, dynamic> json) =>
+    _$_GoogleVolumeInfo(
+      title: json['title'] as String,
+      authors: (json['authors'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const ['brak'],
+      publisher: json['publisher'] as String? ?? '',
+      publishedDate: json['publishedDate'] as String? ?? '',
+      description: json['description'] as String? ?? 'Brak opisu :(',
+      industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
+              ?.map((e) => Map<String, String>.from(e as Map))
+              .toList() ??
+          const [
+            {'brak': 'brak'}
+          ],
+      pageCount: json['pageCount'] as int? ?? 0,
+      categories: (json['categories'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const ['brak'],
+      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0,
+      imageLinks: (json['imageLinks'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          Utils.basicBookGoogle,
+    );
+
+Map<String, dynamic> _$$_GoogleVolumeInfoToJson(_$_GoogleVolumeInfo instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'authors': instance.authors,
+      'publisher': instance.publisher,
+      'publishedDate': instance.publishedDate,
+      'description': instance.description,
+      'industryIdentifiers': instance.industryIdentifiers,
+      'pageCount': instance.pageCount,
+      'categories': instance.categories,
+      'averageRating': instance.averageRating,
+      'imageLinks': instance.imageLinks,
     };

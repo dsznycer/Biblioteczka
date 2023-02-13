@@ -14,9 +14,9 @@ import '../../../data/models/book_model.dart';
 import '../../widgets/navigation_bar.dart';
 
 class BookShelfBasic extends StatelessWidget {
-  const BookShelfBasic({super.key});
+  BookShelfBasic({super.key});
 
-  static HeroController _heroController = HeroController();
+  final HeroController _heroController = HeroController();
 
   @override
   Widget build(BuildContext context) {
