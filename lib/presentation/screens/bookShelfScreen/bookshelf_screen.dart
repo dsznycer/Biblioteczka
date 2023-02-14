@@ -2,6 +2,7 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
+import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/Models/book_model.dart';
@@ -44,18 +45,32 @@ class BookShelf extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Biblioteczka',
-                      style: TextStyle(fontSize: 30),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        alignment: Alignment.centerLeft,
+                        child: const Text(
+                          'Biblioteczka',
+                          style: AppTextStyles.H2,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 25),
+                        child: Image.asset(
+                          'assets/photo/biblio-sygnet-kadrowany.png',
+                          height: 60,
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'Przeczytane w tym roku:',
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w400),

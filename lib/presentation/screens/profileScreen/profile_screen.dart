@@ -1,4 +1,5 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
@@ -12,9 +13,14 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool darkMode =
+        context.select((SettingsCubit cubit) => cubit.state.darkMode);
+
     return Scaffold(
+        backgroundColor: darkMode ? AppColors.kCol5 : Colors.white,
         bottomNavigationBar: RepositoryProvider.of<Navig>(context),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               decoration: BoxDecoration(
@@ -30,10 +36,10 @@ class ProfileScreen extends StatelessWidget {
                   Expanded(
                     child: Container(
                       width: 100,
-                      height: 50,
+                      height: 60,
                       child: Text(
                         'Twój profil',
-                        style: AppTextStyles.H3,
+                        style: AppTextStyles.H2,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -41,8 +47,43 @@ class ProfileScreen extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        'assets/photo/biblio-sygnet-kadrowany.png',
+                        height: 60,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Positioned(
+                    left: 40,
+                    child: Container(
+                      width: 200,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          color: Colors.amberAccent,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Dominik Sznycer',
+                              style: AppTextStyles.TextMedium,
+                            )
+                          ]),
+                    ),
+                  ),
+                  Positioned(
+                    right: 40,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
-                        radius: 40,
+                        radius: 90,
                         backgroundImage:
                             const AssetImage('assets/photo/profile_pick.jpg'),
                       ),

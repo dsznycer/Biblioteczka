@@ -1,11 +1,12 @@
-import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBook.dart';
-import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_addBookPhoto.dart';
-import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_viewBook.dart';
-import 'package:biblioteczka/presentation/screens/bookshelf/bookshlef_basic.dart';
-import 'package:biblioteczka/presentation/screens/bookshelf/bookshelf_screen.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBook.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBookPhoto.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_viewBook.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshlef_basic.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_screen.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
-import 'package:biblioteczka/presentation/screens/profile_screen.dart';
-import 'package:biblioteczka/presentation/screens/registration/login_screen.dart';
+import 'package:biblioteczka/presentation/screens/loginScreen/login_screen.dart';
+import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
+
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class AppRouter {
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }

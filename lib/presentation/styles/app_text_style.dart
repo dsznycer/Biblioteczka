@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppTextStyles {
   static const TextStyle H1 = TextStyle(
-    fontSize: 28,
+    fontSize: 32,
     color: Colors.black,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
   );
 
   static const TextStyle H2 = TextStyle(
-    fontSize: 26,
+    fontSize: 29,
     color: Colors.black,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
   );
 
   static const TextStyle H3 = TextStyle(

@@ -17,10 +17,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mode = context.select((SettingsCubit s) => s.state.darkMode);
+    bool darkMode = context.select((SettingsCubit s) => s.state.darkMode);
 
     return Scaffold(
-      backgroundColor: mode == true ? AppColors.kCol5 : Colors.white,
+      backgroundColor: darkMode ? AppColors.kCol5 : Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                       child: Switch(
                           activeColor: Colors.white30,
                           inactiveTrackColor: Colors.black12,
-                          value: mode,
+                          value: darkMode,
                           onChanged: (value) => context
                               .read<SettingsCubit>()
                               .changeDarkMode(value)),
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           width: size.width,
-                          height: state.googleBooks.isNotEmpty ? 300 : 40,
+                          height: state.googleBooks.isNotEmpty ? 300 : 0,
                           child: state.googleBooks.isNotEmpty
                               ? ListView.builder(
                                   scrollDirection: Axis.horizontal,

@@ -30,7 +30,8 @@ class BookAdd extends StatelessWidget {
                   IconButton(
                     onPressed: (() {
                       context.read<BookCubit>().removeSearchedBooks();
-                      Utils.biblioteczkaNavigator.currentState!.pop();
+                      Utils.biblioteczkaNavigator.currentState!
+                          .pushReplacementNamed('/');
                     }),
                     icon: const Icon(Icons.close),
                     iconSize: 30,
@@ -38,7 +39,7 @@ class BookAdd extends StatelessWidget {
                   SizedBox(width: 20),
                   Text(
                     'Dodaj książkę',
-                    style: AppTextStyles.H3,
+                    style: AppTextStyles.H2,
                   ),
                 ],
               ),
@@ -50,6 +51,42 @@ class BookAdd extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
+                            const SizedBox(height: 10),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  height: 225,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      state.bookForm.urlPhoto,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(8),
+                                  width: 200,
+                                  child: FilledButton.tonal(
+                                      style: ButtonStyle(
+                                          elevation:
+                                              MaterialStateProperty.resolveWith(
+                                                  (states) => 5)),
+                                      onPressed: () => Utils
+                                          .biblioteczkaNavigator.currentState!
+                                          .pushNamed('/addBookPhoto'),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: const [
+                                          Text('Wybierz okładkę'),
+                                          Icon(Icons.add),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ),
                             AppTextInput(
                                 hintText: 'Tytuł',
                                 iconData: BiblioteczkaIcons.bookIcon,
@@ -57,9 +94,6 @@ class BookAdd extends StatelessWidget {
                                   context
                                       .read<BookCubit>()
                                       .updateFormTitle(value);
-                                  context
-                                      .read<BookCubit>()
-                                      .searchGoogleBooks(value);
                                 }),
                             AppTextInput(
                               hintText: 'Autor',
@@ -80,7 +114,7 @@ class BookAdd extends StatelessWidget {
                                         .updateFormPages(value),
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Expanded(
                                   child: AppTextInput(
                                     hintText: 'Rok ukończenia',
@@ -93,6 +127,7 @@ class BookAdd extends StatelessWidget {
                               ],
                             ),
                             ChooseLine(),
+                            // Container with rating of book
                             Visibility(
                               visible: state.bookForm.bookProgress ==
                                       BookProgress.red
@@ -101,11 +136,14 @@ class BookAdd extends StatelessWidget {
                               maintainAnimation: true,
                               maintainState: true,
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'Twoja ocena:',
-                                    style: AppTextStyles.H3,
+                                  const SizedBox(
+                                    width: double.infinity,
+                                    child: Text(
+                                      'Twoja ocena:',
+                                      style: AppTextStyles.H3,
+                                    ),
                                   ),
                                   Padding(
                                       padding: const EdgeInsets.all(10),
@@ -122,56 +160,7 @@ class BookAdd extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              width: 200,
-                              child: FilledButton.tonal(
-                                  onPressed: () => Utils
-                                      .biblioteczkaNavigator.currentState!
-                                      .pushReplacementNamed('/addBookPhoto'),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text('Dodaj okładkę'),
-                                      Icon(Icons.add),
-                                    ],
-                                  )),
-                            ),
-                            Column(
-                              children: [
-                                Text('Wybierz okładkę:',
-                                    style: AppTextStyles.H3),
-                                Container(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    height: 250,
-                                    child: GridView.builder(
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 5,
-                                                crossAxisCount: 3),
-                                        itemCount: state.googleBooks.length,
-                                        itemBuilder: (context, index) {
-                                          String photo = state
-                                              .googleBooks[index]
-                                              .volumeInfo
-                                              .imageLinks
-                                              .values
-                                              .last;
-
-                                          return InkWell(
-                                            onTap: () => context
-                                                .read<BookCubit>()
-                                                .updateFormPhoto(photo),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: Image.network(photo),
-                                            ),
-                                          );
-                                        })),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 30),
                           ],
                         ),
                       ),
@@ -180,7 +169,8 @@ class BookAdd extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.only(
+                    left: 60, right: 60, bottom: 5, top: 5),
                 child: FloatingActionButton.extended(
                   heroTag: null,
                   backgroundColor: AppColors.kCol3,
@@ -188,7 +178,8 @@ class BookAdd extends StatelessWidget {
                   onPressed: () {
                     context.read<BookCubit>().addNewBookToList();
                     context.read<BookCubit>().removeSearchedBooks();
-                    Utils.biblioteczkaNavigator.currentState!.pop();
+                    Utils.biblioteczkaNavigator.currentState!
+                        .pushReplacementNamed('/');
                   },
                   label: const Text('Dodaj do biblioteczki'),
                   icon: const Icon(BiblioteczkaIcons.addIcon),
@@ -212,29 +203,32 @@ class ChooseLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
-        return SegmentedButton(
-          segments: const [
-            ButtonSegment(
-                value: BookProgress.red,
-                label: Text(
-                  'Przeczytane',
-                )),
-            ButtonSegment(
-                value: BookProgress.toRead,
-                label: Text(
-                  'Chcę przeczytać',
-                )),
-            ButtonSegment(
-                value: BookProgress.inProgress,
-                label: Text(
-                  'W trakcie',
-                )),
-          ],
-          selected: {state.bookForm.bookProgress},
-          onSelectionChanged: (Set<BookProgress> newSelection) {
-            object = newSelection.first;
-            context.read<BookCubit>().updateBookFormProgress(object);
-          },
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: SegmentedButton(
+            segments: const [
+              ButtonSegment(
+                  value: BookProgress.red,
+                  label: Text(
+                    'Przeczytane',
+                  )),
+              ButtonSegment(
+                  value: BookProgress.toRead,
+                  label: Text(
+                    'Chcę przeczytać',
+                  )),
+              ButtonSegment(
+                  value: BookProgress.inProgress,
+                  label: Text(
+                    'W trakcie',
+                  )),
+            ],
+            selected: {state.bookForm.bookProgress},
+            onSelectionChanged: (Set<BookProgress> newSelection) {
+              object = newSelection.first;
+              context.read<BookCubit>().updateBookFormProgress(object);
+            },
+          ),
         );
       },
     );

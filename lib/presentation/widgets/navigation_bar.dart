@@ -27,7 +27,7 @@ class Navig extends StatelessWidget {
               onDestinationSelected: (value) {
                 context.read<SettingsCubit>().changeIndex(value);
                 Utils.mainNavigator.currentState!
-                    .popAndPushNamed(routesMap[value]!);
+                    .pushReplacementNamed(routesMap[value]!);
               },
               elevation: 6,
               selectedIndex: state.index,

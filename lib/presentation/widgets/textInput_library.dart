@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -13,6 +11,7 @@ class AppTextInput extends StatelessWidget {
       this.width = double.infinity,
       this.keyboardType = TextInputType.text,
       required this.onChanged,
+      this.controller,
       this.enabled = true,
       super.key});
 
@@ -22,11 +21,12 @@ class AppTextInput extends StatelessWidget {
   final TextInputType keyboardType;
   final Function(String) onChanged;
   final bool enabled;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125,
+      height: 110,
       width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,6 +38,7 @@ class AppTextInput extends StatelessWidget {
           BlocBuilder<SettingsCubit, SettingsState>(
             builder: (context, state) {
               return TextField(
+                controller: controller,
                 enabled: enabled,
                 keyboardType: keyboardType,
                 onChanged: (value) => onChanged(value),

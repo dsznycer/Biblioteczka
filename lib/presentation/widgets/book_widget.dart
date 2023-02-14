@@ -19,7 +19,7 @@ class BookWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
           width: 300,
-          height: 150,
+          height: 140,
           margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -28,12 +28,13 @@ class BookWidget extends StatelessWidget {
               boxShadow: const [AppShadows.Shad2]),
           child: Row(children: [
             Expanded(
+                flex: 4,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Hero(
                         tag: heroTag, child: Image.network(book.urlPhoto)))),
             Expanded(
-                flex: 2,
+                flex: 6,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

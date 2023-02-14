@@ -11,14 +11,6 @@ class GoogleBookMiniWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String photoUrl;
-    if (book.volumeInfo.imageLinks != null) {
-      photoUrl = book.volumeInfo.imageLinks!['thumbnail']!;
-    } else {
-      photoUrl =
-          'https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80)';
-    }
-
     return Container(
       width: 200,
       padding: const EdgeInsets.all(8),
@@ -29,7 +21,8 @@ class GoogleBookMiniWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                  image: NetworkImage(photoUrl), fit: BoxFit.fill),
+                  image: NetworkImage(book.volumeInfo.imageLinks.values.last),
+                  fit: BoxFit.fill),
             ),
           ),
         ),

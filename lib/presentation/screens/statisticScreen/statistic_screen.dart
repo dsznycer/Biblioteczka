@@ -1,6 +1,8 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
+import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/APIs/google_books_api.dart';
 import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +13,17 @@ class StatisticScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final darkMode =
+        context.select((SettingsCubit bloc) => bloc.state.darkMode);
     return Scaffold(
+      backgroundColor: darkMode == true ? AppColors.kCol5 : Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
-          List<Book> bookList = state.booksRed
+          int bookList = state.booksRed
               .where((element) => element.yearOfEnd == '2023')
-              .toList();
+              .toList()
+              .length;
 
           return SafeArea(
             child: Column(
@@ -25,12 +31,10 @@ class StatisticScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'W tym roku przeczytałeś:',
+                    'W tym roku przeczytałeś: \n ${bookList.toString()} książek!',
                     style: AppTextStyles.H2,
                     textAlign: TextAlign.center,
                   ),
-                  Text("książek ${bookList.length.toString()}!"),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.access_alarm)),
                   SizedBox(
                     width: 100,
                     child: FloatingActionButton.small(
