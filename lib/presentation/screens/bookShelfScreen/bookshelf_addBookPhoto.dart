@@ -16,14 +16,15 @@ class AddBookPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
       child: Material(
+        elevation: 2,
         color: AppColors.kCol4,
         borderRadius: BorderRadius.circular(14),
         child: BlocBuilder<BookCubit, BookState>(
           builder: (context, state) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -43,28 +44,43 @@ class AddBookPhoto extends StatelessWidget {
                               size: 40,
                             )),
                       ),
+                      const SizedBox(width: 30),
+                      const Text(
+                        'Wybierz okładkę',
+                        style: AppTextStyles.H3,
+                      )
                     ],
                   ),
+                  const SizedBox(height: 5),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(state.bookForm.urlPhoto),
+                      SizedBox(
+                        height: 225,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            state.bookForm.urlPhoto,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
                       Container(
-                        padding: const EdgeInsets.only(top: 8),
+                        padding: const EdgeInsets.only(top: 5),
                         width: 200,
                         child: FilledButton.tonal(
                           onPressed: () {
                             context.read<BookCubit>().removeSearchedBooks();
                             Utils.biblioteczkaNavigator.currentState!.pop();
                           },
+                          style: ButtonStyle(
+                              elevation: MaterialStateProperty.resolveWith(
+                                  (states) => 5)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              const Text('Dodaj okładke'),
-                              const Icon(BiblioteczkaIcons.addIcon),
+                            children: const [
+                              Text('Dodaj okładke'),
+                              Icon(BiblioteczkaIcons.addIcon),
                             ],
                           ),
                         ),
@@ -78,7 +94,7 @@ class AddBookPhoto extends StatelessWidget {
                         context.read<BookCubit>().searchGoogleBooks(value),
                   ),
                   const Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.symmetric(vertical: 5),
                     child: Text('Wybierz okładkę:', style: AppTextStyles.H3),
                   ),
                   Expanded(
@@ -86,7 +102,7 @@ class AddBookPhoto extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black, width: 0.2),
                           borderRadius: BorderRadius.circular(12)),
-                      padding: EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       height: 300,
                       child: GridView.builder(
                           gridDelegate:

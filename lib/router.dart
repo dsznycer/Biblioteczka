@@ -3,6 +3,7 @@ import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addB
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_viewBook.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_screen.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/boosklef_gridBookShelf.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
 import 'package:biblioteczka/presentation/screens/loginScreen/login_screen.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
@@ -42,26 +43,36 @@ class AppRouter {
 
   Route biblioteczkaNavigator(RouteSettings routeSettings) {
     Widget page;
+    int miliseconds;
     switch (routeSettings.name) {
       case '/':
         page = BookShelf();
+        miliseconds = 0;
         break;
       case '/addBook':
         page = BookAdd();
+        miliseconds = 0;
         break;
       case '/editBook':
         page = const BookshelfViewBook();
+        miliseconds = 500;
         break;
       case '/addBookPhoto':
         page = const AddBookPhoto();
+        miliseconds = 500;
+        break;
+      case '/GridBookShelf':
+        page = const GridBookShelf();
+        miliseconds = 0;
         break;
 
       default:
         page = BookShelf();
+        miliseconds = 0;
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
-      transitionDuration: const Duration(milliseconds: 0),
+      transitionDuration: Duration(milliseconds: miliseconds),
     );
   }
 }

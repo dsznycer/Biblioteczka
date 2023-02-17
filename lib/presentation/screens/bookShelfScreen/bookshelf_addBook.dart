@@ -3,11 +3,13 @@ import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
+import 'package:biblioteczka/presentation/widgets/progress_line.dart';
 import 'package:biblioteczka/presentation/widgets/rating_bar.dart';
 import 'package:biblioteczka/presentation/widgets/textInput_library.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:http/http.dart';
 
 class BookAdd extends StatelessWidget {
   BookAdd({super.key});
@@ -30,14 +32,15 @@ class BookAdd extends StatelessWidget {
                   IconButton(
                     onPressed: (() {
                       context.read<BookCubit>().removeSearchedBooks();
+                      context.read<BookCubit>().removeBookFormData();
                       Utils.biblioteczkaNavigator.currentState!
                           .pushReplacementNamed('/');
                     }),
                     icon: const Icon(Icons.close),
                     iconSize: 30,
                   ),
-                  SizedBox(width: 20),
-                  Text(
+                  const SizedBox(width: 20),
+                  const Text(
                     'Dodaj książkę',
                     style: AppTextStyles.H2,
                   ),
@@ -178,6 +181,7 @@ class BookAdd extends StatelessWidget {
                   onPressed: () {
                     context.read<BookCubit>().addNewBookToList();
                     context.read<BookCubit>().removeSearchedBooks();
+                    context.read<BookCubit>().removeBookFormData();
                     Utils.biblioteczkaNavigator.currentState!
                         .pushReplacementNamed('/');
                   },
@@ -189,48 +193,6 @@ class BookAdd extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-//TODO: refactore it to separated class
-class ChooseLine extends StatelessWidget {
-  ChooseLine({super.key});
-
-  BookProgress object = BookProgress.inProgress;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<BookCubit, BookState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: SegmentedButton(
-            segments: const [
-              ButtonSegment(
-                  value: BookProgress.red,
-                  label: Text(
-                    'Przeczytane',
-                  )),
-              ButtonSegment(
-                  value: BookProgress.toRead,
-                  label: Text(
-                    'Chcę przeczytać',
-                  )),
-              ButtonSegment(
-                  value: BookProgress.inProgress,
-                  label: Text(
-                    'W trakcie',
-                  )),
-            ],
-            selected: {state.bookForm.bookProgress},
-            onSelectionChanged: (Set<BookProgress> newSelection) {
-              object = newSelection.first;
-              context.read<BookCubit>().updateBookFormProgress(object);
-            },
-          ),
-        );
-      },
     );
   }
 }

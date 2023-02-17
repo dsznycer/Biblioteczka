@@ -12,6 +12,7 @@ class BookState {
   final List<Book> booksReading;
   final List<BookApi> recomendedBooks;
   final List<GoogleBookItem> googleBooks;
+  final List<List<Book>> chosenList;
   final Book bookForm;
 
   BookState({
@@ -21,6 +22,7 @@ class BookState {
     this.booksReading = const [],
     this.recomendedBooks = const [],
     this.googleBooks = const [],
+    this.chosenList = const [],
     this.bookForm = const Book(
         title: 'This is test book',
         author: 'test',

@@ -66,21 +66,25 @@ class BookShelf extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    alignment: Alignment.centerLeft,
-                    child: const Text(
-                      'Przeczytane w tym roku:',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+                  GestureDetector(
+                    onTap: () => Utils.biblioteczkaNavigator.currentState!
+                        .pushNamed('/GridBookShelf'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Przeczytane w tym roku:',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ),
                   Container(
                     width: _size.width,
                     height: 280,
                     child: state.booksRed.isEmpty
-                        ? const Center(
+                        ? Center(
                             child: Text(
                                 'Tu pojawia się przeczytane w tym roku książki.'),
                           )

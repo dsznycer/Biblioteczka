@@ -84,6 +84,9 @@ class BookCubit extends HydratedCubit<BookState> {
   void updateFormPhoto(String photo) =>
       emit(state.copyWith(bookForm: state.bookForm.copyWith(urlPhoto: photo)));
 
+  void updateBookFormProgress(BookProgress pro) => emit(
+      state.copyWith(bookForm: state.bookForm.copyWith(bookProgress: pro)));
+
   // Remove last book from booksRed
   void removeLastBooksRed() =>
       emit(state.copyWith(booksRed: List.of(state.booksRed)..removeLast()));
@@ -97,9 +100,9 @@ class BookCubit extends HydratedCubit<BookState> {
   // Delete list of searched books
   void removeSearchedBooks() => emit(state.copyWith(googleBooks: List.empty()));
 
-  // Methods to manipulate bookForm
-  void updateBookFormProgress(BookProgress pro) => emit(
-      state.copyWith(bookForm: state.bookForm.copyWith(bookProgress: pro)));
+  // Methods to delete form book data
+  void removeBookFormData() => emit(state.copyWith(
+      bookForm: const Book(title: '', bookProgress: BookProgress.red)));
 
   // Google Books Api methods
   void searchGoogleBooks(String title) async {

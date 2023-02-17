@@ -4,7 +4,9 @@ import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
+import 'package:biblioteczka/presentation/widgets/progress_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,78 +15,115 @@ class BookshelfViewBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Book book = context.watch<SettingsCubit>().state.chosenBook;
-    final String heroTag = context.watch<SettingsCubit>().state.heroTag;
-
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      top: false,
-      child: Material(
-        color: AppColors.kCol3,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 50),
-                Row(
+
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return SafeArea(
+          top: false,
+          child: Material(
+            color: state.darkMode ? AppColors.kCol5 : Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    IconButton(
-                        onPressed: () =>
-                            Utils.biblioteczkaNavigator.currentState!.pop(),
-                        icon: Icon(Icons.close)),
-                    Text(
-                      'Twoja ksiązka',
-                      style: AppTextStyles.H3,
-                    )
-                  ],
-                ),
-                Container(
-                  height: size.height / 2.25,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Hero(
-                        tag: heroTag,
-                        child: Image.network(
-                          book.urlPhoto,
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(height: 10),
-                    Text(
-                      'Tytuł:',
-                      style: AppTextStyles.H3,
+                    // Stack with book photo
+                    Container(
+                      width: size.width,
+                      height: size.height / 2,
+                      padding: const EdgeInsets.only(top: 30),
+                      decoration: BoxDecoration(
+                          color: AppColors.kCol3,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () => Utils
+                                        .biblioteczkaNavigator.currentState!
+                                        .pop(),
+                                    icon: const Icon(Icons.close)),
+                                const SizedBox(width: 25),
+                                const Text(
+                                  'Twoja ksiązka',
+                                  style: AppTextStyles.H3,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            top: 60,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                height: size.height / 3.3,
+                                decoration: const BoxDecoration(
+                                    color: AppColors.kCol4,
+                                    boxShadow: [AppShadows.Shad2]),
+                                child: Hero(
+                                    tag: state.heroTag,
+                                    child: Image.network(
+                                      state.chosenBook.urlPhoto,
+                                      fit: BoxFit.fill,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 25,
+                            child: Column(
+                              children: [
+                                Text(state.chosenBook.title,
+                                    style: AppTextStyles.H2),
+                                Text('by ${state.chosenBook.author}',
+                                    style: AppTextStyles.TextLarge),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(book.title),
-                    Text('Autor:'),
-                    Text(book.author),
-                    Text('Przeczytano w:'),
-                    Text(book.yearOfEnd)
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text('Przeczytano w:'),
+                        Visibility(
+                            visible: state.chosenBook.bookProgress ==
+                                BookProgress.red,
+                            child: Text(state.chosenBook.yearOfEnd))
+                      ],
+                    ),
+                    ChooseLine(),
+                    FilledButton.tonal(
                         onPressed: () {
-                          context.read<BookCubit>().removeBookFromList(book);
+                          context
+                              .read<BookCubit>()
+                              .removeBookFromList(state.chosenBook);
 
                           Utils.biblioteczkaNavigator.currentState!.pop();
                         },
-                        icon: const Icon(BiblioteczkaIcons.deleteIcon)),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Text('Usuń książkę'),
+                            SizedBox(width: 5),
+                            Icon(BiblioteczkaIcons.deleteIcon),
+                          ],
+                        )),
                   ],
                 ),
-                const SizedBox(height: 20),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

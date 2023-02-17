@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:biblioteczka/data/Models/book_model.dart';
 
 class BookRepository {
+  final RegExp basicRegExp = RegExp(r'[A-Za-z0-9]');
   final HapiBooksApi _hapiApi = HapiBooksApi();
   final GoogleBooksApi _googleBooksApi = GoogleBooksApi();
 
@@ -25,7 +26,7 @@ class BookRepository {
   Future<List<GoogleBookItem>> searchGoogleBooks(String title) async {
     List<GoogleBookItem> listOfBooksGoogle = [];
 
-    if (title == '') {
+    if (!title.contains(basicRegExp)) {
       return listOfBooksGoogle;
     }
 

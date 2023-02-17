@@ -10,7 +10,7 @@ class GoogleBooksApi {
     Map<String, dynamic> queryMap = {
       'q': text,
       'printType': 'books',
-      'maxResult': '10',
+      'maxResult': '14',
       'key': apiKey
     };
 
