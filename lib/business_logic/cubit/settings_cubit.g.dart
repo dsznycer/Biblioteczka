@@ -13,10 +13,6 @@ SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) =>
       chosenBook: json['chosenBook'] == null
           ? const Book(
               title: 'This is test book',
-              author: 'test',
-              yearOfEnd: '2023',
-              pages: '23',
-              notes: ['notes'],
               bookProgress: BookProgress.inProgress,
               score: 2)
           : Book.fromJson(json['chosenBook'] as Map<String, dynamic>),

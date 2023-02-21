@@ -14,10 +14,6 @@ class SettingsState {
     this.darkMode = false,
     this.chosenBook = const Book(
         title: 'This is test book',
-        author: 'test',
-        yearOfEnd: '2023',
-        pages: '23',
-        notes: ['notes'],
         bookProgress: BookProgress.inProgress,
         score: 2),
     this.heroTag = 'test123',

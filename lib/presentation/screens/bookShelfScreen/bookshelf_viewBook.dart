@@ -89,16 +89,17 @@ class BookshelfViewBook extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text('Przeczytano w:'),
-                        Visibility(
-                            visible: state.chosenBook.bookProgress ==
-                                BookProgress.red,
-                            child: Text(state.chosenBook.yearOfEnd))
-                      ],
+                    Visibility(
+                      visible:
+                          state.chosenBook.bookProgress == BookProgress.red,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('Przeczytano w:'),
+                          Text(state.chosenBook.yearOfEnd)
+                        ],
+                      ),
                     ),
                     ChooseLine(),
                     FilledButton.tonal(

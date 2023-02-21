@@ -20,6 +20,10 @@ class BookCubit extends HydratedCubit<BookState> {
       status: BookStateStatus.withData,
       booksRed: List.of(state.booksRed)..add(book)));
 
+  // Chose new list to show
+
+  void choosenList(List<Book> list) => emit(state.copyWith(chosenList: list));
+
   void addNewBookToList() {
     switch (state.bookForm.bookProgress) {
       case BookProgress.red:

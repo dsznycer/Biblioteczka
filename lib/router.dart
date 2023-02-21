@@ -3,9 +3,10 @@ import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addB
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_viewBook.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_screen.dart';
-import 'package:biblioteczka/presentation/screens/bookShelfScreen/boosklef_gridBookShelf.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/booshelf_gridBookShelf.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
 import 'package:biblioteczka/presentation/screens/loginScreen/login_screen.dart';
+import 'package:biblioteczka/presentation/screens/loginScreen/registration_screen.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
 
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
@@ -32,6 +33,10 @@ class AppRouter {
         page = ProfileScreen();
         break;
 
+      case '/RegistrationScreen':
+        page = RegistrationScreen();
+        break;
+
       default:
         page = loginScreen();
     }
@@ -53,7 +58,7 @@ class AppRouter {
         page = BookAdd();
         miliseconds = 0;
         break;
-      case '/editBook':
+      case '/viewBook':
         page = const BookshelfViewBook();
         miliseconds = 500;
         break;
@@ -73,6 +78,7 @@ class AppRouter {
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
       transitionDuration: Duration(milliseconds: miliseconds),
+      // reverseTransitionDuration: const Duration(seconds: 0),
     );
   }
 }

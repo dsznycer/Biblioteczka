@@ -12,7 +12,7 @@ class BookState {
   final List<Book> booksReading;
   final List<BookApi> recomendedBooks;
   final List<GoogleBookItem> googleBooks;
-  final List<List<Book>> chosenList;
+  final List<Book> chosenList;
   final Book bookForm;
 
   BookState({
@@ -33,10 +33,20 @@ class BookState {
         score: 2),
   });
 
+  List<Book> get rodeIn2023 => booksRed
+      .where((element) => element.yearOfEnd == DateTime.now().year.toString())
+      .toList();
+
+  int get lengthOfAllList =>
+      booksReading.length + booksRed.length + booksToRead.length;
+
+  // Methods to conver state class to json and from json
   factory BookState.fromJson(Map<String, dynamic> json) =>
       _$BookStateFromJson(json);
 
   Map<String, dynamic> toJson() => _$BookStateToJson(this);
+
+  // Method to copy class
 
   BookState copyWith({
     BookStateStatus? status,
@@ -45,6 +55,7 @@ class BookState {
     List<Book>? booksReading,
     List<BookApi>? recomendedBooks,
     List<GoogleBookItem>? googleBooks,
+    List<Book>? chosenList,
     Book? bookForm,
   }) {
     return BookState(
@@ -54,6 +65,7 @@ class BookState {
       booksReading: booksReading ?? this.booksReading,
       recomendedBooks: recomendedBooks ?? this.recomendedBooks,
       googleBooks: googleBooks ?? this.googleBooks,
+      chosenList: chosenList ?? this.chosenList,
       bookForm: bookForm ?? this.bookForm,
     );
   }

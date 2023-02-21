@@ -29,6 +29,10 @@ BookState _$BookStateFromJson(Map<String, dynamic> json) => BookState(
               ?.map((e) => GoogleBookItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      chosenList: (json['chosenList'] as List<dynamic>?)
+              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       bookForm: json['bookForm'] == null
           ? const Book(
               title: 'This is test book',
@@ -49,6 +53,7 @@ Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{
       'recomendedBooks':
           instance.recomendedBooks.map((e) => e.toJson()).toList(),
       'googleBooks': instance.googleBooks.map((e) => e.toJson()).toList(),
+      'chosenList': instance.chosenList.map((e) => e.toJson()).toList(),
       'bookForm': instance.bookForm.toJson(),
     };
 

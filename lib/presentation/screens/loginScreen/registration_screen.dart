@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class registrationScreen extends StatelessWidget {
-  registrationScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends StatelessWidget {
+  RegistrationScreen({Key? key}) : super(key: key);
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 

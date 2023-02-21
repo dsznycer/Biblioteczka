@@ -1,3 +1,4 @@
+import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -28,42 +29,48 @@ class BookWidget extends StatelessWidget {
               boxShadow: const [AppShadows.Shad2]),
           child: Row(children: [
             Expanded(
-                flex: 4,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Hero(
-                        tag: heroTag, child: Image.network(book.urlPhoto)))),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Hero(
+                      tag: heroTag,
+                      child: Image.network(
+                        book.urlPhoto,
+                        fit: BoxFit.contain,
+                      ))),
+            ),
             Expanded(
-                flex: 6,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(book.title, style: AppTextStyles.TextLarge),
+                  Text('Autor:', style: AppTextStyles.TextMedium),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(book.title, style: AppTextStyles.H3),
-                      Row(
-                        children: [
-                          Text(
-                            'Autor:',
-                            style: AppTextStyles.TextLarge,
-                          ),
-                          SizedBox(width: 5),
-                          Expanded(
-                              child: Text(book.author,
-                                  style: AppTextStyles.TextLarge)),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 38.0),
-                        child: Divider(
-                          color: AppColors.kCol2,
-                        ),
-                      ),
-                      Text(book.yearOfEnd),
-                      Text('Ocena: ${book.score}')
+                      Expanded(
+                          child: Text(book.author,
+                              style: AppTextStyles.TextMedium)),
                     ],
                   ),
-                )),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Divider(
+                      color: AppColors.kCol2,
+                    ),
+                  ),
+                  Text(book.yearOfEnd),
+                  Visibility(
+                      visible: book.bookProgress == BookProgress.red,
+                      child: Text(
+                        'Twoja ocena: ${book.score}',
+                        style: AppTextStyles.TextLarge,
+                      ))
+                ],
+              ),
+            )),
           ])),
     );
   }
