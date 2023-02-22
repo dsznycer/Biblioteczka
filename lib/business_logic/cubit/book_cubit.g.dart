@@ -35,14 +35,15 @@ BookState _$BookStateFromJson(Map<String, dynamic> json) => BookState(
           const [],
       bookForm: json['bookForm'] == null
           ? const Book(
-              title: 'This is test book',
-              author: 'test',
-              yearOfEnd: '2023',
-              pages: '23',
-              notes: ['notes'],
-              bookProgress: BookProgress.inProgress,
-              score: 2)
+              title: 'This is test book', bookProgress: BookProgress.inProgress)
           : Book.fromJson(json['bookForm'] as Map<String, dynamic>),
+      choosenBook: json['choosenBook'] == null
+          ? const Book(title: 'title', bookProgress: BookProgress.inProgress)
+          : Book.fromJson(json['choosenBook'] as Map<String, dynamic>),
+      heroTag: json['heroTag'] as String? ?? '',
+      bookProgress:
+          $enumDecodeNullable(_$BookProgressEnumMap, json['bookProgress']) ??
+              BookProgress.inProgress,
     );
 
 Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{
@@ -55,10 +56,19 @@ Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{
       'googleBooks': instance.googleBooks.map((e) => e.toJson()).toList(),
       'chosenList': instance.chosenList.map((e) => e.toJson()).toList(),
       'bookForm': instance.bookForm.toJson(),
+      'choosenBook': instance.choosenBook.toJson(),
+      'heroTag': instance.heroTag,
+      'bookProgress': _$BookProgressEnumMap[instance.bookProgress]!,
     };
 
 const _$BookStateStatusEnumMap = {
   BookStateStatus.initial: 'initial',
   BookStateStatus.withData: 'withData',
   BookStateStatus.loadingData: 'loadingData',
+};
+
+const _$BookProgressEnumMap = {
+  BookProgress.red: 'red',
+  BookProgress.toRead: 'toRead',
+  BookProgress.inProgress: 'inProgress',
 };

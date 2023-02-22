@@ -19,8 +19,6 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   void changeDarkMode(value) => emit(state.copyWith(darkMode: value));
   void changeIndex(value) => emit(state.copyWith(index: value));
-  void choosenBook(Book book, String heroTag) =>
-      emit(state.copyWith(chosenBook: book, heroTag: heroTag));
 
   // Methods to write and read state from json
   @override

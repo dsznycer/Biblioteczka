@@ -29,14 +29,15 @@ class BookWidget extends StatelessWidget {
               boxShadow: const [AppShadows.Shad2]),
           child: Row(children: [
             Expanded(
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Hero(
-                      tag: heroTag,
-                      child: Image.network(
-                        book.urlPhoto,
-                        fit: BoxFit.contain,
-                      ))),
+              child: Hero(
+                tag: heroTag,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      book.urlPhoto,
+                      fit: BoxFit.contain,
+                    )),
+              ),
             ),
             Expanded(
                 child: Padding(
@@ -45,7 +46,7 @@ class BookWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(book.title, style: AppTextStyles.TextLarge),
+                  Text(book.title, maxLines: 2, style: AppTextStyles.TextLarge),
                   Text('Autor:', style: AppTextStyles.TextMedium),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,

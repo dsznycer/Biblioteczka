@@ -81,4 +81,20 @@ class AppRouter {
       // reverseTransitionDuration: const Duration(seconds: 0),
     );
   }
+
+  Route homeNavigator(RouteSettings routeSettings) {
+    Widget page;
+    switch (routeSettings.name) {
+      case '/':
+        page = const BookshelfViewBook();
+        break;
+      default:
+        page = HomeScreen();
+    }
+
+    return PageRouteBuilder(
+      pageBuilder: ((_, __, ___) => page),
+      transitionDuration: const Duration(milliseconds: 0),
+    );
+  }
 }

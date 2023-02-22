@@ -11,24 +11,28 @@ class AppTextStyles {
     fontSize: 29,
     color: Colors.black,
     fontWeight: FontWeight.bold,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle H3 = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w500,
     color: Colors.black,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle H4 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.normal,
     color: Colors.black,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle Subtitle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.normal,
     color: Colors.black,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle TextLarge = TextStyle(

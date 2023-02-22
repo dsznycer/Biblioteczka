@@ -14,6 +14,9 @@ class BookState {
   final List<GoogleBookItem> googleBooks;
   final List<Book> chosenList;
   final Book bookForm;
+  final Book choosenBook;
+  final String heroTag;
+  final BookProgress bookProgress;
 
   BookState({
     this.status = BookStateStatus.initial,
@@ -24,13 +27,13 @@ class BookState {
     this.googleBooks = const [],
     this.chosenList = const [],
     this.bookForm = const Book(
-        title: 'This is test book',
-        author: 'test',
-        yearOfEnd: '2023',
-        pages: '23',
-        notes: ['notes'],
-        bookProgress: BookProgress.inProgress,
-        score: 2),
+      title: 'This is test book',
+      bookProgress: BookProgress.inProgress,
+    ),
+    this.choosenBook =
+        const Book(title: 'title', bookProgress: BookProgress.inProgress),
+    this.heroTag = '',
+    this.bookProgress = BookProgress.inProgress,
   });
 
   List<Book> get rodeIn2023 => booksRed
@@ -47,7 +50,6 @@ class BookState {
   Map<String, dynamic> toJson() => _$BookStateToJson(this);
 
   // Method to copy class
-
   BookState copyWith({
     BookStateStatus? status,
     List<Book>? booksRed,
@@ -57,6 +59,9 @@ class BookState {
     List<GoogleBookItem>? googleBooks,
     List<Book>? chosenList,
     Book? bookForm,
+    Book? choosenBook,
+    String? heroTag,
+    BookProgress? bookProgress,
   }) {
     return BookState(
       status: status ?? this.status,
@@ -67,6 +72,9 @@ class BookState {
       googleBooks: googleBooks ?? this.googleBooks,
       chosenList: chosenList ?? this.chosenList,
       bookForm: bookForm ?? this.bookForm,
+      choosenBook: choosenBook ?? this.choosenBook,
+      heroTag: heroTag ?? this.heroTag,
+      bookProgress: bookProgress ?? this.bookProgress,
     );
   }
 }

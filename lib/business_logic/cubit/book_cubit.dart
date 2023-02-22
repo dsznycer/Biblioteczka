@@ -21,7 +21,6 @@ class BookCubit extends HydratedCubit<BookState> {
       booksRed: List.of(state.booksRed)..add(book)));
 
   // Chose new list to show
-
   void choosenList(List<Book> list) => emit(state.copyWith(chosenList: list));
 
   void addNewBookToList() {
@@ -47,6 +46,10 @@ class BookCubit extends HydratedCubit<BookState> {
     }
   }
 
+  void checkAndChange() {
+    if (state.bookProgress != state.choosenBook.bookProgress) {}
+  }
+
   void removeBookFromList(Book book) {
     switch (book.bookProgress) {
       case BookProgress.red:
@@ -68,6 +71,14 @@ class BookCubit extends HydratedCubit<BookState> {
         break;
     }
   }
+
+  // Change Choosen Book
+  void choosenBook(Book book, String heroTag) =>
+      emit(state.copyWith(choosenBook: book, heroTag: heroTag));
+
+  // Change book progress
+  void changeBookProgress(BookProgress value) =>
+      emit(state.copyWith(bookProgress: value));
 
   // Updating value of form book
   void updateFormTitle(String title) =>

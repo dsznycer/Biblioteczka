@@ -56,16 +56,15 @@ class GridBookShelf extends StatelessWidget {
                       itemCount: state.chosenList.length,
                       itemBuilder: (context, index) => InkWell(
                         onTap: () {
-                          context.read<SettingsCubit>().choosenBook(
+                          context.read<BookCubit>().choosenBook(
                               state.chosenList[index], index.toString() + 'c');
                           Utils.biblioteczkaNavigator.currentState!
                               .pushNamed('/viewBook');
                         },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Container(
-                            color: Colors.pinkAccent,
-                            // height: 400,
+                        child: Hero(
+                          tag: index.toString() + 'c',
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
                             child: Image.network(
                               state.chosenList[index].urlPhoto,
                               fit: BoxFit.fitWidth,

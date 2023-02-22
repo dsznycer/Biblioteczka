@@ -16,15 +16,17 @@ class BookshelfViewBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final darkMode =
+        context.select((SettingsCubit cubit) => cubit.state.darkMode);
 
-    return BlocBuilder<SettingsCubit, SettingsState>(
+    return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
         return SafeArea(
           top: false,
           child: Material(
-            color: state.darkMode ? AppColors.kCol5 : Colors.white,
+            color: darkMode ? AppColors.kCol5 : Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding: const EdgeInsets.only(left: 15, top: 60, right: 15),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -32,7 +34,7 @@ class BookshelfViewBook extends StatelessWidget {
                     Container(
                       width: size.width,
                       height: size.height / 2,
-                      padding: const EdgeInsets.only(top: 30),
+                      padding: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
                           color: AppColors.kCol3,
                           borderRadius: BorderRadius.circular(12)),
@@ -57,56 +59,113 @@ class BookshelfViewBook extends StatelessWidget {
                               ],
                             ),
                           ),
+                          // Photo of book
                           Positioned(
-                            top: 60,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Container(
-                                height: size.height / 3.3,
-                                decoration: const BoxDecoration(
-                                    color: AppColors.kCol4,
-                                    boxShadow: [AppShadows.Shad2]),
-                                child: Hero(
-                                    tag: state.heroTag,
-                                    child: Image.network(
-                                      state.chosenBook.urlPhoto,
-                                      fit: BoxFit.fill,
-                                    )),
+                            top: 55,
+                            child: Hero(
+                              tag: state.heroTag,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  height: size.height / 3.3,
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.kCol4,
+                                      boxShadow: [AppShadows.Shad4]),
+                                  child: Image.network(
+                                    state.choosenBook.urlPhoto,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
+                          // Title of book
                           Positioned(
-                            bottom: 25,
-                            child: Column(
-                              children: [
-                                Text(state.chosenBook.title,
-                                    style: AppTextStyles.H2),
-                                Text('by ${state.chosenBook.author}',
-                                    style: AppTextStyles.TextLarge),
-                              ],
+                            bottom: 0,
+                            right: 0,
+                            left: 0,
+                            child: SizedBox(
+                              height: size.height / 8,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(state.choosenBook.title,
+                                      maxLines: 3,
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.H3.copyWith(
+                                          overflow: TextOverflow.ellipsis)),
+                                  Text('by ${state.choosenBook.author}',
+                                      style: AppTextStyles.TextLarge),
+                                ],
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Visibility(
-                      visible:
-                          state.chosenBook.bookProgress == BookProgress.red,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text('Przeczytano w:'),
-                          Text(state.chosenBook.yearOfEnd)
-                        ],
-                      ),
+                    const SizedBox(height: 15),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Visibility(
+                          visible: state.choosenBook.bookProgress ==
+                              BookProgress.red,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 0.5),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                const Text(
+                                  'Przeczytano w:',
+                                  style: AppTextStyles.TextLarge,
+                                ),
+                                Text(state.choosenBook.yearOfEnd,
+                                    style: AppTextStyles.TextLarge)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: state.choosenBook.pages.length > 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 0.5),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Ilość stron:',
+                                  style: AppTextStyles.TextLarge,
+                                ),
+                                Text(state.choosenBook.pages,
+                                    style: AppTextStyles.TextLarge)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    ChooseLine(),
+                    const SizedBox(height: 15),
+                    ChangeBookListAndProgress(),
+                    IconButton(
+                        onPressed: () => print(state.bookProgress),
+                        icon: Icon(Icons.dangerous)),
+                    const SizedBox(height: 15),
+
                     FilledButton.tonal(
                         onPressed: () {
                           context
                               .read<BookCubit>()
-                              .removeBookFromList(state.chosenBook);
+                              .removeBookFromList(state.choosenBook);
 
                           Utils.biblioteczkaNavigator.currentState!.pop();
                         },

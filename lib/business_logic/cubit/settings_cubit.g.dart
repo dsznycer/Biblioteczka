@@ -10,19 +10,10 @@ SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) =>
     SettingsState(
       index: json['index'] as int? ?? 0,
       darkMode: json['darkMode'] as bool? ?? false,
-      chosenBook: json['chosenBook'] == null
-          ? const Book(
-              title: 'This is test book',
-              bookProgress: BookProgress.inProgress,
-              score: 2)
-          : Book.fromJson(json['chosenBook'] as Map<String, dynamic>),
-      heroTag: json['heroTag'] as String? ?? 'test123',
     );
 
 Map<String, dynamic> _$SettingsStateToJson(SettingsState instance) =>
     <String, dynamic>{
       'index': instance.index,
       'darkMode': instance.darkMode,
-      'chosenBook': instance.chosenBook,
-      'heroTag': instance.heroTag,
     };

@@ -94,7 +94,7 @@ class BookShelf extends StatelessWidget {
                                   heroTag: index.toString() + 'a',
                                   book: state.rodeIn2023[index],
                                   onTap: () {
-                                    context.read<SettingsCubit>().choosenBook(
+                                    context.read<BookCubit>().choosenBook(
                                         state.rodeIn2023[index],
                                         index.toString() + 'a');
                                     Utils.biblioteczkaNavigator.currentState!
@@ -158,7 +158,7 @@ class BookShelf extends StatelessWidget {
                                   heroTag: index.toString() + 'b',
                                   book: state.booksToRead[index],
                                   onTap: () {
-                                    context.read<SettingsCubit>().choosenBook(
+                                    context.read<BookCubit>().choosenBook(
                                         state.booksToRead[index],
                                         index.toString() + 'b');
                                     Utils.biblioteczkaNavigator.currentState!
@@ -184,7 +184,7 @@ class BookShelf extends StatelessWidget {
                                   .read<BookCubit>()
                                   .choosenList(state.booksToRead);
                               Utils.biblioteczkaNavigator.currentState!
-                                  .pushReplacementNamed('/GridBookShelf');
+                                  .pushNamed('/GridBookShelf');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -220,7 +220,7 @@ class BookShelf extends StatelessWidget {
                               heroTag: index.toString() + 'c',
                               book: state.booksRed[index],
                               onTap: () {
-                                context.read<SettingsCubit>().choosenBook(
+                                context.read<BookCubit>().choosenBook(
                                     state.booksRed[index],
                                     index.toString() + 'c');
                                 Utils.biblioteczkaNavigator.currentState!
