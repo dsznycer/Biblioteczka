@@ -179,7 +179,7 @@ class BookAdd extends StatelessWidget {
                   backgroundColor: AppColors.kCol3,
                   focusColor: AppColors.kCol2,
                   onPressed: () {
-                    context.read<BookCubit>().addNewBookToList();
+                    context.read<BookCubit>().addNewBookToListFromForm();
                     context.read<BookCubit>().removeSearchedBooks();
                     context.read<BookCubit>().removeBookFormData();
                     Utils.biblioteczkaNavigator.currentState!

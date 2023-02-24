@@ -53,7 +53,6 @@ class ChangeBookListAndProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
-        BookProgress valueOfProgress = state.choosenBook.bookProgress;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: SegmentedButton(
@@ -77,8 +76,9 @@ class ChangeBookListAndProgress extends StatelessWidget {
             ],
             selected: {state.bookProgress},
             onSelectionChanged: (Set<BookProgress> newSelection) {
-              valueOfProgress = newSelection.first;
+              // valueOfProgress = newSelection.first;
               context.read<BookCubit>().changeBookProgress(newSelection.first);
+              context.read<BookCubit>().checkAndChange();
             },
           ),
         );

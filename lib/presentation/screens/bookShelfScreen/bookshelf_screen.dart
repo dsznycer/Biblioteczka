@@ -246,6 +246,50 @@ class BookShelf extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      alignment: Alignment.centerLeft,
+                      child: const Text('Aktualnie czytane:',
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.w400))),
+                  Container(
+                    height: 250,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.booksReading.length,
+                        itemBuilder: (context, index) => BookWidget(
+                              heroTag: index.toString() + 'd',
+                              book: state.booksReading[index],
+                              onTap: () {
+                                context.read<BookCubit>().choosenBook(
+                                    state.booksReading[index],
+                                    index.toString() + 'd');
+                                Utils.biblioteczkaNavigator.currentState!
+                                    .pushNamed('/viewBook');
+                              },
+                            )),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: FloatingActionButton.small(
+                      heroTag: null,
+                      onPressed: () {
+                        context
+                            .read<BookCubit>()
+                            .choosenList(state.booksReading);
+                        Utils.biblioteczkaNavigator.currentState!
+                            .pushNamed('/GridBookShelf');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Text('Zobacz wszystkie'),
+                          Icon(BiblioteczkaIcons.backArrowIcon)
+                        ],
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 30),
                 ],
               ),

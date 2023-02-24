@@ -4,12 +4,14 @@ import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_view
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_screen.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/booshelf_gridBookShelf.dart';
-import 'package:biblioteczka/presentation/screens/homeScreen/home_screen.dart';
+import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_basic.dart';
+import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_screen.dart';
 import 'package:biblioteczka/presentation/screens/loginScreen/login_screen.dart';
 import 'package:biblioteczka/presentation/screens/loginScreen/registration_screen.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
 
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
+import 'package:biblioteczka/presentation/screens/view_book_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class AppRouter {
     Widget page;
     switch (routeSettings.name) {
       case '/':
-        page = HomeScreen();
+        page = const HomeScreenBasic();
         break;
 
       case '/Biblioteczka':
@@ -37,8 +39,12 @@ class AppRouter {
         page = RegistrationScreen();
         break;
 
+      case '/login':
+        page = LoginScreen();
+        break;
+
       default:
-        page = loginScreen();
+        page = LoginScreen();
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
@@ -86,7 +92,10 @@ class AppRouter {
     Widget page;
     switch (routeSettings.name) {
       case '/':
-        page = const BookshelfViewBook();
+        page = HomeScreen();
+        break;
+      case '/viewBook':
+        page = ViewBook();
         break;
       default:
         page = HomeScreen();

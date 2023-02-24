@@ -6,7 +6,7 @@ class AppShadows {
 
   static const BoxShadow Shad2 = BoxShadow(
       color: Color.fromARGB(77, 172, 183, 183),
-      offset: Offset(5, 5),
+      offset: Offset(0, 5),
       blurRadius: 10);
 
   static const BoxShadow Shad3 =

@@ -16,9 +16,9 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
-  firebase_core: ^2.4.1
+  firebase_core: ^2.7.0
   cloud_firestore: ^4.3.1
-  firebase_auth: ^4.2.5
+  firebase_auth: ^4.2.9
   flutter_bloc: ^8.1.1
   hydrated_bloc: ^9.0.0
   path_provider: ^2.0.12

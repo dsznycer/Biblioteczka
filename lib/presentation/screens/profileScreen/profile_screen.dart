@@ -1,6 +1,9 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
+import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +59,8 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            Container(
+              height: size.height / 4,
               child: Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
@@ -92,10 +96,86 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Center(
-              child: Image.asset('assets/photo/logo-biblio.png'),
-            )
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('Dane konta:', style: AppTextStyles.H3),
+                      ),
+                      for (int i = 0; i < 3; i++)
+                        Tile(
+                            onTap: () => print('Box ${i}'),
+                            title: 'Box number ${i}',
+                            subtitle: 'subtitle ${i}',
+                            cIcon: BiblioteczkaIcons.bookIcon),
+                      GestureDetector(
+                        onTap: () => Utils.mainNavigator.currentState!
+                            .pushReplacementNamed('/login'),
+                        child: Container(
+                          height: 100,
+                          child: Image.asset('assets/photo/logo-biblio.png'),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ));
+  }
+}
+
+class Tile extends StatelessWidget {
+  const Tile(
+      {required this.onTap,
+      required this.title,
+      required this.subtitle,
+      required this.cIcon,
+      super.key});
+
+  final String title;
+  final String subtitle;
+  final IconData cIcon;
+  final Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: AppColors.kCol2op50,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [AppShadows.Shad1]),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Row(mainAxisSize: MainAxisSize.max, children: [
+          Expanded(
+              child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(cIcon))),
+          const SizedBox(width: 15),
+          Expanded(
+            flex: 5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [Text(title), Text(subtitle)],
+            ),
+          )
+        ]),
+      ),
+    );
   }
 }

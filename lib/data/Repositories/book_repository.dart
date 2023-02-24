@@ -10,6 +10,7 @@ class BookRepository {
   final HapiBooksApi _hapiApi = HapiBooksApi();
   final GoogleBooksApi _googleBooksApi = GoogleBooksApi();
 
+  // Get HapiBooks best boks of given year
   Future<List<BookApi>> getBestBooksYear(String year) async {
     List<BookApi> listOfBooks = [];
 
@@ -23,6 +24,7 @@ class BookRepository {
     return listOfBooks;
   }
 
+// Get Google Boks by title
   Future<List<GoogleBookItem>> searchGoogleBooks(String title) async {
     List<GoogleBookItem> listOfBooksGoogle = [];
 

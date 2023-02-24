@@ -23,7 +23,7 @@ class BookCubit extends HydratedCubit<BookState> {
   // Chose new list to show
   void choosenList(List<Book> list) => emit(state.copyWith(chosenList: list));
 
-  void addNewBookToList() {
+  void addNewBookToListFromForm() {
     switch (state.bookForm.bookProgress) {
       case BookProgress.red:
         {
@@ -46,8 +46,20 @@ class BookCubit extends HydratedCubit<BookState> {
     }
   }
 
-  void checkAndChange() {
-    if (state.bookProgress != state.choosenBook.bookProgress) {}
+  void addNewBookFromObject(Book book) {
+    switch (book.bookProgress) {
+      case BookProgress.red:
+        emit(state.copyWith(booksRed: List.of(state.booksRed)..add(book)));
+        break;
+      case BookProgress.inProgress:
+        emit(state.copyWith(
+            booksReading: List.of(state.booksReading)..add(book)));
+        break;
+      case BookProgress.toRead:
+        emit(
+            state.copyWith(booksToRead: List.of(state.booksToRead)..add(book)));
+        break;
+    }
   }
 
   void removeBookFromList(Book book) {
@@ -73,12 +85,27 @@ class BookCubit extends HydratedCubit<BookState> {
   }
 
   // Change Choosen Book
-  void choosenBook(Book book, String heroTag) =>
-      emit(state.copyWith(choosenBook: book, heroTag: heroTag));
+  void choosenBook(Book book, String heroTag) => emit(state.copyWith(
+      choosenBook: book, heroTag: heroTag, bookProgress: book.bookProgress));
 
   // Change book progress
   void changeBookProgress(BookProgress value) =>
       emit(state.copyWith(bookProgress: value));
+
+  // Migrate book from one list to another depend of choosen value by user
+  void checkAndChange() {
+    // Check if Book Progress have changed
+    if (state.bookProgress != state.choosenBook.bookProgress) {
+      // remove book from list
+      removeBookFromList(state.choosenBook);
+      // Change choosenBook
+      choosenBook(state.choosenBook.copyWith(bookProgress: state.bookProgress),
+          state.heroTag);
+      // add book to list
+      addNewBookFromObject(state.choosenBook);
+      // Set acutual value of choosenBook
+    }
+  }
 
   // Updating value of form book
   void updateFormTitle(String title) =>
