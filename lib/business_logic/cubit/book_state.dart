@@ -36,10 +36,12 @@ class BookState {
     this.bookProgress = BookProgress.inProgress,
   });
 
-  List<Book> get rodeIn2023 => booksRed
+// Getter to return list of book red in current year
+  List<Book> get redInCurrentYear => booksRed
       .where((element) => element.yearOfEnd == DateTime.now().year.toString())
       .toList();
 
+  // Getter to return length of all lists.
   int get lengthOfAllList =>
       booksReading.length + booksRed.length + booksToRead.length;
 
@@ -78,7 +80,6 @@ class BookState {
     );
   }
 }
-
 
 //Version of state with freezed anotation
 

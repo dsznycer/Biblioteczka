@@ -81,21 +81,21 @@ class BookShelf extends StatelessWidget {
                   Container(
                     width: _size.width,
                     height: 250,
-                    child: state.rodeIn2023.isEmpty
+                    child: state.redInCurrentYear.isEmpty
                         ? Center(
                             child: Text(
                                 'Tu pojawia się przeczytane w tym roku książki.'),
                           )
                         : ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: state.rodeIn2023.length,
+                            itemCount: state.redInCurrentYear.length,
                             itemBuilder: (context, int index) {
                               return BookWidget(
                                   heroTag: index.toString() + 'a',
-                                  book: state.rodeIn2023[index],
+                                  book: state.redInCurrentYear[index],
                                   onTap: () {
                                     context.read<BookCubit>().choosenBook(
-                                        state.rodeIn2023[index],
+                                        state.redInCurrentYear[index],
                                         index.toString() + 'a');
                                     Utils.biblioteczkaNavigator.currentState!
                                         .pushNamed('/viewBook');
@@ -103,7 +103,7 @@ class BookShelf extends StatelessWidget {
                             }),
                   ),
                   Visibility(
-                    visible: state.rodeIn2023.isNotEmpty,
+                    visible: state.redInCurrentYear.isNotEmpty,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -113,7 +113,7 @@ class BookShelf extends StatelessWidget {
                             onPressed: () {
                               context
                                   .read<BookCubit>()
-                                  .choosenList(state.rodeIn2023);
+                                  .choosenList(state.redInCurrentYear);
                               Utils.biblioteczkaNavigator.currentState!
                                   .pushNamed('/GridBookShelf');
                             },

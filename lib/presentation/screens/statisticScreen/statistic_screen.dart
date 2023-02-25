@@ -20,18 +20,14 @@ class StatisticScreen extends StatelessWidget {
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
       body: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
-          int bookList = state.booksRed
-              .where((element) => element.yearOfEnd == '2023')
-              .toList()
-              .length;
-
           return SafeArea(
+            top: false,
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'W tym roku przeczytałeś: \n ${bookList.toString()} książek!',
+                    'Statystki czytacza: \n ${state.redInCurrentYear.length.toString()} książek!',
                     style: AppTextStyles.H2,
                     textAlign: TextAlign.center,
                   ),

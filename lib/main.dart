@@ -2,6 +2,7 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/APIs/google_books_api.dart';
 import 'package:biblioteczka/data/APIs/hapi_books_api.dart';
+import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
 import 'package:biblioteczka/data/Repositories/book_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
@@ -26,6 +27,7 @@ void main() async {
     RepositoryProvider(create: (context) => Navig()),
     RepositoryProvider(create: (context) => AppRouter()),
     RepositoryProvider(create: (context) => BookRepository()),
+    RepositoryProvider(create: (context) => AuthenticationRepository()),
   ], child: const Biblio()));
 }
 
