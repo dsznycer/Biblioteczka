@@ -26,16 +26,17 @@ class StatisticScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  SizedBox(height: 150),
                   Text(
                     'Statystki czytacza: \n ${state.redInCurrentYear.length.toString()} książek!',
                     style: AppTextStyles.H2,
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
-                    width: 100,
-                    child: FloatingActionButton.small(
-                        child: Text('Get books/empty func'), onPressed: () {}),
-                  ),
+                  // SizedBox(
+                  //   width: 100,
+                  //   child: FloatingActionButton.small(
+                  //       child: Text('Get books/empty func'), onPressed: () {}),
+                  // ),
                 ]),
           );
         },

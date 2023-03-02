@@ -1,3 +1,4 @@
+import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/APIs/google_books_api.dart';
@@ -41,21 +42,31 @@ class Biblio extends StatelessWidget {
         BlocProvider<BookCubit>(
             create: (context) =>
                 BookCubit(bookRepository: context.read<BookRepository>())),
-        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit())
+        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit()),
+        BlocProvider<AuthCubit>(
+            create: (create) => AuthCubit(
+                authRepository: context.read<AuthenticationRepository>()))
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: Utils.mainNavigator,
-        theme: ThemeData(
-          useMaterial3: true,
-          // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.kCol3),
-          textTheme: GoogleFonts.notoSerifTextTheme(),
-          navigationBarTheme: NavigationBarThemeData(
-              labelTextStyle: MaterialStateTextStyle.resolveWith((states) =>
-                  TextStyle(color: AppColors.kCol2.withOpacity(0.5)))),
+      child: BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state.authState != AuthStatus.authenticated) {
+            Utils.mainNavigator.currentState!.pushReplacementNamed('/login');
+          }
+        },
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: Utils.mainNavigator,
+          theme: ThemeData(
+            useMaterial3: true,
+            // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.kCol3),
+            textTheme: GoogleFonts.notoSerifTextTheme(),
+            navigationBarTheme: NavigationBarThemeData(
+                labelTextStyle: MaterialStateTextStyle.resolveWith((states) =>
+                    TextStyle(color: AppColors.kCol2.withOpacity(0.5)))),
+          ),
+          onGenerateRoute:
+              RepositoryProvider.of<AppRouter>(context).mainNavigator,
         ),
-        onGenerateRoute:
-            RepositoryProvider.of<AppRouter>(context).mainNavigator,
       ),
     );
   }

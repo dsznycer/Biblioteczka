@@ -1,6 +1,6 @@
+import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
-import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                   color: AppColors.kCol2.withOpacity(0.3),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(15),
                       bottomLeft: Radius.circular(15))),
               width: size.width,
@@ -113,14 +113,18 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Box number ${i}',
                             subtitle: 'subtitle ${i}',
                             cIcon: BiblioteczkaIcons.bookIcon),
-                      GestureDetector(
-                        onTap: () => Utils.mainNavigator.currentState!
-                            .pushReplacementNamed('/login'),
-                        child: Container(
-                          height: 100,
-                          child: Image.asset('assets/photo/logo-biblio.png'),
-                        ),
-                      )
+                      Tile(
+                          onTap: () => print(context.read<AuthCubit>().userStr),
+                          title: 'Wydrukuj użytkownika',
+                          subtitle: 'subtitle',
+                          cIcon: Icons.fitbit_outlined),
+                      Tile(
+                          onTap: () {
+                            context.read<AuthCubit>().signOut();
+                          },
+                          title: 'Wyloguj',
+                          subtitle: 'Wyloguj się z aplikacji',
+                          cIcon: Icons.logout),
                     ],
                   ),
                 ),
@@ -153,7 +157,7 @@ class Tile extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.kCol2op50,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [AppShadows.Shad1]),
+          boxShadow: const [AppShadows.Shad1]),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),

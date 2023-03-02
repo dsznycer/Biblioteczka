@@ -18,6 +18,7 @@ class SettingsState {
 
   Map<String, dynamic> toJson() => _$SettingsStateToJson(this);
 
+  // Method to copy class with new values
   SettingsState copyWith({
     int? index,
     bool? darkMode,

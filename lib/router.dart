@@ -1,3 +1,6 @@
+import 'package:biblioteczka/presentation/screens/authScreen/auth_basic.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/login_screen.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/resetPassword_screen.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBook.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBookPhoto.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_viewBook.dart';
@@ -6,8 +9,7 @@ import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_scre
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/booshelf_gridBookShelf.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_basic.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_screen.dart';
-import 'package:biblioteczka/presentation/screens/loginScreen/login_screen.dart';
-import 'package:biblioteczka/presentation/screens/loginScreen/registration_screen.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/registration_screen.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
 
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
@@ -40,11 +42,11 @@ class AppRouter {
         break;
 
       case '/login':
-        page = LoginScreen();
+        page = AuthBasic();
         break;
 
       default:
-        page = LoginScreen();
+        page = AuthBasic();
     }
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
@@ -104,6 +106,28 @@ class AppRouter {
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
       transitionDuration: const Duration(milliseconds: 0),
+    );
+  }
+
+  Route authNavigator(RouteSettings routeSettings) {
+    Widget page;
+    switch (routeSettings.name) {
+      case '/Login':
+        page = LoginScreen();
+        break;
+      case '/RegistrationScreen':
+        page = RegistrationScreen();
+        break;
+      case '/ResetPasswordScreen':
+        page = ResetPasswordScreen();
+        break;
+      default:
+        page = LoginScreen();
+    }
+
+    return PageRouteBuilder(
+      pageBuilder: ((_, __, ___) => page),
+      transitionDuration: const Duration(microseconds: 0),
     );
   }
 }
