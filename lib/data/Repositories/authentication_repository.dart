@@ -5,14 +5,10 @@ class AuthenticationRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Get current user
-  User? get currentUser {
-    return _auth.currentUser;
-  }
+  User? get currentUser => _auth.currentUser;
 
   // Get user stream
-  Stream<User?> get user {
-    return _auth.authStateChanges();
-  }
+  Stream<User?> get user => _auth.authStateChanges();
 
 // Login with email and password method
   Future<void> signInWithEmailPassword(
@@ -32,8 +28,23 @@ class AuthenticationRepository {
     await _auth.sendPasswordResetEmail(email: email);
   }
 
+  // Update user name
+  Future<void> updateCurrentUserName({required String name}) async {
+    await _auth.currentUser!.updateDisplayName(name);
+  }
+
+  // Reload
+  Future<void> reloadUserData() async {
+    await _auth.currentUser!.reload();
+  }
+
   // Sign out method
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  // Delete account
+  Future<void> deleteUser() async {
+    await _auth.currentUser!.delete();
   }
 }

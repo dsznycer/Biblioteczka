@@ -1,3 +1,4 @@
+import 'package:biblioteczka/business_logic/bloc/static_bloc.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/APIs/google_books_api.dart';
@@ -18,26 +19,40 @@ class StatisticScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: darkMode == true ? AppColors.kCol5 : Colors.white,
       bottomNavigationBar: RepositoryProvider.of<Navig>(context),
-      body: BlocBuilder<BookCubit, BookState>(
+      body: BlocBuilder<StaticBloc, StaticState>(
         builder: (context, state) {
           return SafeArea(
             top: false,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: 150),
-                  Text(
-                    'Statystki czytacza: \n ${state.redInCurrentYear.length.toString()} książek!',
-                    style: AppTextStyles.H2,
-                    textAlign: TextAlign.center,
-                  ),
-                  // SizedBox(
-                  //   width: 100,
-                  //   child: FloatingActionButton.small(
-                  //       child: Text('Get books/empty func'), onPressed: () {}),
-                  // ),
-                ]),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: 150),
+                    Text(
+                      'Statystki czytacza: \n ${state.i.toString()} eventów!',
+                      style: AppTextStyles.H2,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: FloatingActionButton.small(
+                          child: Text('Plus'),
+                          onPressed: () {
+                            context.read<StaticBloc>().add(ChangeValueP());
+                          }),
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: FloatingActionButton.small(
+                          child: Text('Minus'),
+                          onPressed: () {
+                            context.read<StaticBloc>().add(ChangeValueM());
+                          }),
+                    ),
+                  ]),
+            ),
           );
         },
       ),

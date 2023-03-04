@@ -1,3 +1,4 @@
+import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
@@ -21,13 +22,14 @@ class Navig extends StatelessWidget {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         return ClipRRect(
-          borderRadius: BorderRadius.horizontal(
+          borderRadius: const BorderRadius.horizontal(
               left: Radius.circular(15), right: Radius.circular(18)),
           child: NavigationBar(
               onDestinationSelected: (value) {
                 context.read<SettingsCubit>().changeIndex(value);
                 Utils.mainNavigator.currentState!
                     .pushReplacementNamed(routesMap[value]!);
+                context.read<BookCubit>().removeSearchedBooks();
               },
               elevation: 6,
               selectedIndex: state.index,

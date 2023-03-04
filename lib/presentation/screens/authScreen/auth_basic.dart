@@ -14,7 +14,19 @@ class AuthBasic extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.authState == AuthStatus.authenticated) {
+            Utils.authNavigator.currentState!.pop();
             Utils.mainNavigator.currentState!.pushReplacementNamed('/');
+          }
+          if (state.authState == AuthStatus.loading) {
+            Utils.authNavigator.currentState!.pushNamed('/LoadingScreen');
+          } else if (state.authState == AuthStatus.unauthenticated) {
+            Utils.authNavigator.currentState!.pop();
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(
+                  showCloseIcon: true,
+                  duration: const Duration(seconds: 5),
+                  content: Text(state.errorMessage)));
           }
         },
         child: Container(

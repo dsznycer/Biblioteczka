@@ -10,10 +10,12 @@ import 'package:biblioteczka/presentation/screens/bookShelfScreen/booshelf_gridB
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_basic.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_screen.dart';
 import 'package:biblioteczka/presentation/screens/authScreen/registration_screen.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/loading_screen.dart';
+import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_view_google_book.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
-
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
 import 'package:biblioteczka/presentation/screens/view_book_screen.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
@@ -96,8 +98,8 @@ class AppRouter {
       case '/':
         page = HomeScreen();
         break;
-      case '/viewBook':
-        page = ViewBook();
+      case '/ViewBook':
+        page = ViewGoogleBook();
         break;
       default:
         page = HomeScreen();
@@ -121,13 +123,17 @@ class AppRouter {
       case '/ResetPasswordScreen':
         page = ResetPasswordScreen();
         break;
+      case '/LoadingScreen':
+        page = const LoadingScreen();
+        break;
       default:
         page = LoginScreen();
     }
 
     return PageRouteBuilder(
       pageBuilder: ((_, __, ___) => page),
-      transitionDuration: const Duration(microseconds: 0),
+      transitionDuration: const Duration(seconds: 0),
+      reverseTransitionDuration: const Duration(seconds: 0),
     );
   }
 }

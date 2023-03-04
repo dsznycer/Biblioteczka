@@ -5,13 +5,14 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
-class User with _$User {
-  factory User({
+class UserApp with _$UserApp {
+  factory UserApp({
     required String id,
     @Default('') String name,
     @Default('') String email,
     @Default('') String photo,
-  }) = _User;
+  }) = _UserApp;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserApp.fromJson(Map<String, dynamic> json) =>
+      _$UserAppFromJson(json);
 }

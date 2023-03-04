@@ -56,7 +56,7 @@ class GridBookShelf extends StatelessWidget {
                       itemCount: state.chosenList.length,
                       itemBuilder: (context, index) => InkWell(
                         onTap: () {
-                          context.read<BookCubit>().choosenBook(
+                          context.read<BookCubit>().changeChoosenBook(
                               state.chosenList[index], index.toString() + 'c');
                           Utils.biblioteczkaNavigator.currentState!
                               .pushNamed('/viewBook');

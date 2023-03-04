@@ -15,19 +15,21 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: func,
-      child: Container(
-        margin: const EdgeInsets.all(10),
-        width: 180,
-        height: 45,
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(12)),
-        child: Center(
-            child: Text(
-          label,
-          style: AppTextStyles.TextLarge,
-        )),
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 180,
+      height: 45,
+      child: Material(
+        color: color,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: func,
+          child: Center(
+              child: Text(
+            label,
+            style: AppTextStyles.TextLarge,
+          )),
+        ),
       ),
     );
   }

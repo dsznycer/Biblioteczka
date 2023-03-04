@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+UserApp _$UserAppFromJson(Map<String, dynamic> json) {
+  return _UserApp.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$UserApp {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -27,21 +27,21 @@ mixin _$User {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserAppCopyWith<UserApp> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $UserAppCopyWith<$Res> {
+  factory $UserAppCopyWith(UserApp value, $Res Function(UserApp) then) =
+      _$UserAppCopyWithImpl<$Res, UserApp>;
   @useResult
   $Res call({String id, String name, String email, String photo});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserAppCopyWithImpl<$Res, $Val extends UserApp>
+    implements $UserAppCopyWith<$Res> {
+  _$UserAppCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,18 +78,20 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_UserAppCopyWith<$Res> implements $UserAppCopyWith<$Res> {
+  factory _$$_UserAppCopyWith(
+          _$_UserApp value, $Res Function(_$_UserApp) then) =
+      __$$_UserAppCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, String email, String photo});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_UserAppCopyWithImpl<$Res>
+    extends _$UserAppCopyWithImpl<$Res, _$_UserApp>
+    implements _$$_UserAppCopyWith<$Res> {
+  __$$_UserAppCopyWithImpl(_$_UserApp _value, $Res Function(_$_UserApp) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +102,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? email = null,
     Object? photo = null,
   }) {
-    return _then(_$_User(
+    return _then(_$_UserApp(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -123,10 +125,12 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User with DiagnosticableTreeMixin implements _User {
-  _$_User({required this.id, this.name = '', this.email = '', this.photo = ''});
+class _$_UserApp with DiagnosticableTreeMixin implements _UserApp {
+  _$_UserApp(
+      {required this.id, this.name = '', this.email = '', this.photo = ''});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_UserApp.fromJson(Map<String, dynamic> json) =>
+      _$$_UserAppFromJson(json);
 
   @override
   final String id;
@@ -142,14 +146,14 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, email: $email, photo: $photo)';
+    return 'UserApp(id: $id, name: $name, email: $email, photo: $photo)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('type', 'UserApp'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email))
@@ -160,7 +164,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$_UserApp &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
@@ -174,25 +178,25 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_UserAppCopyWith<_$_UserApp> get copyWith =>
+      __$$_UserAppCopyWithImpl<_$_UserApp>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_UserAppToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  factory _User(
+abstract class _UserApp implements UserApp {
+  factory _UserApp(
       {required final String id,
       final String name,
       final String email,
-      final String photo}) = _$_User;
+      final String photo}) = _$_UserApp;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _UserApp.fromJson(Map<String, dynamic> json) = _$_UserApp.fromJson;
 
   @override
   String get id;
@@ -204,5 +208,6 @@ abstract class _User implements User {
   String get photo;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_UserAppCopyWith<_$_UserApp> get copyWith =>
+      throw _privateConstructorUsedError;
 }

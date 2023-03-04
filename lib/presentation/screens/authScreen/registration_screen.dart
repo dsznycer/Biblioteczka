@@ -18,15 +18,6 @@ class RegistrationScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Align(
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-              onTap: () {
-                Utils.authNavigator.currentState!
-                    .pushReplacementNamed('/Login');
-              },
-              child: const Icon(Icons.close, color: Colors.white)),
-        ),
         Container(
             height: size.height / 5,
             padding: const EdgeInsets.all(20),
@@ -35,9 +26,10 @@ class RegistrationScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: const [AppShadows.Shad2]),
             child: Image.asset('assets/photo/logo-biblio.png')),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         // Box with login data
         Container(
+            width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 30),
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
             decoration: BoxDecoration(
@@ -59,6 +51,7 @@ class RegistrationScreen extends StatelessWidget {
                     obscureBool: true),
               ],
             )),
+        const SizedBox(height: 20),
         LoginButton(
             func: () => context.read<AuthCubit>().createAccountLoginPassword(
                 email.text.trim(), password.text.trim()),

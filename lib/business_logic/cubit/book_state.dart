@@ -15,6 +15,7 @@ class BookState {
   final List<Book> chosenList;
   final Book bookForm;
   final Book choosenBook;
+  final GoogleBookItem? choosenBookGoogle;
   final String heroTag;
   final BookProgress bookProgress;
 
@@ -32,6 +33,7 @@ class BookState {
     ),
     this.choosenBook =
         const Book(title: 'title', bookProgress: BookProgress.inProgress),
+    this.choosenBookGoogle,
     this.heroTag = '',
     this.bookProgress = BookProgress.inProgress,
   });
@@ -48,10 +50,10 @@ class BookState {
   // Methods to conver state class to json and from json
   factory BookState.fromJson(Map<String, dynamic> json) =>
       _$BookStateFromJson(json);
-
   Map<String, dynamic> toJson() => _$BookStateToJson(this);
 
   // Method to copy class
+
   BookState copyWith({
     BookStateStatus? status,
     List<Book>? booksRed,
@@ -62,6 +64,7 @@ class BookState {
     List<Book>? chosenList,
     Book? bookForm,
     Book? choosenBook,
+    GoogleBookItem? choosenBookGoogle,
     String? heroTag,
     BookProgress? bookProgress,
   }) {
@@ -75,6 +78,7 @@ class BookState {
       chosenList: chosenList ?? this.chosenList,
       bookForm: bookForm ?? this.bookForm,
       choosenBook: choosenBook ?? this.choosenBook,
+      choosenBookGoogle: choosenBookGoogle ?? this.choosenBookGoogle,
       heroTag: heroTag ?? this.heroTag,
       bookProgress: bookProgress ?? this.bookProgress,
     );

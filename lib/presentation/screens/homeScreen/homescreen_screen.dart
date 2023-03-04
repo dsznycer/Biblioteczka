@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
         Size size = MediaQuery.of(context).size;
-        String search = '';
+
         return SafeArea(
           child: Column(
             children: [
@@ -65,14 +65,13 @@ class HomeScreen extends StatelessWidget {
                         child: CupertinoSearchTextField(
                           controller: textEditingController,
                           onChanged: (String text) {
-                            search = text;
-                            if (search == '') {
+                            context.read<BookCubit>().searchGoogleBooks(
+                                textEditingController.text.trim());
+
+                            if (textEditingController.text == '') {
                               context.read<BookCubit>().removeSearchedBooks();
                             }
                           },
-                          onSubmitted: (search) => context
-                              .read<BookCubit>()
-                              .searchGoogleBooks(search),
                           onSuffixTap: () {
                             textEditingController.clear();
                             context.read<BookCubit>().removeSearchedBooks();
@@ -90,28 +89,36 @@ class HomeScreen extends StatelessWidget {
                                 itemBuilder: (context, index) =>
                                     GoogleBookMiniWidget(
                                       book: state.googleBooks[index],
+                                      onTap: () {
+                                        context
+                                            .read<BookCubit>()
+                                            .changeBookGoogle(
+                                                state.googleBooks[index]);
+                                        Utils.homeNavigator.currentState!
+                                            .pushNamed('/ViewBook');
+                                      },
                                     ))
                             : const Center(
                                 child: Text(
                                     'Tutaj pojawią się wyszukane książki')),
                       ),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 20),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           'Aktualnie czytasz:',
                           style: AppTextStyles.H2,
                         ),
                       ),
                       //TODO: put tile view here
-                      Container(
+                      SizedBox(
                         width: size.width,
                         height: 300,
                         child: state.booksReading.isNotEmpty
                             ? BookWidget(
                                 onTap: () {
-                                  context.read<BookCubit>().choosenBook(
+                                  context.read<BookCubit>().changeChoosenBook(
                                       state.booksReading.first, 'heroTag');
                                   // Utils.homeNavigator.currentState!
                                   //     .push('/viewBook');
@@ -122,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                                 child: Container(
                                   width: 300,
                                   height: 60,
-                                  child: Text(
+                                  child: const Text(
                                     'Tutaj pojawi się aktualnie czytana książka!',
                                     textAlign: TextAlign.center,
                                   ),

@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:biblioteczka/data/Models/user_model.dart';
 import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
+import 'package:biblioteczka/data/utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
@@ -11,26 +14,41 @@ class AuthCubit extends Cubit<AuthState> {
             ? AuthState(authState: AuthStatus.authenticated)
             : AuthState(authState: AuthStatus.unauthenticated)) {
     userSubscription = authRepository.user.listen((user) {
-      user != null
-          ? emit(state.copyWith(authState: AuthStatus.authenticated))
-          : emit(state.copyWith(authState: AuthStatus.unauthenticated));
+      if (user != null) {
+        emit(state.copyWith(authState: AuthStatus.authenticated));
+        creatUserFromFirebase();
+      } else {
+        emit(state.copyWith(authState: AuthStatus.unauthenticated));
+      }
     });
-  }
-
-  String get userStr {
-    return authRepository.currentUser.toString();
   }
 
   final AuthenticationRepository authRepository;
   late final StreamSubscription<User?> userSubscription;
 
+  String get userStr {
+    return authRepository.currentUser.toString();
+  }
+
+  //Creat user object from firebase
+  void creatUserFromFirebase() {
+    final user = authRepository.currentUser!;
+    final userApp = UserApp(
+        id: user.uid,
+        name: user.displayName ?? 'brak',
+        email: user.email ?? 'brak',
+        photo: user.photoURL ?? Utils.basicUrlUser);
+    emit(state.copyWith(user: userApp));
+  }
+
   // Method to login with email and password
   void loginWithEmailPassword(String email, String password) async {
     try {
+      emit(state.copyWith(authState: AuthStatus.loading));
       await authRepository.signInWithEmailPassword(
           email: email, password: password);
-      print(authRepository.currentUser!.email);
-      emit(state.copyWith(authState: AuthStatus.authenticated));
+      print('Logged with email: ${authRepository.currentUser!.email}');
+      emit(AuthState(authState: AuthStatus.authenticated));
     } on FirebaseAuthException catch (e) {
       print(e.code);
       emit(AuthState(
@@ -42,6 +60,7 @@ class AuthCubit extends Cubit<AuthState> {
   // Creat account with login and password than login
   void createAccountLoginPassword(String email, String password) async {
     try {
+      emit(state.copyWith(authState: AuthStatus.loading));
       await authRepository.createAccountEmailPassword(
           email: email, password: password);
       loginWithEmailPassword(email, password);
@@ -50,6 +69,29 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthState(
           authState: AuthStatus.unauthenticated,
           errorMessage: e.message ?? 'Brak'));
+    }
+  }
+
+  // Update name of user
+  void updateUserName(String name) async {
+    try {
+      await authRepository.updateCurrentUserName(name: name);
+      authRepository.reloadUserData();
+      creatUserFromFirebase();
+    } on FirebaseAuthException catch (e) {
+      emit(state.copyWith(errorMessage: e.message));
+    }
+  }
+
+  // Reset password by email method
+  Future<void> resetPasswordEmail(String email) async {
+    try {
+      emit(state.copyWith(authState: AuthStatus.loading));
+      await authRepository.resetPassword(email: email);
+      emit(state.copyWith(authState: AuthStatus.unauthenticated));
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      emit(state.copyWith(errorMessage: e.message));
     }
   }
 
@@ -62,10 +104,15 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void stateAuthenticated() =>
-      emit(state.copyWith(authState: AuthStatus.authenticated));
-  void stateUnauthenticated() =>
+  // Method to delete user account
+  void deleteUser() async {
+    try {
+      await authRepository.deleteUser();
       emit(state.copyWith(authState: AuthStatus.unauthenticated));
+    } on FirebaseAuthException catch (e) {
+      emit(state.copyWith(errorMessage: e.message));
+    }
+  }
 
   // Method to close stream on dipose
   @override

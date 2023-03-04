@@ -19,7 +19,6 @@ class LoginScreen extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      // mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         // Box with logo
         Container(
@@ -33,6 +32,7 @@ class LoginScreen extends StatelessWidget {
         const SizedBox(height: 30),
         // Box with login and password
         Container(
+          width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: 30),
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
           decoration: BoxDecoration(
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               const Text(
                 'Zaloguj się',
-                style: AppTextStyles.Subtitle,
+                style: AppTextStyles.H3,
               ),
               LoginTextInput(
                   controller: email,
@@ -52,8 +52,8 @@ class LoginScreen extends StatelessWidget {
                   obscureBool: true,
                   label: 'Hasło',
                   icon: const Icon(Icons.key)),
-              SizedBox(height: 20),
-              RowWithRegisterButton(),
+              const SizedBox(height: 20),
+              const RowWithRegisterButton(),
             ],
           ),
         ),

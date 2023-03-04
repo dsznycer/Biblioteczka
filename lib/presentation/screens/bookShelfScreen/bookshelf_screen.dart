@@ -33,10 +33,12 @@ class BookShelf extends StatelessWidget {
         return false;
       },
       listener: (context, state) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            duration: const Duration(seconds: 2),
-            showCloseIcon: true,
-            content: Text(messageOfSnackBar)));
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(SnackBar(
+              duration: const Duration(seconds: 2),
+              showCloseIcon: true,
+              content: Text(messageOfSnackBar)));
       },
       builder: (context, state) {
         return SafeArea(
@@ -94,7 +96,7 @@ class BookShelf extends StatelessWidget {
                                   heroTag: index.toString() + 'a',
                                   book: state.redInCurrentYear[index],
                                   onTap: () {
-                                    context.read<BookCubit>().choosenBook(
+                                    context.read<BookCubit>().changeChoosenBook(
                                         state.redInCurrentYear[index],
                                         index.toString() + 'a');
                                     Utils.biblioteczkaNavigator.currentState!
@@ -158,7 +160,7 @@ class BookShelf extends StatelessWidget {
                                   heroTag: index.toString() + 'b',
                                   book: state.booksToRead[index],
                                   onTap: () {
-                                    context.read<BookCubit>().choosenBook(
+                                    context.read<BookCubit>().changeChoosenBook(
                                         state.booksToRead[index],
                                         index.toString() + 'b');
                                     Utils.biblioteczkaNavigator.currentState!
@@ -220,7 +222,7 @@ class BookShelf extends StatelessWidget {
                               heroTag: index.toString() + 'c',
                               book: state.booksRed[index],
                               onTap: () {
-                                context.read<BookCubit>().choosenBook(
+                                context.read<BookCubit>().changeChoosenBook(
                                     state.booksRed[index],
                                     index.toString() + 'c');
                                 Utils.biblioteczkaNavigator.currentState!
@@ -262,7 +264,7 @@ class BookShelf extends StatelessWidget {
                               heroTag: index.toString() + 'd',
                               book: state.booksReading[index],
                               onTap: () {
-                                context.read<BookCubit>().choosenBook(
+                                context.read<BookCubit>().changeChoosenBook(
                                     state.booksReading[index],
                                     index.toString() + 'd');
                                 Utils.biblioteczkaNavigator.currentState!

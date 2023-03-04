@@ -47,7 +47,7 @@ class BookWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(book.title, maxLines: 2, style: AppTextStyles.TextLarge),
-                  Text('Autor:', style: AppTextStyles.TextMedium),
+                  const Text('Autor:', style: AppTextStyles.TextMedium),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

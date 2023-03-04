@@ -2,24 +2,23 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../styles/app_icons.dart';
-import '../styles/app_shadows.dart';
-import '../widgets/progress_line.dart';
 
-class ViewBook extends StatelessWidget {
-  const ViewBook({super.key});
+class ViewGoogleBook extends StatelessWidget {
+  const ViewGoogleBook({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bool darkMode =
+        context.select((SettingsCubit bloc) => bloc.state.darkMode);
     Size size = MediaQuery.of(context).size;
-    final darkMode =
-        context.select((SettingsCubit cubit) => cubit.state.darkMode);
-
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
+        final book = state.choosenBookGoogle;
         return SafeArea(
           top: false,
           child: Material(
@@ -47,13 +46,12 @@ class ViewBook extends StatelessWidget {
                             child: Row(
                               children: [
                                 IconButton(
-                                    onPressed: () => Utils
-                                        .biblioteczkaNavigator.currentState!
-                                        .pop(),
+                                    onPressed: () =>
+                                        Utils.homeNavigator.currentState!.pop(),
                                     icon: const Icon(Icons.close)),
                                 const SizedBox(width: 25),
                                 const Text(
-                                  'Twoja ksiązka',
+                                  'Wyszukana książka',
                                   style: AppTextStyles.H3,
                                 ),
                               ],
@@ -72,7 +70,7 @@ class ViewBook extends StatelessWidget {
                                       color: AppColors.kCol4,
                                       boxShadow: [AppShadows.Shad4]),
                                   child: Image.network(
-                                    state.choosenBook.urlPhoto,
+                                    book!.volumeInfo.imageLinks.values.first,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -90,12 +88,12 @@ class ViewBook extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(state.choosenBook.title,
+                                  Text(book.volumeInfo.title,
                                       maxLines: 3,
                                       textAlign: TextAlign.center,
                                       style: AppTextStyles.H3.copyWith(
                                           overflow: TextOverflow.ellipsis)),
-                                  Text('by ${state.choosenBook.author}',
+                                  Text('by ${book!.volumeInfo.authors.first}',
                                       style: AppTextStyles.TextLarge),
                                 ],
                               ),
@@ -105,75 +103,54 @@ class ViewBook extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        book.volumeInfo.description,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Visibility(
-                          visible: state.choosenBook.pages.length > 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                                border: Border.all(width: 0.5),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  'Ilość stron:',
-                                  style: AppTextStyles.TextLarge,
-                                ),
-                                Text(state.choosenBook.pages,
-                                    style: AppTextStyles.TextLarge)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible: state.choosenBook.yearOfEnd.isNotEmpty,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                                border: Border.all(width: 0.5),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const Text(
-                                  'Przeczytano w:',
-                                  style: AppTextStyles.TextLarge,
-                                ),
-                                Text(state.choosenBook.yearOfEnd,
-                                    style: AppTextStyles.TextLarge)
-                              ],
-                            ),
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.5),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Text(
+                                'Ilość stron:',
+                                style: AppTextStyles.TextLarge,
+                              ),
+                              Text(book.volumeInfo.pageCount.toString(),
+                                  style: AppTextStyles.TextLarge)
+                            ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 15),
-                    ChangeBookListAndProgress(),
-
-                    const SizedBox(height: 15),
-
                     FilledButton.tonal(
                         onPressed: () {
                           context
                               .read<BookCubit>()
                               .removeBookFromList(state.choosenBook);
-
                           Utils.biblioteczkaNavigator.currentState!.pop();
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: const [
-                            Text('Usuń książkę'),
+                            Text('Dodaj do przeczytania'),
                             SizedBox(width: 5),
-                            Icon(BiblioteczkaIcons.deleteIcon),
+                            Icon(BiblioteczkaIcons.addIcon),
                           ],
                         )),
+                    const SizedBox(height: 25),
                   ],
                 ),
               ),

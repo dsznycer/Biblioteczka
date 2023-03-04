@@ -62,6 +62,7 @@ class BookCubit extends HydratedCubit<BookState> {
     }
   }
 
+  // Remove book depend of book progress
   void removeBookFromList(Book book) {
     switch (book.bookProgress) {
       case BookProgress.red:
@@ -84,9 +85,13 @@ class BookCubit extends HydratedCubit<BookState> {
     }
   }
 
-  // Change Choosen Book
-  void choosenBook(Book book, String heroTag) => emit(state.copyWith(
+  // Change choosen Book
+  void changeChoosenBook(Book book, String heroTag) => emit(state.copyWith(
       choosenBook: book, heroTag: heroTag, bookProgress: book.bookProgress));
+
+  // Change choosen Google Book
+  void changeBookGoogle(GoogleBookItem book) =>
+      emit(state.copyWith(choosenBookGoogle: book));
 
   // Change book progress
   void changeBookProgress(BookProgress value) =>
@@ -99,7 +104,8 @@ class BookCubit extends HydratedCubit<BookState> {
       // remove book from list
       removeBookFromList(state.choosenBook);
       // Change choosenBook
-      choosenBook(state.choosenBook.copyWith(bookProgress: state.bookProgress),
+      changeChoosenBook(
+          state.choosenBook.copyWith(bookProgress: state.bookProgress),
           state.heroTag);
       // add book to list
       addNewBookFromObject(state.choosenBook);
@@ -139,7 +145,7 @@ class BookCubit extends HydratedCubit<BookState> {
   void removeLastBookReading() => emit(state.copyWith(
       booksReading: List.from(state.booksReading)..removeLast()));
 
-  // Delete list of searched books
+  // Delete list of searched google books
   void removeSearchedBooks() => emit(state.copyWith(googleBooks: List.empty()));
 
   // Methods to delete form book data
