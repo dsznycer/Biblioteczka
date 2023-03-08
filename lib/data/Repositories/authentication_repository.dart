@@ -10,7 +10,7 @@ class AuthenticationRepository {
   // Get user stream
   Stream<User?> get user => _auth.authStateChanges();
 
-// Login with email and password method
+  // Login with email and password method
   Future<void> signInWithEmailPassword(
       {required String email, required String password}) async {
     await _auth.signInWithEmailAndPassword(email: email, password: password);

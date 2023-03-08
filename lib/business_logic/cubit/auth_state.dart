@@ -6,13 +6,12 @@ enum AuthStatus { authenticated, unauthenticated, loading }
 class AuthState {
   final AuthStatus authState;
   final String errorMessage;
-  final UserApp? user;
+  final UserApp user;
 
-  const AuthState({
-    required this.authState,
-    this.errorMessage = '',
-    this.user,
-  });
+  AuthState(
+      {required this.authState,
+      this.errorMessage = '',
+      this.user = const UserApp(id: '')});
 
   AuthState copyWith({
     AuthStatus? authState,

@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
         Size size = MediaQuery.of(context).size;
-
         return SafeArea(
           child: Column(
             children: [
@@ -42,12 +41,19 @@ class HomeScreen extends StatelessWidget {
                             .read<SettingsCubit>()
                             .changeDarkMode(value)),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14.0),
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundImage:
-                          AssetImage('assets/photo/profile_pick.jpg'),
+                  GestureDetector(
+                    onTap: () {
+                      Utils.mainNavigator.currentState!
+                          .pushReplacementNamed('/ProfileScreen');
+                      context.read<SettingsCubit>().changeIndex(3);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundImage:
+                            AssetImage('assets/photo/profile_pick.jpg'),
+                      ),
                     ),
                   ),
                 ],

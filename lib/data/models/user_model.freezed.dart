@@ -126,7 +126,7 @@ class __$$_UserAppCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserApp with DiagnosticableTreeMixin implements _UserApp {
-  _$_UserApp(
+  const _$_UserApp(
       {required this.id, this.name = '', this.email = '', this.photo = ''});
 
   factory _$_UserApp.fromJson(Map<String, dynamic> json) =>
@@ -190,7 +190,7 @@ class _$_UserApp with DiagnosticableTreeMixin implements _UserApp {
 }
 
 abstract class _UserApp implements UserApp {
-  factory _UserApp(
+  const factory _UserApp(
       {required final String id,
       final String name,
       final String email,

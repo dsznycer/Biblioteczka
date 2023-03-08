@@ -1,16 +1,16 @@
-# biblioteczka
+# Biblioteczka
 
-A new Flutter project.
+![logo](assets/photo/logo-biblio-kopia.png)
 
-## Getting Started
+A mobile app to track your reading adventure by recording the books you are reading, have read and want to read. Designed for the book lover's own needs. 
+Biblioteczka is using rest API from Google Books and Hapi Api to get data about books from the internet. To persist your data, the app is using Hydrated Bloc which is built on the Hive local database. In future, I plan to use Firestore Database to get the same data from different devices. All architecture is built using the BLOC pattern. 
 
-This project is a starting point for a Flutter application.
+Stack:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Flutter/Dart
+* BLOC
+* Firebase Auth
+* Freezed
+* Json Serializable
+* HydrateBloc
+* Rest API

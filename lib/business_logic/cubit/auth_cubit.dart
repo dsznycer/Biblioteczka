@@ -4,7 +4,6 @@ import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
@@ -15,8 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
             : AuthState(authState: AuthStatus.unauthenticated)) {
     userSubscription = authRepository.user.listen((user) {
       if (user != null) {
+        creatUserFromFirebase(user);
         emit(state.copyWith(authState: AuthStatus.authenticated));
-        creatUserFromFirebase();
       } else {
         emit(state.copyWith(authState: AuthStatus.unauthenticated));
       }
@@ -31,10 +30,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   //Creat user object from firebase
-  void creatUserFromFirebase() {
-    final user = authRepository.currentUser!;
+  void creatUserFromFirebase(User user) {
+    // final user = authRepository.currentUser;
     final userApp = UserApp(
-        id: user.uid,
+        id: user.uid ?? '',
         name: user.displayName ?? 'brak',
         email: user.email ?? 'brak',
         photo: user.photoURL ?? Utils.basicUrlUser);
@@ -77,7 +76,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authRepository.updateCurrentUserName(name: name);
       authRepository.reloadUserData();
-      creatUserFromFirebase();
+      creatUserFromFirebase(authRepository.currentUser!);
     } on FirebaseAuthException catch (e) {
       emit(state.copyWith(errorMessage: e.message));
     }

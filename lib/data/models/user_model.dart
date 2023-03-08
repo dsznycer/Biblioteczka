@@ -6,7 +6,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserApp with _$UserApp {
-  factory UserApp({
+  const factory UserApp({
     required String id,
     @Default('') String name,
     @Default('') String email,

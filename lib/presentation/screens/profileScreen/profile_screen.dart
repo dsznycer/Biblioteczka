@@ -2,14 +2,11 @@ import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
-import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -81,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  state.user!.name,
+                                  state.user.name,
                                   style: AppTextStyles.TextMedium,
                                 ),
                               ]),
@@ -155,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class Tile extends StatelessWidget {
-  Tile(
+  const Tile(
       {required this.onTap,
       required this.title,
       required this.subtitle,
