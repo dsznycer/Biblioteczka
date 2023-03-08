@@ -108,6 +108,7 @@ class ViewGoogleBook extends StatelessWidget {
                       child: Text(
                         book.volumeInfo.description,
                         textAlign: TextAlign.justify,
+                        style: AppTextStyles.TextMedium.copyWith(fontSize: 15),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -137,18 +138,22 @@ class ViewGoogleBook extends StatelessWidget {
                     const SizedBox(height: 15),
                     FilledButton.tonal(
                         onPressed: () {
-                          context
-                              .read<BookCubit>()
-                              .removeBookFromList(state.choosenBook);
-                          Utils.biblioteczkaNavigator.currentState!.pop();
+                          context.read<BookCubit>().createBookFromGoogleBook();
+                          Utils.homeNavigator.currentState!.pop();
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Text('Dodaj do przeczytania'),
-                            SizedBox(width: 5),
-                            Icon(BiblioteczkaIcons.addIcon),
-                          ],
+                        child: SizedBox(
+                          height: 50,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Text(
+                                'Dodaj do przeczytania',
+                                style: AppTextStyles.TextLarge,
+                              ),
+                              SizedBox(width: 5),
+                              Icon(BiblioteczkaIcons.addIcon),
+                            ],
+                          ),
                         )),
                     const SizedBox(height: 25),
                   ],

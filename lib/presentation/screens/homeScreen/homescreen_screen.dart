@@ -1,5 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
+import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         width: size.width,
-                        height: state.googleBooks.isNotEmpty ? 300 : 0,
+                        height: textEditingController.text.isNotEmpty ? 300 : 0,
                         child: state.googleBooks.isNotEmpty
                             ? ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -117,7 +118,15 @@ class HomeScreen extends StatelessWidget {
                           style: AppTextStyles.H2,
                         ),
                       ),
-                      //TODO: put tile view here
+                      //Page view of actually reading books
+                      SizedBox(
+                        height: 250,
+                        child: PageView.builder(
+                            itemCount: state.booksReading.length,
+                            itemBuilder: (context, index) => BookWidget(
+                                book: state.booksReading[index],
+                                heroTag: index.toString())),
+                      ),
                       SizedBox(
                         width: size.width,
                         height: 300,

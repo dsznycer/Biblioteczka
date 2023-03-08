@@ -80,7 +80,7 @@ class BookShelf extends StatelessWidget {
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: _size.width,
                     height: 250,
                     child: state.redInCurrentYear.isEmpty
@@ -148,7 +148,7 @@ class BookShelf extends StatelessWidget {
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: _size.width,
                     height: 250,
                     child: state.booksToRead.isNotEmpty
@@ -213,7 +213,7 @@ class BookShelf extends StatelessWidget {
                       child: const Text('Wszystkie przeczytane',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.w400))),
-                  Container(
+                  SizedBox(
                     height: 250,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -230,21 +230,24 @@ class BookShelf extends StatelessWidget {
                               },
                             )),
                   ),
-                  SizedBox(
-                    width: 200,
-                    child: FloatingActionButton.small(
-                      heroTag: null,
-                      onPressed: () {
-                        context.read<BookCubit>().choosenList(state.booksRed);
-                        Utils.biblioteczkaNavigator.currentState!
-                            .pushNamed('/GridBookShelf');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          Text('Zobacz wszystkie'),
-                          Icon(BiblioteczkaIcons.backArrowIcon)
-                        ],
+                  Visibility(
+                    visible: state.booksRed.isNotEmpty,
+                    child: SizedBox(
+                      width: 200,
+                      child: FloatingActionButton.small(
+                        heroTag: null,
+                        onPressed: () {
+                          context.read<BookCubit>().choosenList(state.booksRed);
+                          Utils.biblioteczkaNavigator.currentState!
+                              .pushNamed('/GridBookShelf');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            Text('Zobacz wszystkie'),
+                            Icon(BiblioteczkaIcons.backArrowIcon)
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -255,40 +258,47 @@ class BookShelf extends StatelessWidget {
                       child: const Text('Aktualnie czytane:',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.w400))),
-                  Container(
-                    height: 250,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.booksReading.length,
-                        itemBuilder: (context, index) => BookWidget(
-                              heroTag: index.toString() + 'd',
-                              book: state.booksReading[index],
-                              onTap: () {
-                                context.read<BookCubit>().changeChoosenBook(
-                                    state.booksReading[index],
-                                    index.toString() + 'd');
-                                Utils.biblioteczkaNavigator.currentState!
-                                    .pushNamed('/viewBook');
-                              },
-                            )),
-                  ),
                   SizedBox(
-                    width: 200,
-                    child: FloatingActionButton.small(
-                      heroTag: null,
-                      onPressed: () {
-                        context
-                            .read<BookCubit>()
-                            .choosenList(state.booksReading);
-                        Utils.biblioteczkaNavigator.currentState!
-                            .pushNamed('/GridBookShelf');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          Text('Zobacz wszystkie'),
-                          Icon(BiblioteczkaIcons.backArrowIcon)
-                        ],
+                    height: 250,
+                    child: state.booksReading.isNotEmpty
+                        ? ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.booksReading.length,
+                            itemBuilder: (context, index) => BookWidget(
+                                  heroTag: index.toString() + 'd',
+                                  book: state.booksReading[index],
+                                  onTap: () {
+                                    context.read<BookCubit>().changeChoosenBook(
+                                        state.booksReading[index],
+                                        index.toString() + 'd');
+                                    Utils.biblioteczkaNavigator.currentState!
+                                        .pushNamed('/viewBook');
+                                  },
+                                ))
+                        : const Center(
+                            child: Text(
+                                'Tutaj pojawią się aktualnie czytane książki.')),
+                  ),
+                  Visibility(
+                    visible: state.booksReading.isNotEmpty,
+                    child: SizedBox(
+                      width: 200,
+                      child: FloatingActionButton.small(
+                        heroTag: null,
+                        onPressed: () {
+                          context
+                              .read<BookCubit>()
+                              .choosenList(state.booksReading);
+                          Utils.biblioteczkaNavigator.currentState!
+                              .pushNamed('/GridBookShelf');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            Text('Zobacz wszystkie'),
+                            Icon(BiblioteczkaIcons.backArrowIcon)
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -302,7 +312,7 @@ class BookShelf extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () => Utils.biblioteczkaNavigator.currentState!
                       .pushNamed('/addBook'),
-                  child: Icon(Icons.add)),
+                  child: const Icon(Icons.add)),
             )
           ]),
         );

@@ -15,7 +15,7 @@ class BookCubit extends HydratedCubit<BookState> {
 
   final BookRepository bookRepository;
 
-  // Add new book to the list of books red
+  // Add new book to the list of redd books
   void addNewBookToRed(Book book) => emit(state.copyWith(
       status: BookStateStatus.withData,
       booksRed: List.of(state.booksRed)..add(book)));
@@ -88,6 +88,19 @@ class BookCubit extends HydratedCubit<BookState> {
   // Change choosen Book
   void changeChoosenBook(Book book, String heroTag) => emit(state.copyWith(
       choosenBook: book, heroTag: heroTag, bookProgress: book.bookProgress));
+
+  // Creat Book to read from Goole Book Item
+  void createBookFromGoogleBook() {
+    final googleBook = state.choosenBookGoogle!.volumeInfo;
+    final bookToRead = Book(
+        title: googleBook.title,
+        author: googleBook.authors.first ?? 'empty',
+        pages: googleBook.pageCount.toString(),
+        urlPhoto: googleBook.imageLinks.values.first,
+        bookProgress: BookProgress.toRead);
+
+    addNewBookFromObject(bookToRead);
+  }
 
   // Change choosen Google Book
   void changeBookGoogle(GoogleBookItem book) =>

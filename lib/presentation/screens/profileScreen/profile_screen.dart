@@ -203,17 +203,31 @@ class Tile extends StatelessWidget {
 void _showDialogAccountDelete(context) {
   showDialog(
       context: context,
-      builder: (context) => Container(
-            child: AlertDialog(
-                title: const Text('Usunięcie konta'),
-                content: const Text('Czy na pewno chcesz usunąć swoje konto?'),
-                actions: [
-                  TextButton(
+      builder: (context) => AlertDialog(
+              title: const Text('Usunięcie konta'),
+              content: const Text('Czy na pewno chcesz usunąć swoje konto?'),
+              actions: [
+                Center(
+                  child: TextButton(
                       onPressed: () {
                         context.read<AuthCubit>().deleteUser();
                         Navigator.of(context).pop();
                       },
-                      child: const Text('Usuń swoje konto.'))
-                ]),
-          ));
+                      child: Text(
+                        'Usuń swoje konto.',
+                        style:
+                            AppTextStyles.TextLarge.copyWith(color: Colors.red),
+                      )),
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Nie chce usuwać konta',
+                        style: AppTextStyles.TextLarge,
+                      )),
+                )
+              ]));
 }
