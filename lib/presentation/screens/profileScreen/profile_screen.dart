@@ -214,7 +214,7 @@ void _showDialogAccountDelete(context) {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        'Usuń swoje konto.',
+                        'Usuń swoje konto',
                         style:
                             AppTextStyles.TextLarge.copyWith(color: Colors.red),
                       )),
@@ -225,7 +225,7 @@ void _showDialogAccountDelete(context) {
                         Navigator.of(context).pop();
                       },
                       child: const Text(
-                        'Nie chce usuwać konta',
+                        'Nie chcę usuwać konta',
                         style: AppTextStyles.TextLarge,
                       )),
                 )

@@ -16,6 +16,9 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final TextEditingController textEditingController = TextEditingController();
+  final PageController pageController = PageController(
+    viewportFraction: 0.85,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Search line
+                      // Search
                       Container(
                         height: 60,
                         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -121,36 +124,65 @@ class HomeScreen extends StatelessWidget {
                       //Page view of actually reading books
                       SizedBox(
                         height: 250,
-                        child: PageView.builder(
-                            itemCount: state.booksReading.length,
-                            itemBuilder: (context, index) => BookWidget(
-                                book: state.booksReading[index],
-                                heroTag: index.toString())),
-                      ),
-                      SizedBox(
-                        width: size.width,
-                        height: 300,
                         child: state.booksReading.isNotEmpty
-                            ? BookWidget(
-                                onTap: () {
-                                  context.read<BookCubit>().changeChoosenBook(
-                                      state.booksReading.first, 'heroTag');
-                                  // Utils.homeNavigator.currentState!
-                                  //     .push('/viewBook');
-                                },
-                                book: state.booksReading.last,
-                                heroTag: 'main')
-                            : Center(
-                                child: Container(
+                            ? PageView.builder(
+                                controller: pageController,
+                                itemCount: state.booksReading.length,
+                                itemBuilder: (context, index) => BookWidget(
+                                    book: state.booksReading[index],
+                                    heroTag: index.toString()))
+                            : const Center(
+                                child: SizedBox(
                                   width: 300,
                                   height: 60,
-                                  child: const Text(
+                                  child: Text(
                                     'Tutaj pojawi się aktualnie czytana książka!',
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                               ),
                       ),
+                      Visibility(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                              onTap: () => pageController.previousPage(
+                                  duration: const Duration(milliseconds: 700),
+                                  curve: Curves.easeIn),
+                              child: const Icon(Icons.arrow_back)),
+                          const SizedBox(width: 50),
+                          GestureDetector(
+                              onTap: () => pageController.nextPage(
+                                  duration: const Duration(milliseconds: 700),
+                                  curve: Curves.easeInOut),
+                              child: const Icon(Icons.arrow_forward))
+                        ],
+                      )),
+                      // SizedBox(
+                      //   width: size.width,
+                      //   height: 300,
+                      //   child: state.booksReading.isNotEmpty
+                      //       ? BookWidget(
+                      //           onTap: () {
+                      //             context.read<BookCubit>().changeChoosenBook(
+                      //                 state.booksReading.first, 'heroTag');
+                      //             // Utils.homeNavigator.currentState!
+                      //             //     .push('/viewBook');
+                      //           },
+                      //           book: state.booksReading.last,
+                      //           heroTag: 'main')
+                      //       : const Center(
+                      //           child: SizedBox(
+                      //             width: 300,
+                      //             height: 60,
+                      //             child: Text(
+                      //               'Tutaj pojawi się aktualnie czytana książka!',
+                      //               textAlign: TextAlign.center,
+                      //             ),
+                      //           ),
+                      //         ),
+                      // ),
                       Row(
                         children: [
                           Expanded(
