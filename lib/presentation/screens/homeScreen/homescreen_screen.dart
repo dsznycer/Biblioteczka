@@ -3,6 +3,7 @@ import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/google_book_mini.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
@@ -112,6 +113,7 @@ class HomeScreen extends StatelessWidget {
                                 child: Text(
                                     'Tutaj pojawią się wyszukane książki')),
                       ),
+
                       Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 20),
@@ -183,19 +185,28 @@ class HomeScreen extends StatelessWidget {
                       //           ),
                       //         ),
                       // ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: IconButton(
-                                onPressed: () => context
-                                    .read<BookCubit>()
-                                    .removeLastBookReading(),
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: AppColors.kCol2,
-                                )),
-                          )
-                        ],
+                      const Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Text(
+                          'Aktualne wyzwanie:',
+                          style: AppTextStyles.TextLarge,
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: const [AppShadows.Shad2]),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            Text('W tym roku przeczytałeś:'),
+                            LinearProgressIndicator(
+                                color: AppColors.kCol2, value: 0.5),
+                          ],
+                        ),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -209,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.9,
                         height: 260,
-                        child: state.status == BookStateStatus.withData
+                        child: state.recomendedBooks.isNotEmpty
                             ? ListView.builder(
                                 itemCount: state.recomendedBooks.length,
                                 scrollDirection: Axis.horizontal,
@@ -218,8 +229,15 @@ class HomeScreen extends StatelessWidget {
                                     bookAPi: state.recomendedBooks[index],
                                   );
                                 })
-                            : CircularProgressIndicator.adaptive(),
-                      )
+                            : const Center(
+                                child: SizedBox(
+                                    height: 50,
+                                    width: 50,
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.kCol2,
+                                    )),
+                              ),
+                      ),
                     ],
                   ),
                 ),

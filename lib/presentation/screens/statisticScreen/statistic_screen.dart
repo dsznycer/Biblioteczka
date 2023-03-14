@@ -58,16 +58,27 @@ class StatisticScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12)),
                         padding: const EdgeInsets.all(20),
                         margin: const EdgeInsets.all(15),
-                        child: Text(
-                          'W tym roku przeczytałeś ${state.redInCurrentYear.length.toString()} książek.',
-                          style: AppTextStyles.H4,
+                        child: Row(
+                          children: [
+                            Flexible(
+                              flex: 3,
+                              child: Text(
+                                'W tym roku przeczytałeś ${state.redInCurrentYear.length.toString()} książek. ',
+                                style: AppTextStyles.H4,
+                                maxLines: 3,
+                              ),
+                            ),
+                            // Flexible(
+                            //   child: Image.asset(
+                            //       'assets/photo/biblio-sygnet-kadrowany.png'),
+                            // )
+                          ],
                         ),
                       ),
-                      // SizedBox(
-                      //   width: 250,
-                      //   child: FloatingActionButton.small(
-                      //       child: const Text('Minus'), onPressed: () {}),
-                      // ),
+                      Container(
+                        width: double.infinity,
+                        child: Text('Twoja odznaka'),
+                      )
                     ],
                   ),
                 ]),

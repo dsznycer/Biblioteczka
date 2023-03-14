@@ -167,8 +167,8 @@ class BookShelf extends StatelessWidget {
                                         .pushNamed('/viewBook');
                                   });
                             })
-                        : Center(
-                            child: const Text(
+                        : const Center(
+                            child: Text(
                                 'Tutaj pojawią się książki, które chcesz przeczytać!'),
                           ),
                   ),
@@ -215,20 +215,25 @@ class BookShelf extends StatelessWidget {
                               fontSize: 25, fontWeight: FontWeight.w400))),
                   SizedBox(
                     height: 250,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.booksRed.length,
-                        itemBuilder: (context, index) => BookWidget(
-                              heroTag: index.toString() + 'c',
-                              book: state.booksRed[index],
-                              onTap: () {
-                                context.read<BookCubit>().changeChoosenBook(
-                                    state.booksRed[index],
-                                    index.toString() + 'c');
-                                Utils.biblioteczkaNavigator.currentState!
-                                    .pushNamed('/viewBook');
-                              },
-                            )),
+                    child: state.booksRed.isNotEmpty
+                        ? ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.booksRed.length,
+                            itemBuilder: (context, index) => BookWidget(
+                                  heroTag: index.toString() + 'c',
+                                  book: state.booksRed[index],
+                                  onTap: () {
+                                    context.read<BookCubit>().changeChoosenBook(
+                                        state.booksRed[index],
+                                        index.toString() + 'c');
+                                    Utils.biblioteczkaNavigator.currentState!
+                                        .pushNamed('/viewBook');
+                                  },
+                                ))
+                        : const Center(
+                            child: Text(
+                                'Tutaj pojawią się książki, które przeczytałeś!'),
+                          ),
                   ),
                   Visibility(
                     visible: state.booksRed.isNotEmpty,

@@ -16,51 +16,53 @@ class RegistrationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        Container(
-            height: size.height / 5,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                color: AppColors.kCol3,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [AppShadows.Shad2]),
-            child: Image.asset('assets/photo/logo-biblio.png')),
-        const SizedBox(height: 30),
-        // Box with login data
-        Container(
-            width: double.infinity,
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white),
-            child: Column(
-              children: [
-                const Text(
-                  'Stwórz konto w biblioteczce',
-                  style: AppTextStyles.H3,
-                ),
-                LoginTextInput(
-                    controller: email,
-                    label: 'Adres email',
-                    icon: const Icon(Icons.mail)),
-                LoginTextInput(
-                    controller: password,
-                    label: 'Twoje hasło',
-                    icon: const Icon(Icons.key),
-                    obscureBool: true),
-              ],
-            )),
-        const SizedBox(height: 20),
-        LoginButton(
-            func: () => context.read<AuthCubit>().createAccountLoginPassword(
-                email.text.trim(), password.text.trim()),
-            label: 'Stwórz konto'),
-        LoginButton(
-            func: () => Utils.authNavigator.currentState!
-                .pushReplacementNamed('/Login'),
-            label: 'Wróc do logowania')
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+              height: size.height / 5,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  color: AppColors.kCol3,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: const [AppShadows.Shad2]),
+              child: Image.asset('assets/photo/logo-biblio.png')),
+          const SizedBox(height: 30),
+          // Box with login data
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12), color: Colors.white),
+              child: Column(
+                children: [
+                  const Text(
+                    'Stwórz konto w biblioteczce',
+                    style: AppTextStyles.H3,
+                  ),
+                  LoginTextInput(
+                      controller: email,
+                      label: 'Adres email',
+                      icon: const Icon(Icons.mail)),
+                  LoginTextInput(
+                      controller: password,
+                      label: 'Twoje hasło',
+                      icon: const Icon(Icons.key),
+                      obscureBool: true),
+                ],
+              )),
+          const SizedBox(height: 20),
+          LoginButton(
+              func: () => context.read<AuthCubit>().createAccountLoginPassword(
+                  email.text.trim(), password.text.trim()),
+              label: 'Stwórz konto'),
+          LoginButton(
+              func: () => Utils.authNavigator.currentState!
+                  .pushReplacementNamed('/Login'),
+              label: 'Wróc do logowania')
+        ],
+      ),
     );
   }
 }

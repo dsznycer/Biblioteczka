@@ -22,8 +22,7 @@ class Navig extends StatelessWidget {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         return ClipRRect(
-          borderRadius: const BorderRadius.horizontal(
-              left: Radius.circular(15), right: Radius.circular(18)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           child: NavigationBar(
               onDestinationSelected: (value) {
                 context.read<SettingsCubit>().changeIndex(value);

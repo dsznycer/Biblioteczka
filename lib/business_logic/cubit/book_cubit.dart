@@ -11,7 +11,11 @@ part 'book_state.dart';
 part 'book_cubit.g.dart';
 
 class BookCubit extends HydratedCubit<BookState> {
-  BookCubit({required this.bookRepository}) : super(BookState());
+  BookCubit({required this.bookRepository}) : super(BookState()) {
+    if (state.recomendedBooks.isEmpty) {
+      getBestBooksOfYear('2023');
+    }
+  }
 
   final BookRepository bookRepository;
 

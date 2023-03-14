@@ -2,6 +2,7 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,18 @@ class GridBookShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<BookProgress, String> titleOfGridView = {
+      BookProgress.inProgress: 'Czytane książki:',
+      BookProgress.toRead: 'Książki do przeczytania:',
+      BookProgress.red: 'Przeczytane książki:',
+    };
+    final darkMode =
+        context.select((SettingsCubit cubit) => cubit.state.darkMode);
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
-        Map<List, String> titleOfGridView = {
-          state.booksReading: 'Czytane książki:',
-          state.booksToRead: 'Książki do przeczytania:',
-          state.booksRed: 'Przeczytane książki:',
-        };
         return SafeArea(
           child: Material(
+            color: darkMode ? AppColors.kCol5 : Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -40,7 +44,7 @@ class GridBookShelf extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        'Twoje ksiażki:',
+                        titleOfGridView[state.chosenList.first.bookProgress]!,
                         style: AppTextStyles.H3,
                       ),
                     ],

@@ -11,6 +11,7 @@ class AuthBasic extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.authState == AuthStatus.authenticated) {

@@ -4,6 +4,7 @@ import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 
 part 'auth_state.dart';
 
@@ -12,9 +13,11 @@ class AuthCubit extends Cubit<AuthState> {
       : super(authRepository.currentUser != null
             ? AuthState(authState: AuthStatus.authenticated)
             : AuthState(authState: AuthStatus.unauthenticated)) {
-    userSubscription = authRepository.user.listen((user) {
+    userSubscription = authRepository.user.listen((user) async {
       if (user != null) {
-        creatUserFromFirebase(user);
+        //It should not be a solve in this way. The user is created at login as empty despite having data.
+        await Future.delayed(const Duration(milliseconds: 100));
+        createUserFromFirebaseAuth(user);
         emit(state.copyWith(authState: AuthStatus.authenticated));
       } else {
         emit(state.copyWith(authState: AuthStatus.unauthenticated));
@@ -24,18 +27,19 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthenticationRepository authRepository;
   late final StreamSubscription<User?> userSubscription;
+  final Logger logger = Logger();
 
   String get userStr {
     return authRepository.currentUser.toString();
   }
 
-  //Creat user object from firebase
-  void creatUserFromFirebase(User user) {
-    // final user = authRepository.currentUser;
+  //Creat user object from firebase Auth
+  void createUserFromFirebaseAuth(User user) {
+    print(user.displayName.toString());
     final userApp = UserApp(
-        id: user.uid ?? '',
-        name: user.displayName ?? 'brak',
-        email: user.email ?? 'brak',
+        id: user.uid,
+        name: user.displayName!,
+        email: user.email!,
         photo: user.photoURL ?? Utils.basicUrlUser);
     emit(state.copyWith(user: userApp));
   }
@@ -46,10 +50,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(state.copyWith(authState: AuthStatus.loading));
       await authRepository.signInWithEmailPassword(
           email: email, password: password);
-      print('Logged with email: ${authRepository.currentUser!.email}');
+      logger.v('Logged with email: ${authRepository.currentUser!.email}');
       emit(AuthState(authState: AuthStatus.authenticated));
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      logger.e(e.code);
       emit(AuthState(
           authState: AuthStatus.unauthenticated,
           errorMessage: e.message ?? 'Brak'));
@@ -64,7 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
           email: email, password: password);
       loginWithEmailPassword(email, password);
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      logger.e(e.message);
       emit(AuthState(
           authState: AuthStatus.unauthenticated,
           errorMessage: e.message ?? 'Brak'));
@@ -76,8 +80,19 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authRepository.updateCurrentUserName(name: name);
       authRepository.reloadUserData();
-      creatUserFromFirebase(authRepository.currentUser!);
     } on FirebaseAuthException catch (e) {
+      logger.e(e.message);
+      emit(state.copyWith(errorMessage: e.message));
+    }
+  }
+
+  // Update user photo URL
+  void updateUserPhotoUrl(String url) async {
+    try {
+      await authRepository.updatePhotoUrl(urlP: url);
+      authRepository.reloadUserData();
+    } on FirebaseAuthException catch (e) {
+      logger.e(e.message);
       emit(state.copyWith(errorMessage: e.message));
     }
   }
@@ -87,9 +102,11 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(state.copyWith(authState: AuthStatus.loading));
       await authRepository.resetPassword(email: email);
-      emit(state.copyWith(authState: AuthStatus.unauthenticated));
+      emit(state.copyWith(
+          authState: AuthStatus.unauthenticated,
+          errorMessage: 'Wiadomość z prośbą o zresetowanie hasła wysłana.'));
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      logger.e(e.code);
       emit(state.copyWith(errorMessage: e.message));
     }
   }
@@ -98,6 +115,7 @@ class AuthCubit extends Cubit<AuthState> {
   void signOut() async {
     try {
       await authRepository.signOut();
+      logger.v('User logged out');
     } on FirebaseAuthException catch (e) {
       emit(state.copyWith(errorMessage: e.message));
     }
@@ -107,8 +125,10 @@ class AuthCubit extends Cubit<AuthState> {
   void deleteUser() async {
     try {
       await authRepository.deleteUser();
+      logger.v('User deleted');
       emit(state.copyWith(authState: AuthStatus.unauthenticated));
     } on FirebaseAuthException catch (e) {
+      logger.e(e.message);
       emit(state.copyWith(errorMessage: e.message));
     }
   }

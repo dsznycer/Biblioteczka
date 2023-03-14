@@ -8,7 +8,7 @@ class AuthenticationRepository {
   User? get currentUser => _auth.currentUser;
 
   // Get user stream
-  Stream<User?> get user => _auth.authStateChanges();
+  Stream<User?> get user => _auth.userChanges();
 
   // Login with email and password method
   Future<void> signInWithEmailPassword(
@@ -31,6 +31,16 @@ class AuthenticationRepository {
   // Update user name
   Future<void> updateCurrentUserName({required String name}) async {
     await _auth.currentUser!.updateDisplayName(name);
+  }
+
+  // Update user photo url
+  Future<void> updatePhotoUrl({required String urlP}) async {
+    await _auth.currentUser!.updatePhotoURL(urlP);
+  }
+
+  //Update user email
+  Future<void> sendEmailVerification() async {
+    await _auth.currentUser!.sendEmailVerification();
   }
 
   // Reload

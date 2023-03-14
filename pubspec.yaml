@@ -13,19 +13,24 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  flutter_rating_bar: ^4.0.1
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
+  ## Firebase packages 
   firebase_core: ^2.7.0
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.9
+  ## BLOC
   flutter_bloc: ^8.1.1
   hydrated_bloc: ^9.0.0
   path_provider: ^2.0.12
-  flutter_rating_bar: ^4.0.1
+  ## Freezed and serialization
   freezed: ^2.3.2
   json_annotation: ^4.8.0
+  ## HTTP request
   http: ^0.13.5
+  ## Logging framework 
+  logger: ^1.2.2
 
 dev_dependencies:
   flutter_test:

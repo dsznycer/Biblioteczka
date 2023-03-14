@@ -29,6 +29,12 @@ class AppTextStyles {
   );
 
   static const TextStyle Subtitle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+    overflow: TextOverflow.ellipsis,
+  );
+  static const TextStyle SubtitleSmall = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.normal,
     color: Colors.black,
@@ -39,11 +45,13 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: Colors.black,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle TextMedium = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: Colors.black,
+    overflow: TextOverflow.ellipsis,
   );
 }

@@ -27,6 +27,7 @@ class ProfileScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // "Twój profil" tile
                 Container(
                   decoration: BoxDecoration(
                       color: AppColors.kCol2.withOpacity(0.3),
@@ -69,19 +70,44 @@ class ProfileScreen extends StatelessWidget {
                       Positioned(
                         left: 40,
                         child: Container(
-                          width: 200,
-                          height: 120,
+                          width: 250,
+                          height: 140,
+                          padding: const EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
                               color: Colors.amberAccent,
                               borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  state.user.name,
-                                  style: AppTextStyles.TextMedium,
-                                ),
-                              ]),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Twoje imie:',
+                                        style: AppTextStyles.TextLarge,
+                                      ),
+                                      Text(
+                                        state.user.name,
+                                        style: AppTextStyles.TextLarge,
+                                      ),
+                                      const Text(
+                                        'Adress mailowy:',
+                                        style: AppTextStyles.TextLarge,
+                                      ),
+                                      Text(
+                                        state.user.email,
+                                        maxLines: 3,
+                                        style: AppTextStyles.TextLarge,
+                                      )
+                                    ]),
+                              ),
+                              const Expanded(child: SizedBox(width: 30))
+                            ],
+                          ),
                         ),
                       ),
                       Positioned(
@@ -89,9 +115,11 @@ class ProfileScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CircleAvatar(
-                            radius: 90,
-                            backgroundImage: const AssetImage(
-                                'assets/photo/profile_pick.jpg'),
+                            radius: 80,
+                            backgroundImage: state.user.photo.isNotEmpty
+                                ? NetworkImage(state.user.photo)
+                                : const NetworkImage(
+                                    'https://avatars.design/wp-content/uploads/2016/09/28_GIF.gif'),
                           ),
                         ),
                       ),
@@ -121,6 +149,7 @@ class ProfileScreen extends StatelessWidget {
                               cIcon: Icons.near_me),
                           Tile(
                               onTap: () {
+                                print(context.read<AuthCubit>().state.user);
                                 print(context.read<AuthCubit>().userStr);
                               },
                               title: 'Wydrukuj użytkownika',
@@ -129,6 +158,7 @@ class ProfileScreen extends StatelessWidget {
                           Tile(
                               onTap: () {
                                 context.read<AuthCubit>().signOut();
+                                context.read<SettingsCubit>().changeIndex(0);
                               },
                               title: 'Wyloguj',
                               subtitle: 'Wyloguj się z aplikacji',
@@ -212,6 +242,7 @@ void _showDialogAccountDelete(context) {
                       onPressed: () {
                         context.read<AuthCubit>().deleteUser();
                         Navigator.of(context).pop();
+                        context.read<SettingsCubit>().changeIndex(0);
                       },
                       child: Text(
                         'Usuń swoje konto',
@@ -225,7 +256,7 @@ void _showDialogAccountDelete(context) {
                         Navigator.of(context).pop();
                       },
                       child: const Text(
-                        'Nie chcę usuwać konta',
+                        'Anuluj',
                         style: AppTextStyles.TextLarge,
                       )),
                 )

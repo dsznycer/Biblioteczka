@@ -11,7 +11,7 @@ part 'settings_state.dart';
 part 'settings_cubit.g.dart';
 
 class SettingsCubit extends HydratedCubit<SettingsState> {
-  SettingsCubit() : super(const SettingsState()) {
+  SettingsCubit() : super(const SettingsState(index: 0)) {
     if (state.index > 0) {
       changeIndex(0);
     }
