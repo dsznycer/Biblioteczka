@@ -17,6 +17,7 @@ class BookState {
   final Book bookForm;
   final Book choosenBook;
   final GoogleBookItem? choosenBookGoogle;
+  final BookApiModel? choosenBookApi;
   final String heroTag;
   final BookProgress bookProgress;
 
@@ -36,6 +37,7 @@ class BookState {
     this.choosenBook =
         const Book(title: 'title', bookProgress: BookProgress.inProgress),
     this.choosenBookGoogle,
+    this.choosenBookApi,
     this.heroTag = '',
     this.bookProgress = BookProgress.inProgress,
   });
@@ -55,7 +57,6 @@ class BookState {
   Map<String, dynamic> toJson() => _$BookStateToJson(this);
 
   // Method to copy class
-
   BookState copyWith({
     BookStateStatus? status,
     List<Book>? booksRed,
@@ -68,6 +69,7 @@ class BookState {
     Book? bookForm,
     Book? choosenBook,
     GoogleBookItem? choosenBookGoogle,
+    BookApiModel? choosenBookApi,
     String? heroTag,
     BookProgress? bookProgress,
   }) {
@@ -84,6 +86,7 @@ class BookState {
       bookForm: bookForm ?? this.bookForm,
       choosenBook: choosenBook ?? this.choosenBook,
       choosenBookGoogle: choosenBookGoogle ?? this.choosenBookGoogle,
+      choosenBookApi: choosenBookApi ?? this.choosenBookApi,
       heroTag: heroTag ?? this.heroTag,
       bookProgress: bookProgress ?? this.bookProgress,
     );

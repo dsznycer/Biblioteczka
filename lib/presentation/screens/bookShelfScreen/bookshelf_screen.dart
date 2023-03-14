@@ -84,7 +84,7 @@ class BookShelf extends StatelessWidget {
                     width: _size.width,
                     height: 250,
                     child: state.redInCurrentYear.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: Text(
                                 'Tu pojawia się przeczytane w tym roku książki.'),
                           )
@@ -121,20 +121,13 @@ class BookShelf extends StatelessWidget {
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
+                              children: const [
                                 Text('Zobacz wszystkie'),
                                 Icon(BiblioteczkaIcons.backArrowIcon)
                               ],
                             ),
                           ),
                         ),
-                        IconButton(
-                            onPressed: () =>
-                                context.read<BookCubit>().removeLastBooksRed(),
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.blueAccent,
-                            )),
                       ],
                     ),
                   ),

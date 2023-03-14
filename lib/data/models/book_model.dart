@@ -32,10 +32,29 @@ class BookApi with _$BookApi {
     @Default('') String category,
     required String cover,
     @Default(0) double rating,
+    @Default('') String description,
   }) = _BookApi;
 
   factory BookApi.fromJson(Map<String, dynamic> json) =>
       _$BookApiFromJson(json);
+}
+
+@freezed
+class BookApiModel with _$BookApiModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory BookApiModel({
+    required int book_id,
+    required String name,
+    required String cover,
+    required List<String> authors,
+    required double rating,
+    required int pages,
+    required String published_date,
+    required String synopsis,
+  }) = _BookApiModel;
+
+  factory BookApiModel.fromJson(Map<String, dynamic> json) =>
+      _$BookApiModelFromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)

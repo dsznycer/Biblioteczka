@@ -11,10 +11,11 @@ import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_basic.da
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_screen.dart';
 import 'package:biblioteczka/presentation/screens/authScreen/registration_screen.dart';
 import 'package:biblioteczka/presentation/screens/authScreen/loading_screen.dart';
+import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_view_HapiApi_book.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_view_google_book.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
-import 'package:biblioteczka/presentation/screens/view_book_screen.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/view_book_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -100,6 +101,9 @@ class AppRouter {
         break;
       case '/ViewBook':
         page = ViewGoogleBook();
+        break;
+      case '/ViewBookApiModel':
+        page = ViewBookApiModel();
         break;
       default:
         page = HomeScreen();

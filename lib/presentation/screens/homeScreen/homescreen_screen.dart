@@ -1,3 +1,4 @@
+import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/Models/book_model.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool darkMode = context.select((SettingsCubit s) => s.state.darkMode);
+    String photo = context.select((AuthCubit cubit) => cubit.state.user.photo);
 
     return BlocBuilder<BookCubit, BookState>(
       builder: (context, state) {
@@ -52,13 +54,10 @@ class HomeScreen extends StatelessWidget {
                           .pushReplacementNamed('/ProfileScreen');
                       context.read<SettingsCubit>().changeIndex(3);
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
                       child: CircleAvatar(
-                        radius: 25,
-                        backgroundImage:
-                            AssetImage('assets/photo/profile_pick.jpg'),
-                      ),
+                          radius: 25, backgroundImage: NetworkImage(photo)),
                     ),
                   ),
                 ],
@@ -113,7 +112,6 @@ class HomeScreen extends StatelessWidget {
                                 child: Text(
                                     'Tutaj pojawią się wyszukane książki')),
                       ),
-
                       Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 20),
@@ -161,35 +159,12 @@ class HomeScreen extends StatelessWidget {
                               child: const Icon(Icons.arrow_forward))
                         ],
                       )),
-                      // SizedBox(
-                      //   width: size.width,
-                      //   height: 300,
-                      //   child: state.booksReading.isNotEmpty
-                      //       ? BookWidget(
-                      //           onTap: () {
-                      //             context.read<BookCubit>().changeChoosenBook(
-                      //                 state.booksReading.first, 'heroTag');
-                      //             // Utils.homeNavigator.currentState!
-                      //             //     .push('/viewBook');
-                      //           },
-                      //           book: state.booksReading.last,
-                      //           heroTag: 'main')
-                      //       : const Center(
-                      //           child: SizedBox(
-                      //             width: 300,
-                      //             height: 60,
-                      //             child: Text(
-                      //               'Tutaj pojawi się aktualnie czytana książka!',
-                      //               textAlign: TextAlign.center,
-                      //             ),
-                      //           ),
-                      //         ),
-                      // ),
+
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Text(
                           'Aktualne wyzwanie:',
-                          style: AppTextStyles.TextLarge,
+                          style: AppTextStyles.H4,
                         ),
                       ),
                       Container(
@@ -201,9 +176,17 @@ class HomeScreen extends StatelessWidget {
                             boxShadow: const [AppShadows.Shad2]),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
-                            Text('W tym roku przeczytałeś:'),
-                            LinearProgressIndicator(
+                          children: [
+                            const Text(
+                              'W tym roku przeczytałeś:',
+                              style: AppTextStyles.H4,
+                            ),
+                            const SizedBox(height: 30),
+                            Text(
+                                state.redInCurrentYear.length.toString() +
+                                    ' książek',
+                                style: AppTextStyles.H4),
+                            const LinearProgressIndicator(
                                 color: AppColors.kCol2, value: 0.5),
                           ],
                         ),
@@ -227,6 +210,14 @@ class HomeScreen extends StatelessWidget {
                                 itemBuilder: (context, int index) {
                                   return SmallBookWidget(
                                     bookAPi: state.recomendedBooks[index],
+                                    func: () {
+                                      context
+                                          .read<BookCubit>()
+                                          .getHapiApiBookID(state
+                                              .recomendedBooks[index].book_id);
+                                      Utils.homeNavigator.currentState!
+                                          .pushNamed('/ViewBookApiModel');
+                                    },
                                   );
                                 })
                             : const Center(
@@ -247,7 +238,6 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 25),
                         ),
                       ),
-
                       SizedBox(
                           height: 260,
                           width: size.width * 0.9,
@@ -260,12 +250,22 @@ class HomeScreen extends StatelessWidget {
                                       SmallBookWidget(
                                         bookAPi:
                                             state.recomendedBooksOfMonth[index],
+                                        func: () {
+                                          context
+                                              .read<BookCubit>()
+                                              .getHapiApiBookID(state
+                                                  .recomendedBooksOfMonth[index]
+                                                  .book_id);
+                                          Utils.homeNavigator.currentState!
+                                              .pushNamed('/ViewBookApiModel');
+                                        },
                                       ))
                               : GestureDetector(
                                   onTap: () => context
                                       .read<BookCubit>()
                                       .getBestBookOfMonth(),
-                                  child: Text('Jebac sektor gości')))
+                                  child: const Text(
+                                      'Wystąpił błąd, przepraszamy.'))),
                     ],
                   ),
                 ),

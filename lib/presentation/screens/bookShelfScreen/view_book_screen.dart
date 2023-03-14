@@ -5,9 +5,9 @@ import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../styles/app_icons.dart';
-import '../styles/app_shadows.dart';
-import '../widgets/progress_line.dart';
+import '../../styles/app_icons.dart';
+import '../../styles/app_shadows.dart';
+import '../../widgets/progress_line.dart';
 
 class ViewBook extends StatelessWidget {
   const ViewBook({super.key});
@@ -110,7 +110,7 @@ class ViewBook extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Visibility(
-                          visible: state.choosenBook.pages.length > 0,
+                          visible: state.choosenBook.pages.isNotEmpty,
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
@@ -120,7 +120,7 @@ class ViewBook extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
+                                const Text(
                                   'Ilość stron:',
                                   style: AppTextStyles.TextLarge,
                                 ),

@@ -22,9 +22,6 @@ class HapiBooksApi {
     } else {
       _logger.e('Succeded downloaded data with HapiBookApi');
     }
-
-    print(responseBook.body);
-
     return responseBook.body;
   }
 
@@ -41,7 +38,21 @@ class HapiBooksApi {
       _logger.v('Succeded downloaded data with HapiBookApi');
     }
 
-    print(responseBook.body);
+    return responseBook.body;
+  }
+
+  // Method to get book by ID
+  Future<String> getInformationByID(String id) async {
+    var uri = Uri.https(_hapiBooksUrl, '/book/$id');
+
+    http.Response responseBook = await http.get(uri, headers: header);
+
+    if (responseBook.statusCode != 200) {
+      _logger.e('Response status code is: ${responseBook.statusCode}');
+      throw Error();
+    } else {
+      _logger.v('Succeded downloaded data with HapiBookApi');
+    }
 
     return responseBook.body;
   }

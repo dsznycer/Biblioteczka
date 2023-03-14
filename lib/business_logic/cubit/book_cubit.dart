@@ -172,7 +172,7 @@ class BookCubit extends HydratedCubit<BookState> {
   void removeBookFormData() => emit(state.copyWith(
       bookForm: const Book(title: '', bookProgress: BookProgress.red)));
 
-  // API METHODS
+  // *** API METHODS ***
 
   // Google Books Api methods
   void searchGoogleBooks(String title) async {
@@ -185,6 +185,7 @@ class BookCubit extends HydratedCubit<BookState> {
   }
 
   // Hapi Books methods
+
   // Get best book of year
   void getBestBooksOfYear(String year) async {
     List<BookApi> listOfBookApi = [];
@@ -198,12 +199,19 @@ class BookCubit extends HydratedCubit<BookState> {
   //Get best book of month
   void getBestBookOfMonth() async {
     List<BookApi> listOfBookApi = [];
-
     emit(state.copyWith(status: BookStateStatus.loadingData));
     listOfBookApi = await bookRepository.getBooksByMonth();
     emit(state.copyWith(
         status: BookStateStatus.withData,
         recomendedBooksOfMonth: listOfBookApi));
+  }
+
+  // Get book from Hapi Api by Book Id
+  void getHapiApiBookID(String id) async {
+    emit(state.copyWith(status: BookStateStatus.loadingData));
+    BookApiModel bookApi = await bookRepository.getBookApiBookByID(id);
+    emit(state.copyWith(
+        choosenBookApi: bookApi, status: BookStateStatus.withData));
   }
 
   // Methods to write and read state from json

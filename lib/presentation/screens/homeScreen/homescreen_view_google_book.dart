@@ -108,6 +108,7 @@ class ViewGoogleBook extends StatelessWidget {
                       child: Text(
                         book.volumeInfo.description,
                         textAlign: TextAlign.justify,
+                        maxLines: 40,
                         style: AppTextStyles.TextMedium.copyWith(fontSize: 15),
                       ),
                     ),

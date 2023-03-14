@@ -337,6 +337,7 @@ mixin _$BookApi {
   String get category => throw _privateConstructorUsedError;
   String get cover => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -353,7 +354,8 @@ abstract class $BookApiCopyWith<$Res> {
       String name,
       String category,
       String cover,
-      double rating});
+      double rating,
+      String description});
 }
 
 /// @nodoc
@@ -374,6 +376,7 @@ class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
     Object? category = null,
     Object? cover = null,
     Object? rating = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       book_id: null == book_id
@@ -396,6 +399,10 @@ class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -412,7 +419,8 @@ abstract class _$$_BookApiCopyWith<$Res> implements $BookApiCopyWith<$Res> {
       String name,
       String category,
       String cover,
-      double rating});
+      double rating,
+      String description});
 }
 
 /// @nodoc
@@ -430,6 +438,7 @@ class __$$_BookApiCopyWithImpl<$Res>
     Object? category = null,
     Object? cover = null,
     Object? rating = null,
+    Object? description = null,
   }) {
     return _then(_$_BookApi(
       book_id: null == book_id
@@ -452,6 +461,10 @@ class __$$_BookApiCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -465,7 +478,8 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
       required this.name,
       this.category = '',
       required this.cover,
-      this.rating = 0});
+      this.rating = 0,
+      this.description = ''});
 
   factory _$_BookApi.fromJson(Map<String, dynamic> json) =>
       _$$_BookApiFromJson(json);
@@ -482,10 +496,13 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
   @override
   @JsonKey()
   final double rating;
+  @override
+  @JsonKey()
+  final String description;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookApi(book_id: $book_id, name: $name, category: $category, cover: $cover, rating: $rating)';
+    return 'BookApi(book_id: $book_id, name: $name, category: $category, cover: $cover, rating: $rating, description: $description)';
   }
 
   @override
@@ -497,7 +514,8 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('cover', cover))
-      ..add(DiagnosticsProperty('rating', rating));
+      ..add(DiagnosticsProperty('rating', rating))
+      ..add(DiagnosticsProperty('description', description));
   }
 
   @override
@@ -510,13 +528,15 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.cover, cover) || other.cover == cover) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, book_id, name, category, cover, rating);
+  int get hashCode => Object.hash(
+      runtimeType, book_id, name, category, cover, rating, description);
 
   @JsonKey(ignore: true)
   @override
@@ -538,7 +558,8 @@ abstract class _BookApi implements BookApi {
       required final String name,
       final String category,
       required final String cover,
-      final double rating}) = _$_BookApi;
+      final double rating,
+      final String description}) = _$_BookApi;
 
   factory _BookApi.fromJson(Map<String, dynamic> json) = _$_BookApi.fromJson;
 
@@ -553,8 +574,324 @@ abstract class _BookApi implements BookApi {
   @override
   double get rating;
   @override
+  String get description;
+  @override
   @JsonKey(ignore: true)
   _$$_BookApiCopyWith<_$_BookApi> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookApiModel _$BookApiModelFromJson(Map<String, dynamic> json) {
+  return _BookApiModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookApiModel {
+  int get book_id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get cover => throw _privateConstructorUsedError;
+  List<String> get authors => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
+  int get pages => throw _privateConstructorUsedError;
+  String get published_date => throw _privateConstructorUsedError;
+  String get synopsis => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookApiModelCopyWith<BookApiModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookApiModelCopyWith<$Res> {
+  factory $BookApiModelCopyWith(
+          BookApiModel value, $Res Function(BookApiModel) then) =
+      _$BookApiModelCopyWithImpl<$Res, BookApiModel>;
+  @useResult
+  $Res call(
+      {int book_id,
+      String name,
+      String cover,
+      List<String> authors,
+      double rating,
+      int pages,
+      String published_date,
+      String synopsis});
+}
+
+/// @nodoc
+class _$BookApiModelCopyWithImpl<$Res, $Val extends BookApiModel>
+    implements $BookApiModelCopyWith<$Res> {
+  _$BookApiModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? book_id = null,
+    Object? name = null,
+    Object? cover = null,
+    Object? authors = null,
+    Object? rating = null,
+    Object? pages = null,
+    Object? published_date = null,
+    Object? synopsis = null,
+  }) {
+    return _then(_value.copyWith(
+      book_id: null == book_id
+          ? _value.book_id
+          : book_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+      published_date: null == published_date
+          ? _value.published_date
+          : published_date // ignore: cast_nullable_to_non_nullable
+              as String,
+      synopsis: null == synopsis
+          ? _value.synopsis
+          : synopsis // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BookApiModelCopyWith<$Res>
+    implements $BookApiModelCopyWith<$Res> {
+  factory _$$_BookApiModelCopyWith(
+          _$_BookApiModel value, $Res Function(_$_BookApiModel) then) =
+      __$$_BookApiModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int book_id,
+      String name,
+      String cover,
+      List<String> authors,
+      double rating,
+      int pages,
+      String published_date,
+      String synopsis});
+}
+
+/// @nodoc
+class __$$_BookApiModelCopyWithImpl<$Res>
+    extends _$BookApiModelCopyWithImpl<$Res, _$_BookApiModel>
+    implements _$$_BookApiModelCopyWith<$Res> {
+  __$$_BookApiModelCopyWithImpl(
+      _$_BookApiModel _value, $Res Function(_$_BookApiModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? book_id = null,
+    Object? name = null,
+    Object? cover = null,
+    Object? authors = null,
+    Object? rating = null,
+    Object? pages = null,
+    Object? published_date = null,
+    Object? synopsis = null,
+  }) {
+    return _then(_$_BookApiModel(
+      book_id: null == book_id
+          ? _value.book_id
+          : book_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value._authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+      published_date: null == published_date
+          ? _value.published_date
+          : published_date // ignore: cast_nullable_to_non_nullable
+              as String,
+      synopsis: null == synopsis
+          ? _value.synopsis
+          : synopsis // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_BookApiModel with DiagnosticableTreeMixin implements _BookApiModel {
+  const _$_BookApiModel(
+      {required this.book_id,
+      required this.name,
+      required this.cover,
+      required final List<String> authors,
+      required this.rating,
+      required this.pages,
+      required this.published_date,
+      required this.synopsis})
+      : _authors = authors;
+
+  factory _$_BookApiModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BookApiModelFromJson(json);
+
+  @override
+  final int book_id;
+  @override
+  final String name;
+  @override
+  final String cover;
+  final List<String> _authors;
+  @override
+  List<String> get authors {
+    if (_authors is EqualUnmodifiableListView) return _authors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authors);
+  }
+
+  @override
+  final double rating;
+  @override
+  final int pages;
+  @override
+  final String published_date;
+  @override
+  final String synopsis;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BookApiModel(book_id: $book_id, name: $name, cover: $cover, authors: $authors, rating: $rating, pages: $pages, published_date: $published_date, synopsis: $synopsis)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BookApiModel'))
+      ..add(DiagnosticsProperty('book_id', book_id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('cover', cover))
+      ..add(DiagnosticsProperty('authors', authors))
+      ..add(DiagnosticsProperty('rating', rating))
+      ..add(DiagnosticsProperty('pages', pages))
+      ..add(DiagnosticsProperty('published_date', published_date))
+      ..add(DiagnosticsProperty('synopsis', synopsis));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BookApiModel &&
+            (identical(other.book_id, book_id) || other.book_id == book_id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.cover, cover) || other.cover == cover) &&
+            const DeepCollectionEquality().equals(other._authors, _authors) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.pages, pages) || other.pages == pages) &&
+            (identical(other.published_date, published_date) ||
+                other.published_date == published_date) &&
+            (identical(other.synopsis, synopsis) ||
+                other.synopsis == synopsis));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      book_id,
+      name,
+      cover,
+      const DeepCollectionEquality().hash(_authors),
+      rating,
+      pages,
+      published_date,
+      synopsis);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BookApiModelCopyWith<_$_BookApiModel> get copyWith =>
+      __$$_BookApiModelCopyWithImpl<_$_BookApiModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookApiModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookApiModel implements BookApiModel {
+  const factory _BookApiModel(
+      {required final int book_id,
+      required final String name,
+      required final String cover,
+      required final List<String> authors,
+      required final double rating,
+      required final int pages,
+      required final String published_date,
+      required final String synopsis}) = _$_BookApiModel;
+
+  factory _BookApiModel.fromJson(Map<String, dynamic> json) =
+      _$_BookApiModel.fromJson;
+
+  @override
+  int get book_id;
+  @override
+  String get name;
+  @override
+  String get cover;
+  @override
+  List<String> get authors;
+  @override
+  double get rating;
+  @override
+  int get pages;
+  @override
+  String get published_date;
+  @override
+  String get synopsis;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BookApiModelCopyWith<_$_BookApiModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

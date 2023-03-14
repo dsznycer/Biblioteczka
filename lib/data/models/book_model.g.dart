@@ -61,6 +61,7 @@ _$_BookApi _$$_BookApiFromJson(Map<String, dynamic> json) => _$_BookApi(
       category: json['category'] as String? ?? '',
       cover: json['cover'] as String,
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
+      description: json['description'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
@@ -70,6 +71,32 @@ Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
       'category': instance.category,
       'cover': instance.cover,
       'rating': instance.rating,
+      'description': instance.description,
+    };
+
+_$_BookApiModel _$$_BookApiModelFromJson(Map<String, dynamic> json) =>
+    _$_BookApiModel(
+      book_id: json['book_id'] as int,
+      name: json['name'] as String,
+      cover: json['cover'] as String,
+      authors:
+          (json['authors'] as List<dynamic>).map((e) => e as String).toList(),
+      rating: (json['rating'] as num).toDouble(),
+      pages: json['pages'] as int,
+      published_date: json['published_date'] as String,
+      synopsis: json['synopsis'] as String,
+    );
+
+Map<String, dynamic> _$$_BookApiModelToJson(_$_BookApiModel instance) =>
+    <String, dynamic>{
+      'book_id': instance.book_id,
+      'name': instance.name,
+      'cover': instance.cover,
+      'authors': instance.authors,
+      'rating': instance.rating,
+      'pages': instance.pages,
+      'published_date': instance.published_date,
+      'synopsis': instance.synopsis,
     };
 
 _$_GoogleVolumeInfo _$$_GoogleVolumeInfoFromJson(Map<String, dynamic> json) =>

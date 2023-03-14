@@ -11,7 +11,7 @@ class Utils {
       'https://s2982.pcdn.co/wp-content/uploads/2019/01/The-Binding-by-Bridget-Collins-709x1024.jpg.optimal.jpg';
 
   static const String basicUrlUser =
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/President_of_Poland_Andrzej_Duda_Full_Resolution_%28cropped%29.jpg/800px-President_of_Poland_Andrzej_Duda_Full_Resolution_%28cropped%29.jpg';
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGmN6UBHtAGKws488t_dt_3A4TM-u6MsMOKw&usqp=CAU';
 
   static const Map<String, String> basicBookGoogle = {
     'thumbnail': basicBookPhoto

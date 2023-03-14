@@ -48,6 +48,10 @@ BookState _$BookStateFromJson(Map<String, dynamic> json) => BookState(
           ? null
           : GoogleBookItem.fromJson(
               json['choosenBookGoogle'] as Map<String, dynamic>),
+      choosenBookApi: json['choosenBookApi'] == null
+          ? null
+          : BookApiModel.fromJson(
+              json['choosenBookApi'] as Map<String, dynamic>),
       heroTag: json['heroTag'] as String? ?? '',
       bookProgress:
           $enumDecodeNullable(_$BookProgressEnumMap, json['bookProgress']) ??
@@ -68,6 +72,7 @@ Map<String, dynamic> _$BookStateToJson(BookState instance) => <String, dynamic>{
       'bookForm': instance.bookForm.toJson(),
       'choosenBook': instance.choosenBook.toJson(),
       'choosenBookGoogle': instance.choosenBookGoogle?.toJson(),
+      'choosenBookApi': instance.choosenBookApi?.toJson(),
       'heroTag': instance.heroTag,
       'bookProgress': _$BookProgressEnumMap[instance.bookProgress]!,
     };

@@ -28,10 +28,15 @@ class BookRepository {
   // Get best books of previous month
   Future<List<BookApi>> getBooksByMonth() async {
     List<BookApi> listOfBooks = [];
-    final month = DateTime.now().month;
+    String month = (DateTime.now().month + 1).toString();
     final year = DateTime.now().year.toString();
 
-    final rawData = await _hapiApi.getBestBookOfMonth(year, '2');
+    // Check if month have 0 value
+    if (int.parse(month) == 0) {
+      month = '1';
+    }
+
+    final rawData = await _hapiApi.getBestBookOfMonth(year, month);
     final List list = jsonDecode(rawData) as List;
     listOfBooks =
         list.map((e) => BookApi.fromJson(e as Map<String, dynamic>)).toList();
@@ -39,7 +44,17 @@ class BookRepository {
     return listOfBooks;
   }
 
-// Get Google Boks by title
+  // Get book by Book Api ID
+  Future<BookApiModel> getBookApiBookByID(String id) async {
+    final rawData = await _hapiApi.getInformationByID(id);
+
+    final BookApiModel bookApi =
+        BookApiModel.fromJson(jsonDecode(rawData) as Map<String, dynamic>);
+
+    return bookApi;
+  }
+
+  // Get Google Boks by title
   Future<List<GoogleBookItem>> searchGoogleBooks(String title) async {
     List<GoogleBookItem> listOfBooksGoogle = [];
 
