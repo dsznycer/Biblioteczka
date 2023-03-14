@@ -13,7 +13,10 @@ part 'book_cubit.g.dart';
 class BookCubit extends HydratedCubit<BookState> {
   BookCubit({required this.bookRepository}) : super(BookState()) {
     if (state.recomendedBooks.isEmpty) {
-      getBestBooksOfYear('2023');
+      getBestBooksOfYear('2022');
+    }
+    if (state.recomendedBooksOfMonth.isEmpty) {
+      getBestBookOfMonth();
     }
   }
 
@@ -169,6 +172,8 @@ class BookCubit extends HydratedCubit<BookState> {
   void removeBookFormData() => emit(state.copyWith(
       bookForm: const Book(title: '', bookProgress: BookProgress.red)));
 
+  // API METHODS
+
   // Google Books Api methods
   void searchGoogleBooks(String title) async {
     List<GoogleBookItem> listOfGoogleItems = [];
@@ -180,6 +185,7 @@ class BookCubit extends HydratedCubit<BookState> {
   }
 
   // Hapi Books methods
+  // Get best book of year
   void getBestBooksOfYear(String year) async {
     List<BookApi> listOfBookApi = [];
 
@@ -187,6 +193,17 @@ class BookCubit extends HydratedCubit<BookState> {
     listOfBookApi = await bookRepository.getBestBooksYear(year);
     emit(state.copyWith(
         status: BookStateStatus.withData, recomendedBooks: listOfBookApi));
+  }
+
+  //Get best book of month
+  void getBestBookOfMonth() async {
+    List<BookApi> listOfBookApi = [];
+
+    emit(state.copyWith(status: BookStateStatus.loadingData));
+    listOfBookApi = await bookRepository.getBooksByMonth();
+    emit(state.copyWith(
+        status: BookStateStatus.withData,
+        recomendedBooksOfMonth: listOfBookApi));
   }
 
   // Methods to write and read state from json

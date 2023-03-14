@@ -336,6 +336,7 @@ mixin _$BookApi {
   String get name => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get cover => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -347,7 +348,12 @@ abstract class $BookApiCopyWith<$Res> {
   factory $BookApiCopyWith(BookApi value, $Res Function(BookApi) then) =
       _$BookApiCopyWithImpl<$Res, BookApi>;
   @useResult
-  $Res call({String book_id, String name, String category, String cover});
+  $Res call(
+      {String book_id,
+      String name,
+      String category,
+      String cover,
+      double rating});
 }
 
 /// @nodoc
@@ -367,6 +373,7 @@ class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
     Object? name = null,
     Object? category = null,
     Object? cover = null,
+    Object? rating = null,
   }) {
     return _then(_value.copyWith(
       book_id: null == book_id
@@ -385,6 +392,10 @@ class _$BookApiCopyWithImpl<$Res, $Val extends BookApi>
           ? _value.cover
           : cover // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -396,7 +407,12 @@ abstract class _$$_BookApiCopyWith<$Res> implements $BookApiCopyWith<$Res> {
       __$$_BookApiCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String book_id, String name, String category, String cover});
+  $Res call(
+      {String book_id,
+      String name,
+      String category,
+      String cover,
+      double rating});
 }
 
 /// @nodoc
@@ -413,6 +429,7 @@ class __$$_BookApiCopyWithImpl<$Res>
     Object? name = null,
     Object? category = null,
     Object? cover = null,
+    Object? rating = null,
   }) {
     return _then(_$_BookApi(
       book_id: null == book_id
@@ -431,6 +448,10 @@ class __$$_BookApiCopyWithImpl<$Res>
           ? _value.cover
           : cover // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -442,8 +463,9 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
   const _$_BookApi(
       {required this.book_id,
       required this.name,
-      required this.category,
-      required this.cover});
+      this.category = '',
+      required this.cover,
+      this.rating = 0});
 
   factory _$_BookApi.fromJson(Map<String, dynamic> json) =>
       _$$_BookApiFromJson(json);
@@ -453,13 +475,17 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
   @override
   final String name;
   @override
+  @JsonKey()
   final String category;
   @override
   final String cover;
+  @override
+  @JsonKey()
+  final double rating;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookApi(book_id: $book_id, name: $name, category: $category, cover: $cover)';
+    return 'BookApi(book_id: $book_id, name: $name, category: $category, cover: $cover, rating: $rating)';
   }
 
   @override
@@ -470,7 +496,8 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
       ..add(DiagnosticsProperty('book_id', book_id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('category', category))
-      ..add(DiagnosticsProperty('cover', cover));
+      ..add(DiagnosticsProperty('cover', cover))
+      ..add(DiagnosticsProperty('rating', rating));
   }
 
   @override
@@ -482,12 +509,14 @@ class _$_BookApi with DiagnosticableTreeMixin implements _BookApi {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.cover, cover) || other.cover == cover));
+            (identical(other.cover, cover) || other.cover == cover) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, book_id, name, category, cover);
+  int get hashCode =>
+      Object.hash(runtimeType, book_id, name, category, cover, rating);
 
   @JsonKey(ignore: true)
   @override
@@ -507,8 +536,9 @@ abstract class _BookApi implements BookApi {
   const factory _BookApi(
       {required final String book_id,
       required final String name,
-      required final String category,
-      required final String cover}) = _$_BookApi;
+      final String category,
+      required final String cover,
+      final double rating}) = _$_BookApi;
 
   factory _BookApi.fromJson(Map<String, dynamic> json) = _$_BookApi.fromJson;
 
@@ -520,6 +550,8 @@ abstract class _BookApi implements BookApi {
   String get category;
   @override
   String get cover;
+  @override
+  double get rating;
   @override
   @JsonKey(ignore: true)
   _$$_BookApiCopyWith<_$_BookApi> get copyWith =>

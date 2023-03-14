@@ -29,8 +29,9 @@ class BookApi with _$BookApi {
   const factory BookApi({
     required String book_id,
     required String name,
-    required String category,
+    @Default('') String category,
     required String cover,
+    @Default(0) double rating,
   }) = _BookApi;
 
   factory BookApi.fromJson(Map<String, dynamic> json) =>

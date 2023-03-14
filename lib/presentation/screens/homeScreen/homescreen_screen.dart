@@ -210,11 +210,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 20),
+                            vertical: 20, horizontal: 20),
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          'Polecane:',
-                          style: TextStyle(fontSize: 30),
+                          'Najlepsze ksiażki w 2022 roku:',
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
                       SizedBox(
@@ -238,6 +238,34 @@ class HomeScreen extends StatelessWidget {
                                     )),
                               ),
                       ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 20),
+                        alignment: Alignment.centerLeft,
+                        child: const Text(
+                          'Polecane w tym miesiącu:',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                      ),
+
+                      SizedBox(
+                          height: 260,
+                          width: size.width * 0.9,
+                          child: state.recomendedBooksOfMonth.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount:
+                                      state.recomendedBooksOfMonth.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) =>
+                                      SmallBookWidget(
+                                        bookAPi:
+                                            state.recomendedBooksOfMonth[index],
+                                      ))
+                              : GestureDetector(
+                                  onTap: () => context
+                                      .read<BookCubit>()
+                                      .getBestBookOfMonth(),
+                                  child: Text('Jebac sektor gości')))
                     ],
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class HapiBooksApi {
   Map<String, String> header = {
@@ -7,6 +8,8 @@ class HapiBooksApi {
   };
   static const _hapiBooksUrl = 'hapi-books.p.rapidapi.com';
 
+  final Logger _logger = Logger();
+
   // Method to get best books of specific year
   Future<String> getBestBooks(String year) async {
     var uri = Uri.https(_hapiBooksUrl, 'top/$year');
@@ -14,10 +17,28 @@ class HapiBooksApi {
     http.Response responseBook = await http.get(uri, headers: header);
 
     if (responseBook.statusCode != 200) {
-      print("Response status code is: ${responseBook.statusCode}");
+      _logger.v("Response status code is: ${responseBook.statusCode}");
       throw Error();
     } else {
-      print('succeded downloaded data with HapiBookApi');
+      _logger.e('Succeded downloaded data with HapiBookApi');
+    }
+
+    print(responseBook.body);
+
+    return responseBook.body;
+  }
+
+  // Method to get best book of month
+  Future<String> getBestBookOfMonth(String year, String month) async {
+    var uri = Uri.https(_hapiBooksUrl, 'month/$year/$month');
+
+    http.Response responseBook = await http.get(uri, headers: header);
+
+    if (responseBook.statusCode != 200) {
+      _logger.e('Response status code is: ${responseBook.statusCode}');
+      throw Error();
+    } else {
+      _logger.v('Succeded downloaded data with HapiBookApi');
     }
 
     print(responseBook.body);

@@ -4,6 +4,7 @@ import 'package:biblioteczka/data/APIs/hapi_books_api.dart';
 import 'dart:convert';
 
 import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:flutter/material.dart';
 
 class BookRepository {
   final RegExp basicRegExp = RegExp(r'[A-Za-z0-9]');
@@ -20,6 +21,20 @@ class BookRepository {
 
     listOfBooks =
         lista.map((e) => BookApi.fromJson(e as Map<String, dynamic>)).toList();
+
+    return listOfBooks;
+  }
+
+  // Get best books of previous month
+  Future<List<BookApi>> getBooksByMonth() async {
+    List<BookApi> listOfBooks = [];
+    final month = DateTime.now().month;
+    final year = DateTime.now().year.toString();
+
+    final rawData = await _hapiApi.getBestBookOfMonth(year, '2');
+    final List list = jsonDecode(rawData) as List;
+    listOfBooks =
+        list.map((e) => BookApi.fromJson(e as Map<String, dynamic>)).toList();
 
     return listOfBooks;
   }

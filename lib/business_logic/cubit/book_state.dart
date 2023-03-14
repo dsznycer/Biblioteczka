@@ -11,6 +11,7 @@ class BookState {
   final List<Book> booksToRead;
   final List<Book> booksReading;
   final List<BookApi> recomendedBooks;
+  final List<BookApi> recomendedBooksOfMonth;
   final List<GoogleBookItem> googleBooks;
   final List<Book> chosenList;
   final Book bookForm;
@@ -25,6 +26,7 @@ class BookState {
     this.booksToRead = const [],
     this.booksReading = const [],
     this.recomendedBooks = const [],
+    this.recomendedBooksOfMonth = const [],
     this.googleBooks = const [],
     this.chosenList = const [],
     this.bookForm = const Book(
@@ -60,6 +62,7 @@ class BookState {
     List<Book>? booksToRead,
     List<Book>? booksReading,
     List<BookApi>? recomendedBooks,
+    List<BookApi>? recomendedBooksOfMonth,
     List<GoogleBookItem>? googleBooks,
     List<Book>? chosenList,
     Book? bookForm,
@@ -74,6 +77,8 @@ class BookState {
       booksToRead: booksToRead ?? this.booksToRead,
       booksReading: booksReading ?? this.booksReading,
       recomendedBooks: recomendedBooks ?? this.recomendedBooks,
+      recomendedBooksOfMonth:
+          recomendedBooksOfMonth ?? this.recomendedBooksOfMonth,
       googleBooks: googleBooks ?? this.googleBooks,
       chosenList: chosenList ?? this.chosenList,
       bookForm: bookForm ?? this.bookForm,

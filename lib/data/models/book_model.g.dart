@@ -58,8 +58,9 @@ const _$BookProgressEnumMap = {
 _$_BookApi _$$_BookApiFromJson(Map<String, dynamic> json) => _$_BookApi(
       book_id: json['book_id'] as String,
       name: json['name'] as String,
-      category: json['category'] as String,
+      category: json['category'] as String? ?? '',
       cover: json['cover'] as String,
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
@@ -68,6 +69,7 @@ Map<String, dynamic> _$$_BookApiToJson(_$_BookApi instance) =>
       'name': instance.name,
       'category': instance.category,
       'cover': instance.cover,
+      'rating': instance.rating,
     };
 
 _$_GoogleVolumeInfo _$$_GoogleVolumeInfoFromJson(Map<String, dynamic> json) =>

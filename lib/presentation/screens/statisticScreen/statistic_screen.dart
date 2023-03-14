@@ -77,7 +77,7 @@ class StatisticScreen extends StatelessWidget {
                       ),
                       Container(
                         width: double.infinity,
-                        child: Text('Twoja odznaka'),
+                        child: Center(child: Text('Twoja odznaka')),
                       )
                     ],
                   ),

@@ -1,7 +1,9 @@
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../data/Models/book_model.dart';
 import '../styles/app_colors.dart';
@@ -24,8 +26,8 @@ class SmallBookWidget extends StatelessWidget {
     return Container(
         width: 150,
         height: 230,
-        margin: EdgeInsets.all(12),
-        padding: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.all(12),
+        padding: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
             color: AppColors.kCol3,
             borderRadius: BorderRadius.circular(12),
@@ -59,12 +61,45 @@ class SmallBookWidget extends StatelessWidget {
                   Text(
                     bookAPi.category,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 10),
                   ),
+                  Visibility(
+                      visible: bookAPi.rating > 0,
+                      child: Column(
+                        children: [
+                          Text('Ocena:'),
+                          RatingBarSimple(
+                            rate: bookAPi.rating,
+                          ),
+                        ],
+                      ))
                 ],
               ),
             ),
           ],
         ));
+  }
+}
+
+class RatingBarSimple extends StatelessWidget {
+  const RatingBarSimple({required this.rate, super.key});
+  final double rate;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (double i = 0; i < rate; i++)
+            const Icon(
+              Icons.star,
+              color: Colors.amber,
+              size: 24,
+            )
+        ],
+      ),
+    );
   }
 }
