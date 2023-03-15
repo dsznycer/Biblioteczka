@@ -10,7 +10,7 @@ _$_UserApp _$$_UserAppFromJson(Map<String, dynamic> json) => _$_UserApp(
       id: json['id'] as String,
       name: json['name'] as String? ?? '',
       email: json['email'] as String? ?? '',
-      photo: json['photo'] as String? ?? '',
+      photo: json['photo'] as String? ?? Utils.basicUrlUser,
     );
 
 Map<String, dynamic> _$$_UserAppToJson(_$_UserApp instance) =>

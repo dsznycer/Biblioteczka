@@ -1,3 +1,4 @@
+import 'package:biblioteczka/data/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 part 'user_model.freezed.dart';
@@ -10,7 +11,7 @@ class UserApp with _$UserApp {
     required String id,
     @Default('') String name,
     @Default('') String email,
-    @Default('') String photo,
+    @Default(Utils.basicUrlUser) String photo,
   }) = _UserApp;
 
   factory UserApp.fromJson(Map<String, dynamic> json) =>

@@ -127,7 +127,10 @@ class __$$_UserAppCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserApp with DiagnosticableTreeMixin implements _UserApp {
   const _$_UserApp(
-      {required this.id, this.name = '', this.email = '', this.photo = ''});
+      {required this.id,
+      this.name = '',
+      this.email = '',
+      this.photo = Utils.basicUrlUser});
 
   factory _$_UserApp.fromJson(Map<String, dynamic> json) =>
       _$$_UserAppFromJson(json);
