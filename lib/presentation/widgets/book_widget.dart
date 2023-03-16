@@ -67,6 +67,7 @@ class BookWidget extends StatelessWidget {
                       visible: book.bookProgress == BookProgress.red,
                       child: Text(
                         'Twoja ocena: ${book.score}',
+                        maxLines: 3,
                         style: AppTextStyles.TextLarge,
                       ))
                 ],

@@ -55,7 +55,8 @@ class HomeScreen extends StatelessWidget {
                       context.read<SettingsCubit>().changeIndex(3);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14.0, vertical: 5),
                       child: CircleAvatar(
                           radius: 25, backgroundImage: NetworkImage(photo)),
                     ),
