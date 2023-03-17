@@ -7,11 +7,10 @@ import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-
-  final TextEditingController name = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +67,10 @@ class ProfileScreen extends StatelessWidget {
                     alignment: AlignmentDirectional.center,
                     children: [
                       Positioned(
-                        left: 40,
+                        left: size.width * 0.08,
                         child: Container(
-                          width: 250,
-                          height: 140,
+                          width: size.width * 0.7,
+                          height: size.height * 0.15,
                           padding: const EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
                               color: Colors.amberAccent,
@@ -105,14 +104,17 @@ class ProfileScreen extends StatelessWidget {
                                       )
                                     ]),
                               ),
-                              const Expanded(child: SizedBox(width: 30))
+                              const Expanded(
+                                child: SizedBox(width: 2),
+                              )
                             ],
                           ),
                         ),
                       ),
                       Positioned(
-                        right: 40,
-                        child: Padding(
+                        right: size.width * 0.08,
+                        child: Container(
+                          width: size.width * 0.4,
                           padding: const EdgeInsets.all(8.0),
                           child: CircleAvatar(
                             radius: 80,
@@ -135,26 +137,21 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Text('Dane konta:', style: AppTextStyles.H3),
-                          ),
-                          TextField(
-                            controller: name,
+                            child: Text('Ustawienia:', style: AppTextStyles.H3),
                           ),
                           Tile(
-                              onTap: () => context
-                                  .read<AuthCubit>()
-                                  .updateUserName(name.text),
-                              title: 'Update name',
-                              subtitle: 'subtitle',
-                              cIcon: Icons.near_me),
+                              onTap: () => null,
+                              title: 'Twoje dane',
+                              subtitle: 'Zmień swoje dane kontaktowe',
+                              cIcon: Icons.person),
                           Tile(
                               onTap: () {
                                 print(context.read<AuthCubit>().state.user);
                                 print(context.read<AuthCubit>().userStr);
                               },
-                              title: 'Wydrukuj użytkownika',
-                              subtitle: 'subtitle',
-                              cIcon: Icons.fitbit_outlined),
+                              title: 'Powiadomienia',
+                              subtitle: 'Zarządzaj swoimi powiadomieniami',
+                              cIcon: Icons.notifications),
                           Tile(
                               onTap: () {
                                 context.read<AuthCubit>().signOut();
@@ -162,7 +159,7 @@ class ProfileScreen extends StatelessWidget {
                               },
                               title: 'Wyloguj',
                               subtitle: 'Wyloguj się z aplikacji',
-                              cIcon: Icons.logout),
+                              cIcon: Icons.logout_outlined),
                           Tile(
                               onTap: () => _showDialogAccountDelete(context),
                               title: 'Usuń konto',

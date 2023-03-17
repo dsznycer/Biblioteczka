@@ -115,6 +115,27 @@ class AppRouter {
     );
   }
 
+  Route profileNavigator(RouteSettings routeSettings) {
+    Widget page;
+
+    switch (routeSettings.name) {
+      case '/YourData':
+        page = ProfileScreen();
+        break;
+      case '/ProfileScreen':
+        page = ProfileScreen();
+        break;
+      default:
+        page = ProfileScreen();
+    }
+
+    return PageRouteBuilder(
+      pageBuilder: ((_, __, ___) => page),
+      transitionDuration: const Duration(seconds: 0),
+      reverseTransitionDuration: const Duration(seconds: 0),
+    );
+  }
+
   Route authNavigator(RouteSettings routeSettings) {
     Widget page;
     switch (routeSettings.name) {
