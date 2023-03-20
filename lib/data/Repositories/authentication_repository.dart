@@ -33,6 +33,11 @@ class AuthenticationRepository {
     await _auth.currentUser!.updateDisplayName(name);
   }
 
+  // Change email addres
+  Future<void> changeEmailAddress({required String newEmail}) async {
+    await _auth.currentUser!.updateEmail(newEmail);
+  }
+
   // Update user photo url
   Future<void> updatePhotoUrl({required String urlP}) async {
     await _auth.currentUser!.updatePhotoURL(urlP);

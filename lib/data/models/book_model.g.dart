@@ -78,13 +78,15 @@ _$_BookApiModel _$$_BookApiModelFromJson(Map<String, dynamic> json) =>
     _$_BookApiModel(
       book_id: json['book_id'] as int,
       name: json['name'] as String,
-      cover: json['cover'] as String,
-      authors:
-          (json['authors'] as List<dynamic>).map((e) => e as String).toList(),
-      rating: (json['rating'] as num).toDouble(),
-      pages: json['pages'] as int,
-      published_date: json['published_date'] as String,
-      synopsis: json['synopsis'] as String,
+      cover: json['cover'] as String? ?? Utils.basicBookPhoto,
+      authors: (json['authors'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const ['brak'],
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
+      pages: json['pages'] as int? ?? 0,
+      published_date: json['published_date'] as String? ?? 'brak',
+      synopsis: json['synopsis'] as String? ?? 'brak',
     );
 
 Map<String, dynamic> _$$_BookApiModelToJson(_$_BookApiModel instance) =>

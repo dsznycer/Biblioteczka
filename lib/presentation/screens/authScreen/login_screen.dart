@@ -1,6 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
-import 'package:biblioteczka/presentation/screens/authScreen/widgets.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/widgets_authScreen.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -21,15 +21,7 @@ class LoginScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Box with logo
-          Container(
-              height: size.height / 5,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  color: AppColors.kCol3,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: const [AppShadows.Shad2]),
-              child: Image.asset('assets/photo/logo-biblio.png')),
+          BoxWithBiblioLogo(size: size),
           const SizedBox(height: 30),
           // Box with login and password
           Container(

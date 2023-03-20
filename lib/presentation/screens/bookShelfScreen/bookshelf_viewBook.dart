@@ -36,7 +36,7 @@ class BookshelfViewBook extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
                           color: AppColors.kCol3,
-                          boxShadow: [AppShadows.Shad2],
+                          boxShadow: const [AppShadows.Shad2],
                           borderRadius: BorderRadius.circular(12)),
                       child: Stack(
                         alignment: Alignment.center,
@@ -120,7 +120,7 @@ class BookshelfViewBook extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
+                                const Text(
                                   'Ilość stron:',
                                   style: AppTextStyles.TextLarge,
                                 ),

@@ -3,8 +3,8 @@ import 'package:biblioteczka/presentation/screens/authScreen/login_screen.dart';
 import 'package:biblioteczka/presentation/screens/authScreen/resetPassword_screen.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBook.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_addBookPhoto.dart';
+import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_viewBook.dart';
-import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshlef_basic.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/bookshelf_screen.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/booshelf_gridBookShelf.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_basic.dart';
@@ -13,6 +13,9 @@ import 'package:biblioteczka/presentation/screens/authScreen/registration_screen
 import 'package:biblioteczka/presentation/screens/authScreen/loading_screen.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_view_HapiApi_book.dart';
 import 'package:biblioteczka/presentation/screens/homeScreen/homescreen_view_google_book.dart';
+import 'package:biblioteczka/presentation/screens/profileScreen/profileScreen_basic.dart';
+import 'package:biblioteczka/presentation/screens/profileScreen/profile_data_screen.dart';
+import 'package:biblioteczka/presentation/screens/profileScreen/profile_notifications_screen.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_screen.dart';
 import 'package:biblioteczka/presentation/screens/statisticScreen/statistic_screen.dart';
 import 'package:biblioteczka/presentation/screens/bookShelfScreen/view_book_screen.dart';
@@ -37,11 +40,7 @@ class AppRouter {
         break;
 
       case '/ProfileScreen':
-        page = ProfileScreen();
-        break;
-
-      case '/RegistrationScreen':
-        page = RegistrationScreen();
+        page = ProfileScreenBasic();
         break;
 
       case '/login':
@@ -62,7 +61,7 @@ class AppRouter {
     int miliseconds;
     switch (routeSettings.name) {
       case '/':
-        page = BookShelf();
+        page = BookShelfScreen();
         miliseconds = 0;
         break;
       case '/addBook':
@@ -83,7 +82,7 @@ class AppRouter {
         break;
 
       default:
-        page = BookShelf();
+        page = BookShelfScreen();
         miliseconds = 0;
     }
     return PageRouteBuilder(
@@ -119,14 +118,17 @@ class AppRouter {
     Widget page;
 
     switch (routeSettings.name) {
-      case '/YourData':
-        page = ProfileScreen();
+      case '/ChangeDataView':
+        page = ProfileChangeDataScreen();
         break;
-      case '/ProfileScreen':
-        page = ProfileScreen();
+      case '/ProfileScreenView':
+        page = ProfileScreenView();
+        break;
+      case '/ChangeNotificationView':
+        page = ProfileNotificationsView();
         break;
       default:
-        page = ProfileScreen();
+        page = ProfileScreenView();
     }
 
     return PageRouteBuilder(

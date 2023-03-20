@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppTextInput extends StatelessWidget {
-  AppTextInput(
+  const AppTextInput(
       {required this.hintText,
       required this.iconData,
       this.width = double.infinity,
@@ -35,28 +35,24 @@ class AppTextInput extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             child: Text(hintText, style: AppTextStyles.H3),
           ),
-          BlocBuilder<SettingsCubit, SettingsState>(
-            builder: (context, state) {
-              return TextField(
-                controller: controller,
-                enabled: enabled,
-                keyboardType: keyboardType,
-                onChanged: (value) => onChanged(value),
-                decoration: InputDecoration(
-                  hintText: hintText,
-                  label: Icon(iconData),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                      borderSide: BorderSide(color: Colors.tealAccent)),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.kCol2, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                ),
-              );
-            },
+          TextField(
+            controller: controller,
+            enabled: enabled,
+            keyboardType: keyboardType,
+            onChanged: (value) => onChanged(value),
+            decoration: InputDecoration(
+              hintText: hintText,
+              label: Icon(iconData),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide(color: Colors.tealAccent)),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.kCol2, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
           ),
         ],
       ),

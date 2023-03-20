@@ -1,7 +1,7 @@
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/screens/authScreen/login_screen.dart';
-import 'package:biblioteczka/presentation/screens/authScreen/widgets.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/widgets_authScreen.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -18,15 +18,7 @@ class ResetPasswordScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(
-            height: size.height / 5,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                color: AppColors.kCol3,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [AppShadows.Shad2]),
-            child: Image.asset('assets/photo/logo-biblio.png')),
-        const SizedBox(height: 30),
+        BoxWithBiblioLogo(size: size),
         // Box with login and password
         Container(
           width: double.infinity,

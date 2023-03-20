@@ -761,12 +761,12 @@ class _$_BookApiModel with DiagnosticableTreeMixin implements _BookApiModel {
   const _$_BookApiModel(
       {required this.book_id,
       required this.name,
-      required this.cover,
-      required final List<String> authors,
-      required this.rating,
-      required this.pages,
-      required this.published_date,
-      required this.synopsis})
+      this.cover = Utils.basicBookPhoto,
+      final List<String> authors = const ['brak'],
+      this.rating = 0,
+      this.pages = 0,
+      this.published_date = 'brak',
+      this.synopsis = 'brak'})
       : _authors = authors;
 
   factory _$_BookApiModel.fromJson(Map<String, dynamic> json) =>
@@ -777,9 +777,11 @@ class _$_BookApiModel with DiagnosticableTreeMixin implements _BookApiModel {
   @override
   final String name;
   @override
+  @JsonKey()
   final String cover;
   final List<String> _authors;
   @override
+  @JsonKey()
   List<String> get authors {
     if (_authors is EqualUnmodifiableListView) return _authors;
     // ignore: implicit_dynamic_type
@@ -787,12 +789,16 @@ class _$_BookApiModel with DiagnosticableTreeMixin implements _BookApiModel {
   }
 
   @override
+  @JsonKey()
   final double rating;
   @override
+  @JsonKey()
   final int pages;
   @override
+  @JsonKey()
   final String published_date;
   @override
+  @JsonKey()
   final String synopsis;
 
   @override
@@ -863,12 +869,12 @@ abstract class _BookApiModel implements BookApiModel {
   const factory _BookApiModel(
       {required final int book_id,
       required final String name,
-      required final String cover,
-      required final List<String> authors,
-      required final double rating,
-      required final int pages,
-      required final String published_date,
-      required final String synopsis}) = _$_BookApiModel;
+      final String cover,
+      final List<String> authors,
+      final double rating,
+      final int pages,
+      final String published_date,
+      final String synopsis}) = _$_BookApiModel;
 
   factory _BookApiModel.fromJson(Map<String, dynamic> json) =
       _$_BookApiModel.fromJson;

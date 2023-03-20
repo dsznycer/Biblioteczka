@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../business_logic/cubit/book_cubit.dart';
 import '../../../data/models/book_model.dart';
 import '../../widgets/navigation_bar.dart';

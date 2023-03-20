@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/book_widget.dart';
 
-class BookShelf extends StatelessWidget {
-  BookShelf({Key? key}) : super(key: key);
+class BookShelfScreen extends StatelessWidget {
+  BookShelfScreen({Key? key}) : super(key: key);
 
   Map<String, String> snackBarInfo = {
     '+': 'Udało się dodać książkę!',

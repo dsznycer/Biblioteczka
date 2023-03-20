@@ -45,12 +45,12 @@ class BookApiModel with _$BookApiModel {
   const factory BookApiModel({
     required int book_id,
     required String name,
-    required String cover,
-    required List<String> authors,
-    required double rating,
-    required int pages,
-    required String published_date,
-    required String synopsis,
+    @Default(Utils.basicBookPhoto) String cover,
+    @Default(['brak']) List<String> authors,
+    @Default(0) double rating,
+    @Default(0) int pages,
+    @Default('brak') String published_date,
+    @Default('brak') String synopsis,
   }) = _BookApiModel;
 
   factory BookApiModel.fromJson(Map<String, dynamic> json) =>
@@ -105,35 +105,3 @@ class GoogleVolumeInfo with _$GoogleVolumeInfo {
   factory GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
       _$GoogleVolumeInfoFromJson(json);
 }
-
-// Jsons serializable google volume info
-// @JsonSerializable()
-// class GoogleVolumeInfo {
-//   final String title;
-//   final List<String>? authors;
-//   final String? publisher;
-//   final String? publishedDate;
-//   final String? description;
-//   final List<Map<String, String>>? industryIdentifiers;
-//   final int? pageCount;
-//   final List<String>? categories;
-//   final double? averageRating;
-//   final Map<String, String>? imageLinks;
-
-//   const GoogleVolumeInfo(
-//       this.title,
-//       this.authors,
-//       this.publisher,
-//       this.publishedDate,
-//       this.description,
-//       this.industryIdentifiers,
-//       this.pageCount,
-//       this.categories,
-//       this.averageRating,
-//       this.imageLinks);
-
-//   factory GoogleVolumeInfo.fromJson(Map<String, dynamic> json) =>
-//       _$GoogleVolumeInfoFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$GoogleVolumeInfoToJson(this);
-// }

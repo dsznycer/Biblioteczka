@@ -36,7 +36,7 @@ class AuthBasic extends StatelessWidget {
           decoration: const BoxDecoration(
               image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/photo/bookShop.png'),
+            image: AssetImage('assets/photo/old-book-shop.png'),
           )),
           child: SafeArea(
             child: Navigator(

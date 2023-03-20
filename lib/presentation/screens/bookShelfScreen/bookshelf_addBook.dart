@@ -3,6 +3,7 @@ import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
+import 'package:biblioteczka/presentation/widgets/buttons.dart';
 import 'package:biblioteczka/presentation/widgets/progress_line.dart';
 import 'package:biblioteczka/presentation/widgets/rating_bar.dart';
 import 'package:biblioteczka/presentation/widgets/textInput_library.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart';
 
 class BookAdd extends StatelessWidget {
-  BookAdd({super.key});
+  const BookAdd({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -171,23 +172,16 @@ class BookAdd extends StatelessWidget {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 60, right: 60, bottom: 5, top: 5),
-                child: FloatingActionButton.extended(
-                  heroTag: null,
-                  backgroundColor: AppColors.kCol3,
-                  focusColor: AppColors.kCol2,
-                  onPressed: () {
-                    context.read<BookCubit>().addNewBookToListFromForm();
-                    context.read<BookCubit>().removeSearchedBooks();
-                    context.read<BookCubit>().removeBookFormData();
-                    Utils.biblioteczkaNavigator.currentState!
-                        .pushReplacementNamed('/');
-                  },
-                  label: const Text('Dodaj do biblioteczki'),
-                  icon: const Icon(BiblioteczkaIcons.addIcon),
-                ),
+              BasicButton(
+                func: () {
+                  context.read<BookCubit>().addNewBookToListFromForm();
+                  context.read<BookCubit>().removeSearchedBooks();
+                  context.read<BookCubit>().removeBookFormData();
+                  Utils.biblioteczkaNavigator.currentState!
+                      .pushReplacementNamed('/');
+                },
+                text: 'Dodaj do biblioteczki',
+                icon: const Icon(BiblioteczkaIcons.addIcon),
               )
             ],
           ),

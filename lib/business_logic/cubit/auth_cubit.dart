@@ -29,9 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
   late final StreamSubscription<User?> userSubscription;
   final Logger logger = Logger();
 
-  String get userStr {
-    return authRepository.currentUser.toString();
-  }
+  String get userStr => authRepository.currentUser.toString();
 
   //Creat user object from firebase Auth
   void createUserFromFirebaseAuth(User user) {
@@ -76,7 +74,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // Update name of user
-  void updateUserName(String name) async {
+  Future<void> updateUserName(String name) async {
     try {
       await authRepository.updateCurrentUserName(name: name);
       authRepository.reloadUserData();
@@ -86,8 +84,20 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  // Update user email address
+
+  Future<void> updateUserEmailAddress(String newEmail) async {
+    try {
+      await authRepository.changeEmailAddress(newEmail: newEmail);
+      logger.v('Changed user mail for $newEmail');
+    } on FirebaseAuthException catch (e) {
+      logger.e(e.message);
+      emit(state.copyWith(errorMessage: e.message));
+    }
+  }
+
   // Update user photo URL
-  void updateUserPhotoUrl(String url) async {
+  Future<void> updateUserPhotoUrl(String url) async {
     try {
       await authRepository.updatePhotoUrl(urlP: url);
       authRepository.reloadUserData();

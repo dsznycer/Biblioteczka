@@ -1,6 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
-import 'package:biblioteczka/presentation/screens/authScreen/widgets.dart';
+import 'package:biblioteczka/presentation/screens/authScreen/widgets_authScreen.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
@@ -19,16 +19,8 @@ class RegistrationScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-              height: size.height / 5,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  color: AppColors.kCol3,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: const [AppShadows.Shad2]),
-              child: Image.asset('assets/photo/logo-biblio.png')),
-          const SizedBox(height: 30),
-          // Box with login data
+          BoxWithBiblioLogo(size: size),
+          SizedBox(height: 30),
           Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 30),
