@@ -1,6 +1,7 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_icons.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -68,11 +69,19 @@ class StatisticScreen extends StatelessWidget {
                                 maxLines: 3,
                               ),
                             ),
-                            // Flexible(
-                            //   child: Image.asset(
-                            //       'assets/photo/biblio-sygnet-kadrowany.png'),
-                            // )
                           ],
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: BlocBuilder<BookCubit, BookState>(
+                          builder: (context, state) {
+                            return Center(
+                                child: IconButton(
+                              icon: Icon(BiblioteczkaIcons.addIcon),
+                              onPressed: () => print(state.choosenBookApi),
+                            ));
+                          },
                         ),
                       ),
                       Container(

@@ -1,14 +1,11 @@
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
-import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
-import 'package:biblioteczka/data/Models/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
+import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/buttons.dart';
 import 'package:biblioteczka/presentation/widgets/textInput_library.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileChangeDataScreen extends StatelessWidget {
@@ -23,26 +20,28 @@ class ProfileChangeDataScreen extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            Container(
-              height: size.height / 7,
-              decoration: BoxDecoration(
-                  color: AppColors.kCol2.withOpacity(0.3),
-                  borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(15),
-                      bottomLeft: Radius.circular(15))),
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () =>
-                          Utils.profileNavigator.currentState!.pop(),
-                      icon: const Icon(Icons.arrow_back)),
-                  SizedBox(width: size.width / 4),
-                  const Text(
-                    'Twoje dane',
-                    style: AppTextStyles.H3,
-                  )
-                ],
+            SingleChildScrollView(
+              child: Container(
+                height: size.height / 7,
+                decoration: BoxDecoration(
+                    color: AppColors.kCol2.withOpacity(0.3),
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(15),
+                        bottomLeft: Radius.circular(15))),
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () =>
+                            Utils.profileNavigator.currentState!.pop(),
+                        icon: const Icon(Icons.arrow_back)),
+                    SizedBox(width: size.width / 4),
+                    const Text(
+                      'Twoje dane',
+                      style: AppTextStyles.H3,
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -58,6 +57,7 @@ class ProfileChangeDataScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
                           color: Colors.amberAccent,
+                          boxShadow: const [AppShadows.Shad2],
                           borderRadius: BorderRadius.circular(15)),
                       child: Row(
                         children: [
@@ -99,6 +99,8 @@ class ProfileChangeDataScreen extends StatelessWidget {
                     child: Container(
                       width: size.width * 0.4,
                       padding: const EdgeInsets.all(8.0),
+                      decoration:
+                          BoxDecoration(boxShadow: const [AppShadows.Shad2]),
                       child: CircleAvatar(
                         radius: 80,
                         backgroundImage: NetworkImage(state.user.photo),
@@ -109,7 +111,7 @@ class ProfileChangeDataScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: [
                   AppTextInput(
