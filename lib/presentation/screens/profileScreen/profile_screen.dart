@@ -59,69 +59,12 @@ class ProfileScreenView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: size.height / 4,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Positioned(
-                    left: size.width * 0.08,
-                    child: Container(
-                      width: size.width * 0.7,
-                      height: size.height * 0.15,
-                      padding: const EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.amberAccent,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Twoje imie:',
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  Text(
-                                    state.user.name,
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  const Text(
-                                    'Adress mailowy:',
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  Text(
-                                    state.user.email,
-                                    maxLines: 3,
-                                    style: AppTextStyles.TextLarge,
-                                  )
-                                ]),
-                          ),
-                          const Expanded(
-                            child: SizedBox(width: 2),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: size.width * 0.08,
-                    child: Container(
-                      width: size.width * 0.4,
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundImage: NetworkImage(state.user.photo),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            AccountInfoAndPhoto(
+                size: size,
+                userName: state.user.name,
+                userMail: state.user.email,
+                userPhoto: state.user.photo,
+                function: () => print('elo')),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

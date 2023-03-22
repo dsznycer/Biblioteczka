@@ -12,7 +12,7 @@ class AppTextInput extends StatelessWidget {
       this.keyboardType = TextInputType.text,
       required this.onChanged,
       this.controller,
-      this.enabled = true,
+      this.obscureText = false,
       super.key});
 
   final String hintText;
@@ -20,7 +20,7 @@ class AppTextInput extends StatelessWidget {
   final double width;
   final TextInputType keyboardType;
   final Function(String) onChanged;
-  final bool enabled;
+  final bool obscureText;
   final TextEditingController? controller;
 
   @override
@@ -37,7 +37,7 @@ class AppTextInput extends StatelessWidget {
           ),
           TextField(
             controller: controller,
-            enabled: enabled,
+            obscureText: obscureText,
             keyboardType: keyboardType,
             onChanged: (value) => onChanged(value),
             decoration: InputDecoration(

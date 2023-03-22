@@ -171,6 +171,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(15),
+                        margin: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12),

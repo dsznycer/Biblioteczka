@@ -14,7 +14,6 @@ class ProfileScreenBasic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     bool darkMode =
         context.select((SettingsCubit cubit) => cubit.state.darkMode);
     return Scaffold(

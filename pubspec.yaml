@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  image_picker: ^0.8.7
   flutter_rating_bar: ^4.0.1
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
@@ -20,6 +21,7 @@ dependencies:
   firebase_core: ^2.7.0
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.9
+  firebase_storage: ^11.0.16
   ## BLOC
   flutter_bloc: ^8.1.1
   hydrated_bloc: ^9.0.0

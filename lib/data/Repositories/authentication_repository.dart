@@ -43,6 +43,11 @@ class AuthenticationRepository {
     await _auth.currentUser!.updatePhotoURL(urlP);
   }
 
+  // Update user password
+  Future<void> changeUserPassword({required String password}) async {
+    await _auth.currentUser!.updatePassword(password);
+  }
+
   //Update user email
   Future<void> sendEmailVerification() async {
     await _auth.currentUser!.sendEmailVerification();

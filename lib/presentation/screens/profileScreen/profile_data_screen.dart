@@ -1,7 +1,7 @@
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
+import 'package:biblioteczka/presentation/screens/profileScreen/profile_widgets.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
-import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/buttons.dart';
 import 'package:biblioteczka/presentation/widgets/textInput_library.dart';
@@ -12,16 +12,29 @@ class ProfileChangeDataScreen extends StatelessWidget {
   ProfileChangeDataScreen({super.key});
 
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _mailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listenWhen: (previous, current) =>
+          previous.errorMessage != current.errorMessage,
+      listener: (context, state) {
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(SnackBar(
+              showCloseIcon: true,
+              duration: const Duration(seconds: 3),
+              content: Text(state.errorMessage)));
+      },
       builder: (context, state) {
-        return Column(
-          children: [
-            SingleChildScrollView(
-              child: Container(
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 5),
                 height: size.height / 7,
                 decoration: BoxDecoration(
                     color: AppColors.kCol2.withOpacity(0.3),
@@ -34,7 +47,10 @@ class ProfileChangeDataScreen extends StatelessWidget {
                     IconButton(
                         onPressed: () =>
                             Utils.profileNavigator.currentState!.pop(),
-                        icon: const Icon(Icons.arrow_back)),
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          size: 30,
+                        )),
                     SizedBox(width: size.width / 4),
                     const Text(
                       'Twoje dane',
@@ -43,95 +59,61 @@ class ProfileChangeDataScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: size.height / 4,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Positioned(
-                    left: size.width * 0.08,
-                    child: Container(
-                      width: size.width * 0.7,
-                      height: size.height * 0.15,
-                      padding: const EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.amberAccent,
-                          boxShadow: const [AppShadows.Shad2],
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Twoje imie:',
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  Text(
-                                    state.user.name,
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  const Text(
-                                    'Adress mailowy:',
-                                    style: AppTextStyles.TextLarge,
-                                  ),
-                                  Text(
-                                    state.user.email,
-                                    maxLines: 3,
-                                    style: AppTextStyles.TextLarge,
-                                  )
-                                ]),
-                          ),
-                          const Expanded(
-                            child: SizedBox(width: 2),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: size.width * 0.08,
-                    child: Container(
-                      width: size.width * 0.4,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration:
-                          BoxDecoration(boxShadow: const [AppShadows.Shad2]),
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundImage: NetworkImage(state.user.photo),
-                      ),
-                    ),
-                  ),
-                ],
+              AccountInfoAndPhoto(
+                size: size,
+                userName: state.user.name,
+                userMail: state.user.email,
+                userPhoto: state.user.photo,
+                function: () {},
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  AppTextInput(
-                      hintText: 'Imie',
-                      controller: _nameController,
-                      iconData: Icons.people_rounded,
-                      onChanged: (string) => print(string)),
-                  AppTextInput(
-                      hintText: 'Mail',
-                      iconData: Icons.mail,
-                      onChanged: (string) => print(string)),
-                  BasicButton(
-                      func: () => context
-                          .read<AuthCubit>()
-                          .updateUserName(_nameController.text),
-                      text: 'Zmień dane'),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  children: [
+                    AppTextInput(
+                        hintText: 'Imie',
+                        controller: _nameController,
+                        iconData: Icons.people_rounded,
+                        onChanged: (string) => () {}),
+                    BasicButton(
+                        func: () {
+                          context
+                              .read<AuthCubit>()
+                              .updateUserName(_nameController.text);
+                          _nameController.clear();
+                        },
+                        text: 'Zmień swoje imie'),
+                    AppTextInput(
+                        hintText: 'Mail',
+                        iconData: Icons.mail,
+                        onChanged: (string) => () {}),
+                    BasicButton(
+                        func: () {
+                          context
+                              .read<AuthCubit>()
+                              .updateUserEmailAddress(_mailController.text);
+                          _mailController.clear();
+                        },
+                        text: 'Zmień adres email'),
+                    AppTextInput(
+                        hintText: 'Hasło',
+                        obscureText: true,
+                        iconData: Icons.key,
+                        onChanged: (string) => () {}),
+                    BasicButton(
+                        func: () {
+                          context
+                              .read<AuthCubit>()
+                              .updateUserPassword(_passwordController.text);
+                          _passwordController.clear();
+                        },
+                        text: 'Zmień hasło'),
+                    const SizedBox(height: 30),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
