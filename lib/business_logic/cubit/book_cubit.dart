@@ -13,7 +13,7 @@ part 'book_cubit.g.dart';
 class BookCubit extends HydratedCubit<BookState> {
   BookCubit({required this.bookRepository}) : super(BookState()) {
     if (state.recomendedBooks.isEmpty) {
-      getBestBooksOfYear('2022');
+      getBestBooksOfYear((DateTime.now().year - 1).toString());
     }
     if (state.recomendedBooksOfMonth.isEmpty) {
       getBestBookOfMonth();
@@ -96,17 +96,34 @@ class BookCubit extends HydratedCubit<BookState> {
   void changeChoosenBook(Book book, String heroTag) => emit(state.copyWith(
       choosenBook: book, heroTag: heroTag, bookProgress: book.bookProgress));
 
-  // Creat Book to read from Goole Book Item
+  // Create Book to read from Goole Book Item
   void createBookFromGoogleBook() {
     final googleBook = state.choosenBookGoogle!.volumeInfo;
     final bookToRead = Book(
         title: googleBook.title,
         author: googleBook.authors.first ?? 'empty',
+        description: googleBook.description,
         pages: googleBook.pageCount.toString(),
         urlPhoto: googleBook.imageLinks.values.first,
         bookProgress: BookProgress.toRead);
 
     addNewBookFromObject(bookToRead);
+  }
+
+  // Create book to read form Hapi Api recomended books
+  void creatBookFromHapiApiBook() {
+    final choosenApiBook = state.choosenBookApi!;
+    final newBookItem = Book(
+      title: choosenApiBook.name,
+      author: choosenApiBook.authors.first,
+      description: choosenApiBook.synopsis,
+      pages: choosenApiBook.pages.toString(),
+      score: choosenApiBook.rating,
+      urlPhoto: choosenApiBook.cover,
+      bookProgress: BookProgress.toRead,
+    );
+
+    addNewBookFromObject(newBookItem);
   }
 
   // Change choosen Google Book

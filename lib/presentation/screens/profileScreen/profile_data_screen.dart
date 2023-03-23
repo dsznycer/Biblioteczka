@@ -64,12 +64,20 @@ class ProfileChangeDataScreen extends StatelessWidget {
                 userName: state.user.name,
                 userMail: state.user.email,
                 userPhoto: state.user.photo,
-                function: () {},
+                function: () =>
+                    context.read<AuthCubit>().uploadUserPhotoFromGallery(),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
+                    Tile(
+                        onTap: () => context
+                            .read<AuthCubit>()
+                            .uploadUserPhotoFromGallery(),
+                        title: 'Zmień zdjęcie profilowe',
+                        subtitle: 'Dodaj zdjęcie z galerii',
+                        cIcon: Icons.photo_library_outlined),
                     AppTextInput(
                         hintText: 'Imie',
                         controller: _nameController,

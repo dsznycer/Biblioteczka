@@ -131,16 +131,20 @@ class AccountInfoAndPhoto extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 20,
+            bottom: 25,
             right: 60,
             child: Container(
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.white),
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white),
               child: IconButton(
                 onPressed: function,
-                icon: const Icon(Icons.photo),
-                iconSize: 30,
-                color: Colors.red,
+                icon: const Icon(Icons.photo_library_outlined),
+                iconSize: 25,
+                color: Colors.black,
               ),
             ),
           )

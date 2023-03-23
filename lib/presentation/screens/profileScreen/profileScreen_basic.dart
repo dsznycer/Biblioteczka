@@ -1,9 +1,6 @@
-import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
-import 'package:biblioteczka/presentation/screens/profileScreen/profile_widgets.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
-import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:biblioteczka/router.dart';
 import 'package:flutter/material.dart';

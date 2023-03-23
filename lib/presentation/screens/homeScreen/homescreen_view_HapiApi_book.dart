@@ -143,6 +143,9 @@ class ViewBookApiModel extends StatelessWidget {
                         const SizedBox(height: 15),
                         FilledButton.tonal(
                             onPressed: () {
+                              context
+                                  .read<BookCubit>()
+                                  .creatBookFromHapiApiBook();
                               Utils.homeNavigator.currentState!.pop();
                             },
                             child: SizedBox(

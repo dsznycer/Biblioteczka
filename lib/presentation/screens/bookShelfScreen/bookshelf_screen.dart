@@ -190,11 +190,6 @@ class BookShelfScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        IconButton(
-                            onPressed: () => context
-                                .read<BookCubit>()
-                                .removeLastBooksToRed(),
-                            icon: const Icon(BiblioteczkaIcons.deleteIcon)),
                       ],
                     ),
                   ),

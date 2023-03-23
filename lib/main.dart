@@ -4,6 +4,7 @@ import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
 import 'package:biblioteczka/data/Repositories/book_repository.dart';
+import 'package:biblioteczka/data/Repositories/firebase_storage_repository.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
@@ -27,6 +28,7 @@ void main() async {
     RepositoryProvider(create: (context) => Navig()),
     RepositoryProvider(create: (context) => AppRouter()),
     RepositoryProvider(create: (context) => BookRepository()),
+    RepositoryProvider(create: (context) => FireStorage()),
     RepositoryProvider(create: (context) => AuthenticationRepository()),
   ], child: const Biblio()));
 }
@@ -44,7 +46,8 @@ class Biblio extends StatelessWidget {
         BlocProvider<SettingsCubit>(create: (create) => SettingsCubit()),
         BlocProvider<AuthCubit>(
             create: (create) => AuthCubit(
-                authRepository: context.read<AuthenticationRepository>())),
+                authRepository: context.read<AuthenticationRepository>(),
+                storageRepository: context.read<FireStorage>())),
         BlocProvider<StatisticBloc>(create: (create) => StatisticBloc())
       ],
       child: BlocListener<AuthCubit, AuthState>(

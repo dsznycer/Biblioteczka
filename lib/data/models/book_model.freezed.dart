@@ -25,6 +25,7 @@ mixin _$Book {
   String get pages => throw _privateConstructorUsedError;
   String get yearOfEnd => throw _privateConstructorUsedError;
   double get score => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get urlPhoto => throw _privateConstructorUsedError;
   List<String> get notes => throw _privateConstructorUsedError;
   BookProgress get bookProgress => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       double score,
+      String description,
       String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
@@ -68,6 +70,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
+    Object? description = null,
     Object? urlPhoto = null,
     Object? notes = null,
     Object? bookProgress = null,
@@ -93,6 +96,10 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       urlPhoto: null == urlPhoto
           ? _value.urlPhoto
           : urlPhoto // ignore: cast_nullable_to_non_nullable
@@ -121,6 +128,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String pages,
       String yearOfEnd,
       double score,
+      String description,
       String urlPhoto,
       List<String> notes,
       BookProgress bookProgress});
@@ -140,6 +148,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
     Object? pages = null,
     Object? yearOfEnd = null,
     Object? score = null,
+    Object? description = null,
     Object? urlPhoto = null,
     Object? notes = null,
     Object? bookProgress = null,
@@ -165,6 +174,10 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       urlPhoto: null == urlPhoto
           ? _value.urlPhoto
           : urlPhoto // ignore: cast_nullable_to_non_nullable
@@ -191,6 +204,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       this.pages = '',
       this.yearOfEnd = '',
       this.score = 0,
+      this.description = 'brak',
       this.urlPhoto = Utils.basicBookPhoto,
       final List<String> notes = const [],
       required this.bookProgress})
@@ -214,6 +228,9 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
   final double score;
   @override
   @JsonKey()
+  final String description;
+  @override
+  @JsonKey()
   final String urlPhoto;
   final List<String> _notes;
   @override
@@ -229,7 +246,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, urlPhoto: $urlPhoto, notes: $notes, bookProgress: $bookProgress)';
+    return 'Book(title: $title, author: $author, pages: $pages, yearOfEnd: $yearOfEnd, score: $score, description: $description, urlPhoto: $urlPhoto, notes: $notes, bookProgress: $bookProgress)';
   }
 
   @override
@@ -242,6 +259,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       ..add(DiagnosticsProperty('pages', pages))
       ..add(DiagnosticsProperty('yearOfEnd', yearOfEnd))
       ..add(DiagnosticsProperty('score', score))
+      ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('urlPhoto', urlPhoto))
       ..add(DiagnosticsProperty('notes', notes))
       ..add(DiagnosticsProperty('bookProgress', bookProgress));
@@ -258,6 +276,8 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
             (identical(other.yearOfEnd, yearOfEnd) ||
                 other.yearOfEnd == yearOfEnd) &&
             (identical(other.score, score) || other.score == score) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.urlPhoto, urlPhoto) ||
                 other.urlPhoto == urlPhoto) &&
             const DeepCollectionEquality().equals(other._notes, _notes) &&
@@ -274,6 +294,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
       pages,
       yearOfEnd,
       score,
+      description,
       urlPhoto,
       const DeepCollectionEquality().hash(_notes),
       bookProgress);
@@ -299,6 +320,7 @@ abstract class _Book implements Book {
       final String pages,
       final String yearOfEnd,
       final double score,
+      final String description,
       final String urlPhoto,
       final List<String> notes,
       required final BookProgress bookProgress}) = _$_Book;
@@ -315,6 +337,8 @@ abstract class _Book implements Book {
   String get yearOfEnd;
   @override
   double get score;
+  @override
+  String get description;
   @override
   String get urlPhoto;
   @override

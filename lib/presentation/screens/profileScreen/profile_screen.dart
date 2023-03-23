@@ -4,9 +4,7 @@ import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/screens/profileScreen/profile_widgets.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
-import 'package:biblioteczka/presentation/styles/app_shadows.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
-import 'package:biblioteczka/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,8 +14,6 @@ class ProfileScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool darkMode =
-        context.select((SettingsCubit cubit) => cubit.state.darkMode);
 
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
@@ -64,7 +60,8 @@ class ProfileScreenView extends StatelessWidget {
                 userName: state.user.name,
                 userMail: state.user.email,
                 userPhoto: state.user.photo,
-                function: () => print('elo')),
+                function: () =>
+                    context.read<AuthCubit>().uploadUserPhotoFromGallery()),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -85,7 +82,6 @@ class ProfileScreenView extends StatelessWidget {
                       Tile(
                           onTap: () {
                             print(context.read<AuthCubit>().state.user);
-                            print(context.read<AuthCubit>().userStr);
                           },
                           title: 'Powiadomienia',
                           subtitle: 'Zarządzaj swoimi powiadomieniami',
