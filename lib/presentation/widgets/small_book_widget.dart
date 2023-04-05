@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../data/Models/book_model.dart';
+import '../../data/Models/BookModels/book_model.dart';
 import '../styles/app_colors.dart';
 import '../styles/app_shadows.dart';
 

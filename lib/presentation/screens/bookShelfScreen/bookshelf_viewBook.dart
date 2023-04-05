@@ -1,6 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
-import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:biblioteczka/data/Models/BookModels/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:biblioteczka/presentation/styles/app_colors.dart';
 import 'package:biblioteczka/presentation/styles/app_icons.dart';
@@ -155,9 +155,7 @@ class BookshelfViewBook extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     ChangeBookListAndProgress(),
-
                     const SizedBox(height: 15),
-
                     FilledButton.tonal(
                         onPressed: () {
                           context
@@ -174,6 +172,22 @@ class BookshelfViewBook extends StatelessWidget {
                             Icon(BiblioteczkaIcons.deleteIcon),
                           ],
                         )),
+                    Visibility(
+                        visible: state.choosenBook.description.length > 6,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const Text(
+                              'Opis:',
+                              maxLines: 30,
+                              style: AppTextStyles.H3,
+                              textAlign: TextAlign.justify,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(state.choosenBook.description),
+                            const SizedBox(height: 10),
+                          ],
+                        ))
                   ],
                 ),
               ),

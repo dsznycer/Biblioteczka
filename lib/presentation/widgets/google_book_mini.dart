@@ -1,4 +1,4 @@
-import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:biblioteczka/data/Models/BookModels/book_model.dart';
 import 'package:biblioteczka/presentation/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';

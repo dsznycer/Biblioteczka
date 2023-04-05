@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
-import '../../data/Models/book_model.dart';
+import '../../data/Models/BookModels/book_model.dart';
 import '../../router.dart';
 import 'package:json_annotation/json_annotation.dart';
 

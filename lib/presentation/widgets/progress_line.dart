@@ -1,6 +1,6 @@
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
-import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:biblioteczka/data/Models/BookModels/book_model.dart';
 import 'package:biblioteczka/data/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +47,7 @@ class ChooseLine extends StatelessWidget {
 }
 
 class ChangeBookListAndProgress extends StatelessWidget {
-  ChangeBookListAndProgress({super.key});
+  const ChangeBookListAndProgress({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,6 @@ class ChangeBookListAndProgress extends StatelessWidget {
             ],
             selected: {state.bookProgress},
             onSelectionChanged: (Set<BookProgress> newSelection) {
-              // valueOfProgress = newSelection.first;
               context.read<BookCubit>().changeBookProgress(newSelection.first);
               context.read<BookCubit>().checkAndChange();
             },

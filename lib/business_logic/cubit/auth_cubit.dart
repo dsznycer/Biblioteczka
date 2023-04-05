@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:biblioteczka/data/Models/user_model.dart';
+import 'package:biblioteczka/data/Models/UserModel/user_model.dart';
 import 'package:biblioteczka/data/Repositories/authentication_repository.dart';
 import 'package:biblioteczka/data/Repositories/firebase_storage_repository.dart';
 import 'package:biblioteczka/data/utils.dart';

@@ -1,4 +1,4 @@
-import 'package:biblioteczka/business_logic/bloc/statistic_bloc.dart';
+import 'package:biblioteczka/business_logic/bloc/challenge_bloc.dart';
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
@@ -43,12 +43,12 @@ class Biblio extends StatelessWidget {
         BlocProvider<BookCubit>(
             create: (context) =>
                 BookCubit(bookRepository: context.read<BookRepository>())),
-        BlocProvider<SettingsCubit>(create: (create) => SettingsCubit()),
+        BlocProvider<SettingsCubit>(create: (context) => SettingsCubit()),
         BlocProvider<AuthCubit>(
-            create: (create) => AuthCubit(
+            create: (context) => AuthCubit(
                 authRepository: context.read<AuthenticationRepository>(),
                 storageRepository: context.read<FireStorage>())),
-        BlocProvider<StatisticBloc>(create: (create) => StatisticBloc())
+        BlocProvider<ChallengeBloc>(create: (context) => ChallengeBloc())
       ],
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {

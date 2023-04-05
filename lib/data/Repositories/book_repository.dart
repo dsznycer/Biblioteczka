@@ -3,7 +3,7 @@ import 'package:biblioteczka/data/APIs/hapi_books_api.dart';
 
 import 'dart:convert';
 
-import 'package:biblioteczka/data/Models/book_model.dart';
+import 'package:biblioteczka/data/Models/BookModels/book_model.dart';
 import 'package:flutter/material.dart';
 
 class BookRepository {

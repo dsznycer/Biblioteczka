@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
-import '../../data/Models/book_model.dart';
+import '../../data/Models/BookModels/book_model.dart';
 
 part 'book_state.dart';
 part 'book_cubit.g.dart';
