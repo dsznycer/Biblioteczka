@@ -73,15 +73,33 @@ class StatisticScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    for (int i = 0; i < 4; i++)
-                      IconButton(
-                          onPressed: () => context.read<ChallengeBloc>().add(
-                              AddChallenge(item: challengeState.challengeOne)),
-                          icon: Icon(Icons.add))
-                  ],
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  height: 120,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      for (int i = 0; i < 3; i++)
+                        GestureDetector(
+                            onTap: () => context.read<ChallengeBloc>().add(
+                                AddChallenge(
+                                    item: challengeState.challengeOne)),
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: const [
+                                  Text('Przeczytaj 12 książek w tym roku!'),
+                                  Icon(Icons.add),
+                                ],
+                              ),
+                            ))
+                    ],
+                  ),
                 ),
                 const Center(
                     child: Text('Lista wyzwań:', style: AppTextStyles.H3)),
@@ -100,20 +118,30 @@ class ChallengesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ChallengeBloc, ChallengeState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            if (state.listOfChallenges.isNotEmpty)
-              SizedBox(
-                height: 300,
-                child: ListView.builder(
-                    itemCount: state.listOfChallenges.length,
-                    itemBuilder: ((context, index) => ChallengeTile(
-                          item: state.listOfChallenges[index],
-                          actuallValue: 2,
-                        ))),
-              )
-          ],
-        );
+        if (state.listOfChallenges.isNotEmpty) {
+          return Expanded(
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: state.listOfChallenges.length,
+                itemBuilder: ((context, index) => ChallengeTile(
+                      func: () => context
+                          .read<ChallengeBloc>()
+                          .add(RemoveChallenge(indexOfRemoved: index)),
+                      item: state.listOfChallenges[index],
+                      actuallValue: state.listOfChallenges.length,
+                    ))),
+          );
+        } else {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Na razie nie masz żadnych wyzwań. \n Dodaj jakieś z powyższej listy!',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        }
       },
     );
   }
@@ -121,26 +149,28 @@ class ChallengesSection extends StatelessWidget {
 
 class ChallengeTile extends StatelessWidget {
   const ChallengeTile(
-      {required this.item, required this.actuallValue, super.key});
+      {this.func, required this.item, required this.actuallValue, super.key});
 
   final ChallengeItem item;
   final int actuallValue;
+  final void Function()? func;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 120,
-      width: 340,
-      margin: EdgeInsets.all(20),
+      width: 280,
+      margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: AppColors.kCol2op50,
       ),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        IconButton(onPressed: func, icon: const Icon(Icons.close)),
         Text(item.name),
         Text(item.description),
-        Text("Do przeczytania zostało Ci: ${item.booksread - actuallValue}")
+        Text("Do przeczytania zostało Ci: ${item.booksToRead - actuallValue}")
       ]),
     );
   }

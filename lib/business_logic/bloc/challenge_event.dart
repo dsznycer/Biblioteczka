@@ -10,5 +10,6 @@ class AddChallenge extends ChallengeEvent {
 }
 
 class RemoveChallenge extends ChallengeEvent {
-  const RemoveChallenge({required int index});
+  const RemoveChallenge({required this.indexOfRemoved});
+  final int indexOfRemoved;
 }

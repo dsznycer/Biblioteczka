@@ -12,7 +12,7 @@ _$_ChallengeItem _$$_ChallengeItemFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? '',
       dateOfStart: DateTime.parse(json['dateOfStart'] as String),
       monthsToFinish: json['monthsToFinish'] as int,
-      bookToRead: json['bookToRead'] as int,
+      booksToRead: json['booksToRead'] as int,
       booksread: json['booksread'] as int? ?? 0,
     );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$$_ChallengeItemToJson(_$_ChallengeItem instance) =>
       'description': instance.description,
       'dateOfStart': instance.dateOfStart.toIso8601String(),
       'monthsToFinish': instance.monthsToFinish,
-      'bookToRead': instance.bookToRead,
+      'booksToRead': instance.booksToRead,
       'booksread': instance.booksread,
     };

@@ -30,98 +30,105 @@ class ProfileChangeDataScreen extends StatelessWidget {
               content: Text(state.errorMessage)));
       },
       builder: (context, state) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(bottom: 5),
-                height: size.height / 7,
-                decoration: BoxDecoration(
-                    color: AppColors.kCol2.withOpacity(0.3),
-                    borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(15))),
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () =>
-                            Utils.profileNavigator.currentState!.pop(),
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                        )),
-                    SizedBox(width: size.width / 4),
-                    const Text(
-                      'Twoje dane',
-                      style: AppTextStyles.H3,
-                    )
-                  ],
-                ),
+        return Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 5),
+              height: size.height / 7,
+              decoration: BoxDecoration(
+                  color: AppColors.kCol2.withOpacity(0.3),
+                  borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15))),
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () =>
+                          Utils.profileNavigator.currentState!.pop(),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                      )),
+                  SizedBox(width: size.width / 4),
+                  const Text(
+                    'Twoje dane',
+                    style: AppTextStyles.H3,
+                  )
+                ],
               ),
-              AccountInfoAndPhoto(
-                size: size,
-                userName: state.user.name,
-                userMail: state.user.email,
-                userPhoto: state.user.photo,
-                function: () =>
-                    context.read<AuthCubit>().uploadUserPhotoFromGallery(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Tile(
-                        onTap: () => context
-                            .read<AuthCubit>()
-                            .uploadUserPhotoFromGallery(),
-                        title: 'Zmień zdjęcie profilowe',
-                        subtitle: 'Dodaj zdjęcie z galerii',
-                        cIcon: Icons.photo_library_outlined),
-                    AppTextInput(
-                        hintText: 'Imie',
-                        controller: _nameController,
-                        iconData: Icons.people_rounded,
-                        onChanged: (string) => () {}),
-                    BasicButton(
-                        func: () {
-                          context
-                              .read<AuthCubit>()
-                              .updateUserName(_nameController.text);
-                          _nameController.clear();
-                        },
-                        text: 'Zmień swoje imie'),
-                    AppTextInput(
-                        hintText: 'Mail',
-                        iconData: Icons.mail,
-                        onChanged: (string) => () {}),
-                    BasicButton(
-                        func: () {
-                          context
-                              .read<AuthCubit>()
-                              .updateUserEmailAddress(_mailController.text);
-                          _mailController.clear();
-                        },
-                        text: 'Zmień adres email'),
-                    AppTextInput(
-                        hintText: 'Hasło',
-                        obscureText: true,
-                        iconData: Icons.key,
-                        onChanged: (string) => () {}),
-                    BasicButton(
-                        func: () {
-                          context
-                              .read<AuthCubit>()
-                              .updateUserPassword(_passwordController.text);
-                          _passwordController.clear();
-                        },
-                        text: 'Zmień hasło'),
-                    const SizedBox(height: 30),
+                    AccountInfoAndPhoto(
+                      size: size,
+                      userName: state.user.name,
+                      userMail: state.user.email,
+                      userPhoto: state.user.photo,
+                      function: () => context
+                          .read<AuthCubit>()
+                          .uploadUserPhotoFromGallery(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        children: [
+                          Tile(
+                              onTap: () => context
+                                  .read<AuthCubit>()
+                                  .uploadUserPhotoFromGallery(),
+                              title: 'Zmień zdjęcie profilowe',
+                              subtitle: 'Dodaj zdjęcie z galerii',
+                              cIcon: Icons.photo_library_outlined),
+                          AppTextInput(
+                              hintText: 'Imie',
+                              controller: _nameController,
+                              iconData: Icons.people_rounded,
+                              onChanged: (string) => () {}),
+                          BasicButton(
+                              func: () {
+                                context
+                                    .read<AuthCubit>()
+                                    .updateUserName(_nameController.text);
+                                _nameController.clear();
+                              },
+                              text: 'Zmień swoje imie'),
+                          AppTextInput(
+                              hintText: 'Mail',
+                              iconData: Icons.mail,
+                              onChanged: (string) => () {}),
+                          BasicButton(
+                              func: () {
+                                context
+                                    .read<AuthCubit>()
+                                    .updateUserEmailAddress(
+                                        _mailController.text);
+                                _mailController.clear();
+                              },
+                              text: 'Zmień adres email'),
+                          AppTextInput(
+                              hintText: 'Hasło',
+                              obscureText: true,
+                              iconData: Icons.key,
+                              onChanged: (string) => () {}),
+                          BasicButton(
+                              func: () {
+                                context.read<AuthCubit>().updateUserPassword(
+                                    _passwordController.text);
+                                _passwordController.clear();
+                              },
+                              text: 'Zmień hasło'),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

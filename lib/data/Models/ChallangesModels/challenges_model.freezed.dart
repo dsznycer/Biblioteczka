@@ -24,7 +24,7 @@ mixin _$ChallengeItem {
   String get description => throw _privateConstructorUsedError;
   DateTime get dateOfStart => throw _privateConstructorUsedError;
   int get monthsToFinish => throw _privateConstructorUsedError;
-  int get bookToRead => throw _privateConstructorUsedError;
+  int get booksToRead => throw _privateConstructorUsedError;
   int get booksread => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $ChallengeItemCopyWith<$Res> {
       String description,
       DateTime dateOfStart,
       int monthsToFinish,
-      int bookToRead,
+      int booksToRead,
       int booksread});
 }
 
@@ -65,7 +65,7 @@ class _$ChallengeItemCopyWithImpl<$Res, $Val extends ChallengeItem>
     Object? description = null,
     Object? dateOfStart = null,
     Object? monthsToFinish = null,
-    Object? bookToRead = null,
+    Object? booksToRead = null,
     Object? booksread = null,
   }) {
     return _then(_value.copyWith(
@@ -85,9 +85,9 @@ class _$ChallengeItemCopyWithImpl<$Res, $Val extends ChallengeItem>
           ? _value.monthsToFinish
           : monthsToFinish // ignore: cast_nullable_to_non_nullable
               as int,
-      bookToRead: null == bookToRead
-          ? _value.bookToRead
-          : bookToRead // ignore: cast_nullable_to_non_nullable
+      booksToRead: null == booksToRead
+          ? _value.booksToRead
+          : booksToRead // ignore: cast_nullable_to_non_nullable
               as int,
       booksread: null == booksread
           ? _value.booksread
@@ -110,7 +110,7 @@ abstract class _$$_ChallengeItemCopyWith<$Res>
       String description,
       DateTime dateOfStart,
       int monthsToFinish,
-      int bookToRead,
+      int booksToRead,
       int booksread});
 }
 
@@ -129,7 +129,7 @@ class __$$_ChallengeItemCopyWithImpl<$Res>
     Object? description = null,
     Object? dateOfStart = null,
     Object? monthsToFinish = null,
-    Object? bookToRead = null,
+    Object? booksToRead = null,
     Object? booksread = null,
   }) {
     return _then(_$_ChallengeItem(
@@ -149,9 +149,9 @@ class __$$_ChallengeItemCopyWithImpl<$Res>
           ? _value.monthsToFinish
           : monthsToFinish // ignore: cast_nullable_to_non_nullable
               as int,
-      bookToRead: null == bookToRead
-          ? _value.bookToRead
-          : bookToRead // ignore: cast_nullable_to_non_nullable
+      booksToRead: null == booksToRead
+          ? _value.booksToRead
+          : booksToRead // ignore: cast_nullable_to_non_nullable
               as int,
       booksread: null == booksread
           ? _value.booksread
@@ -169,7 +169,7 @@ class _$_ChallengeItem with DiagnosticableTreeMixin implements _ChallengeItem {
       this.description = '',
       required this.dateOfStart,
       required this.monthsToFinish,
-      required this.bookToRead,
+      required this.booksToRead,
       this.booksread = 0});
 
   factory _$_ChallengeItem.fromJson(Map<String, dynamic> json) =>
@@ -185,14 +185,14 @@ class _$_ChallengeItem with DiagnosticableTreeMixin implements _ChallengeItem {
   @override
   final int monthsToFinish;
   @override
-  final int bookToRead;
+  final int booksToRead;
   @override
   @JsonKey()
   final int booksread;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ChallengeItem(name: $name, description: $description, dateOfStart: $dateOfStart, monthsToFinish: $monthsToFinish, bookToRead: $bookToRead, booksread: $booksread)';
+    return 'ChallengeItem(name: $name, description: $description, dateOfStart: $dateOfStart, monthsToFinish: $monthsToFinish, booksToRead: $booksToRead, booksread: $booksread)';
   }
 
   @override
@@ -204,7 +204,7 @@ class _$_ChallengeItem with DiagnosticableTreeMixin implements _ChallengeItem {
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('dateOfStart', dateOfStart))
       ..add(DiagnosticsProperty('monthsToFinish', monthsToFinish))
-      ..add(DiagnosticsProperty('bookToRead', bookToRead))
+      ..add(DiagnosticsProperty('booksToRead', booksToRead))
       ..add(DiagnosticsProperty('booksread', booksread));
   }
 
@@ -220,8 +220,8 @@ class _$_ChallengeItem with DiagnosticableTreeMixin implements _ChallengeItem {
                 other.dateOfStart == dateOfStart) &&
             (identical(other.monthsToFinish, monthsToFinish) ||
                 other.monthsToFinish == monthsToFinish) &&
-            (identical(other.bookToRead, bookToRead) ||
-                other.bookToRead == bookToRead) &&
+            (identical(other.booksToRead, booksToRead) ||
+                other.booksToRead == booksToRead) &&
             (identical(other.booksread, booksread) ||
                 other.booksread == booksread));
   }
@@ -229,7 +229,7 @@ class _$_ChallengeItem with DiagnosticableTreeMixin implements _ChallengeItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, dateOfStart,
-      monthsToFinish, bookToRead, booksread);
+      monthsToFinish, booksToRead, booksread);
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +251,7 @@ abstract class _ChallengeItem implements ChallengeItem {
       final String description,
       required final DateTime dateOfStart,
       required final int monthsToFinish,
-      required final int bookToRead,
+      required final int booksToRead,
       final int booksread}) = _$_ChallengeItem;
 
   factory _ChallengeItem.fromJson(Map<String, dynamic> json) =
@@ -266,7 +266,7 @@ abstract class _ChallengeItem implements ChallengeItem {
   @override
   int get monthsToFinish;
   @override
-  int get bookToRead;
+  int get booksToRead;
   @override
   int get booksread;
   @override

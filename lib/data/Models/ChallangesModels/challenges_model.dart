@@ -12,7 +12,7 @@ class ChallengeItem with _$ChallengeItem {
     @Default('') String description,
     required DateTime dateOfStart,
     required int monthsToFinish,
-    required int bookToRead,
+    required int booksToRead,
     @Default(0) int booksread,
   }) = _ChallengeItem;
 

@@ -92,20 +92,3 @@ class BookState {
     );
   }
 }
-
-//Version of state with freezed anotation
-
-// @freezed
-// @JsonSerializable(explicitToJson: true)
-// class BookState with _$BookState {
-//   factory BookState({
-//     @Default(BookStatus.initial) BookStatus status,
-//     @Default(<Book>[]) List<Book> booksRed,
-//     @Default(<Book>[]) List<Book> booksToRead,
-//     @Default(<Book>[]) List<Book> booksReading,
-//     @Default(<BookApi>[]) List<BookApi> recomendedBooks,
-//   }) = _BookState;
-
-//   factory BookState.fromJson(Map<String, dynamic> json) =>
-//       _$BookStateFromJson(json);
-// }

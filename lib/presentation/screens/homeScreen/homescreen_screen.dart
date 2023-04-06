@@ -33,7 +33,6 @@ class HomeScreen extends StatelessWidget {
         return SafeArea(
           child: Column(
             children: [
-              // Row with button and photo
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -165,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                         padding: EdgeInsets.all(20.0),
                         child: Text(
                           'Aktualne wyzwanie:',
-                          style: AppTextStyles.H4,
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
                       Container(
