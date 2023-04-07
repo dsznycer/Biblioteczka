@@ -25,3 +25,15 @@ Map<String, dynamic> _$$_ChallengeItemToJson(_$_ChallengeItem instance) =>
       'booksToRead': instance.booksToRead,
       'booksread': instance.booksread,
     };
+
+_$_PagesRedInDay _$$_PagesRedInDayFromJson(Map<String, dynamic> json) =>
+    _$_PagesRedInDay(
+      dateTime: DateTime.parse(json['dateTime'] as String),
+      pages: json['pages'] as int,
+    );
+
+Map<String, dynamic> _$$_PagesRedInDayToJson(_$_PagesRedInDay instance) =>
+    <String, dynamic>{
+      'dateTime': instance.dateTime.toIso8601String(),
+      'pages': instance.pages,
+    };

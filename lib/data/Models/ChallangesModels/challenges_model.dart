@@ -19,3 +19,14 @@ class ChallengeItem with _$ChallengeItem {
   factory ChallengeItem.fromJson(Map<String, dynamic> json) =>
       _$ChallengeItemFromJson(json);
 }
+
+@freezed
+class PagesRedInDay with _$PagesRedInDay {
+  const factory PagesRedInDay({
+    required DateTime dateTime,
+    required int pages,
+  }) = _PagesRedInDay;
+
+  factory PagesRedInDay.fromJson(Map<String, dynamic> json) =>
+      _$PagesRedInDayFromJson(json);
+}

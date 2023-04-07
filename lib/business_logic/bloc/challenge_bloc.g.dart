@@ -12,10 +12,16 @@ ChallengeState _$ChallengeStateFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ChallengeItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      listOfRedsPages: (json['listOfRedsPages'] as List<dynamic>?)
+              ?.map((e) => PagesRedInDay.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$ChallengeStateToJson(ChallengeState instance) =>
     <String, dynamic>{
       'listOfChallenges':
           instance.listOfChallenges.map((e) => e.toJson()).toList(),
+      'listOfRedsPages':
+          instance.listOfRedsPages.map((e) => e.toJson()).toList(),
     };

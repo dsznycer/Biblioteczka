@@ -4,8 +4,10 @@ part of 'challenge_bloc.dart';
 @JsonSerializable(explicitToJson: true)
 class ChallengeState {
   final List<ChallengeItem> listOfChallenges;
+  final List<PagesRedInDay> listOfRedsPages;
 
-  ChallengeState({this.listOfChallenges = const []});
+  ChallengeState(
+      {this.listOfChallenges = const [], this.listOfRedsPages = const []});
 
   final challengeOne = ChallengeItem(
       name: 'Przeczytaj 6 książek w tym roku ',

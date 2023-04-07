@@ -274,3 +274,167 @@ abstract class _ChallengeItem implements ChallengeItem {
   _$$_ChallengeItemCopyWith<_$_ChallengeItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+PagesRedInDay _$PagesRedInDayFromJson(Map<String, dynamic> json) {
+  return _PagesRedInDay.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PagesRedInDay {
+  DateTime get dateTime => throw _privateConstructorUsedError;
+  int get pages => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PagesRedInDayCopyWith<PagesRedInDay> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PagesRedInDayCopyWith<$Res> {
+  factory $PagesRedInDayCopyWith(
+          PagesRedInDay value, $Res Function(PagesRedInDay) then) =
+      _$PagesRedInDayCopyWithImpl<$Res, PagesRedInDay>;
+  @useResult
+  $Res call({DateTime dateTime, int pages});
+}
+
+/// @nodoc
+class _$PagesRedInDayCopyWithImpl<$Res, $Val extends PagesRedInDay>
+    implements $PagesRedInDayCopyWith<$Res> {
+  _$PagesRedInDayCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateTime = null,
+    Object? pages = null,
+  }) {
+    return _then(_value.copyWith(
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PagesRedInDayCopyWith<$Res>
+    implements $PagesRedInDayCopyWith<$Res> {
+  factory _$$_PagesRedInDayCopyWith(
+          _$_PagesRedInDay value, $Res Function(_$_PagesRedInDay) then) =
+      __$$_PagesRedInDayCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({DateTime dateTime, int pages});
+}
+
+/// @nodoc
+class __$$_PagesRedInDayCopyWithImpl<$Res>
+    extends _$PagesRedInDayCopyWithImpl<$Res, _$_PagesRedInDay>
+    implements _$$_PagesRedInDayCopyWith<$Res> {
+  __$$_PagesRedInDayCopyWithImpl(
+      _$_PagesRedInDay _value, $Res Function(_$_PagesRedInDay) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateTime = null,
+    Object? pages = null,
+  }) {
+    return _then(_$_PagesRedInDay(
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PagesRedInDay with DiagnosticableTreeMixin implements _PagesRedInDay {
+  const _$_PagesRedInDay({required this.dateTime, required this.pages});
+
+  factory _$_PagesRedInDay.fromJson(Map<String, dynamic> json) =>
+      _$$_PagesRedInDayFromJson(json);
+
+  @override
+  final DateTime dateTime;
+  @override
+  final int pages;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PagesRedInDay(dateTime: $dateTime, pages: $pages)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PagesRedInDay'))
+      ..add(DiagnosticsProperty('dateTime', dateTime))
+      ..add(DiagnosticsProperty('pages', pages));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PagesRedInDay &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
+            (identical(other.pages, pages) || other.pages == pages));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, dateTime, pages);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PagesRedInDayCopyWith<_$_PagesRedInDay> get copyWith =>
+      __$$_PagesRedInDayCopyWithImpl<_$_PagesRedInDay>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PagesRedInDayToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PagesRedInDay implements PagesRedInDay {
+  const factory _PagesRedInDay(
+      {required final DateTime dateTime,
+      required final int pages}) = _$_PagesRedInDay;
+
+  factory _PagesRedInDay.fromJson(Map<String, dynamic> json) =
+      _$_PagesRedInDay.fromJson;
+
+  @override
+  DateTime get dateTime;
+  @override
+  int get pages;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PagesRedInDayCopyWith<_$_PagesRedInDay> get copyWith =>
+      throw _privateConstructorUsedError;
+}
