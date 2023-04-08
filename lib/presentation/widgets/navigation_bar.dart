@@ -7,15 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/utils.dart';
 
-class Navig extends StatelessWidget {
-  Navig({super.key});
+Map<int, String> routesMap = {
+  0: '/',
+  1: '/Biblioteczka',
+  2: '/StatisticScreen',
+  3: '/ProfileScreen',
+};
 
-  Map<int, String> routesMap = {
-    0: '/',
-    1: '/Biblioteczka',
-    2: '/StatisticScreen',
-    3: '/ProfileScreen',
-  };
+class Navig extends StatelessWidget {
+  const Navig({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Navig extends StatelessWidget {
                     .pushReplacementNamed(routesMap[value]!);
                 context.read<BookCubit>().removeSearchedBooks();
               },
-              elevation: 6,
+              elevation: 8,
               selectedIndex: state.index,
               backgroundColor:
                   state.darkMode ? AppColors.kCol1 : Colors.white70,

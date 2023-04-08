@@ -14,6 +14,7 @@ class ChallengeBloc extends HydratedBloc<ChallengeEvent, ChallengeState> {
   ChallengeBloc() : super(ChallengeState()) {
     on<AddChallenge>(addChallenge);
     on<RemoveChallenge>(removeChallenge);
+    on<AddReadPages>(addReadPages);
   }
 
   void addChallenge(AddChallenge event, Emitter<ChallengeState> emit) {
@@ -25,6 +26,13 @@ class ChallengeBloc extends HydratedBloc<ChallengeEvent, ChallengeState> {
     emit(state.copyWith(
         listOfChallenges: List.of(state.listOfChallenges)
           ..removeAt(event.indexOfRemoved)));
+  }
+
+  void addReadPages(AddReadPages event, Emitter<ChallengeState> emit) {
+    emit(state.copyWith(
+        listOfRedsPages: List.of(state.listOfRedsPages)
+          ..add(PagesReadInDay(
+              dateTime: DateTime.now(), pages: event.readPages))));
   }
 
   @override

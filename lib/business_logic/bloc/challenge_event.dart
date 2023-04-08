@@ -13,3 +13,8 @@ class RemoveChallenge extends ChallengeEvent {
   const RemoveChallenge({required this.indexOfRemoved});
   final int indexOfRemoved;
 }
+
+class AddReadPages extends ChallengeEvent {
+  const AddReadPages({required this.readPages});
+  final int readPages;
+}

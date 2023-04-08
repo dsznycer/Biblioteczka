@@ -1,3 +1,4 @@
+import 'package:biblioteczka/business_logic/bloc/challenge_bloc.dart';
 import 'package:biblioteczka/business_logic/cubit/auth_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/book_cubit.dart';
 import 'package:biblioteczka/business_logic/cubit/settings_cubit.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController numberOfPageController = TextEditingController();
   final PageController pageController = PageController(
     viewportFraction: 0.85,
   );
@@ -33,35 +35,7 @@ class HomeScreen extends StatelessWidget {
         return SafeArea(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 100,
-                    height: 50,
-                    child: Switch(
-                        activeColor: Colors.white30,
-                        inactiveTrackColor: Colors.black12,
-                        value: darkMode,
-                        onChanged: (value) => context
-                            .read<SettingsCubit>()
-                            .changeDarkMode(value)),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Utils.mainNavigator.currentState!
-                          .pushReplacementNamed('/ProfileScreen');
-                      context.read<SettingsCubit>().changeIndex(3);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14.0, vertical: 5),
-                      child: CircleAvatar(
-                          radius: 25, backgroundImage: NetworkImage(photo)),
-                    ),
-                  ),
-                ],
-              ),
+              _RowWithSwitchAndPhoto(darkMode: darkMode, photo: photo),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -159,7 +133,8 @@ class HomeScreen extends StatelessWidget {
                               child: const Icon(Icons.arrow_forward))
                         ],
                       )),
-
+                      _TileToAddReadPage(
+                          numberOfPageController: numberOfPageController),
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Text(
@@ -275,6 +250,111 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _RowWithSwitchAndPhoto extends StatelessWidget {
+  const _RowWithSwitchAndPhoto({
+    super.key,
+    required this.darkMode,
+    required this.photo,
+  });
+
+  final bool darkMode;
+  final String photo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: 100,
+          height: 50,
+          child: Switch(
+              activeColor: Colors.white30,
+              inactiveTrackColor: Colors.black12,
+              value: darkMode,
+              onChanged: (value) =>
+                  context.read<SettingsCubit>().changeDarkMode(value)),
+        ),
+        GestureDetector(
+          onTap: () {
+            Utils.mainNavigator.currentState!
+                .pushReplacementNamed('/ProfileScreen');
+            context.read<SettingsCubit>().changeIndex(3);
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 5),
+            child:
+                CircleAvatar(radius: 25, backgroundImage: NetworkImage(photo)),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _TileToAddReadPage extends StatelessWidget {
+  const _TileToAddReadPage({
+    super.key,
+    required this.numberOfPageController,
+  });
+
+  final TextEditingController numberOfPageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: const [AppShadows.Shad2]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              'Dodaj przeczytane dziś strony:',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: 60,
+                child: TextField(
+                  controller: numberOfPageController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        borderSide: BorderSide(color: Colors.tealAccent)),
+                  ),
+                ),
+              ),
+              IconButton(
+                  onPressed: () => context.read<ChallengeBloc>().add(
+                      AddReadPages(
+                          readPages: int.parse(numberOfPageController.text))),
+                  icon: const Icon(
+                    Icons.add,
+                    size: 45,
+                  ))
+            ],
+          )
+        ],
+      ),
     );
   }
 }

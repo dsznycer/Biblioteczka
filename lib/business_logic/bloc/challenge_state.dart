@@ -4,10 +4,12 @@ part of 'challenge_bloc.dart';
 @JsonSerializable(explicitToJson: true)
 class ChallengeState {
   final List<ChallengeItem> listOfChallenges;
-  final List<PagesRedInDay> listOfRedsPages;
+  final List<PagesReadInDay> listOfRedsPages;
 
-  ChallengeState(
-      {this.listOfChallenges = const [], this.listOfRedsPages = const []});
+  ChallengeState({
+    this.listOfChallenges = const [],
+    this.listOfRedsPages = const [],
+  });
 
   final challengeOne = ChallengeItem(
       name: 'Przeczytaj 6 książek w tym roku ',
@@ -23,11 +25,14 @@ class ChallengeState {
   Map<String, dynamic> toJson() => _$ChallengeStateToJson(this);
 
   // Copy with method
+
   ChallengeState copyWith({
     List<ChallengeItem>? listOfChallenges,
+    List<PagesReadInDay>? listOfRedsPages,
   }) {
     return ChallengeState(
       listOfChallenges: listOfChallenges ?? this.listOfChallenges,
+      listOfRedsPages: listOfRedsPages ?? this.listOfRedsPages,
     );
   }
 }

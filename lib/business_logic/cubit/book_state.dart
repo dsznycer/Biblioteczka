@@ -31,9 +31,7 @@ class BookState {
     this.googleBooks = const [],
     this.chosenList = const [],
     this.bookForm = const Book(
-      title: 'This is test book',
-      bookProgress: BookProgress.inProgress,
-    ),
+        title: 'This is test book', bookProgress: BookProgress.inProgress),
     this.choosenBook =
         const Book(title: 'title', bookProgress: BookProgress.inProgress),
     this.choosenBookGoogle,

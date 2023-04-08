@@ -275,34 +275,34 @@ abstract class _ChallengeItem implements ChallengeItem {
       throw _privateConstructorUsedError;
 }
 
-PagesRedInDay _$PagesRedInDayFromJson(Map<String, dynamic> json) {
+PagesReadInDay _$PagesReadInDayFromJson(Map<String, dynamic> json) {
   return _PagesRedInDay.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PagesRedInDay {
+mixin _$PagesReadInDay {
   DateTime get dateTime => throw _privateConstructorUsedError;
   int get pages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PagesRedInDayCopyWith<PagesRedInDay> get copyWith =>
+  $PagesReadInDayCopyWith<PagesReadInDay> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PagesRedInDayCopyWith<$Res> {
-  factory $PagesRedInDayCopyWith(
-          PagesRedInDay value, $Res Function(PagesRedInDay) then) =
-      _$PagesRedInDayCopyWithImpl<$Res, PagesRedInDay>;
+abstract class $PagesReadInDayCopyWith<$Res> {
+  factory $PagesReadInDayCopyWith(
+          PagesReadInDay value, $Res Function(PagesReadInDay) then) =
+      _$PagesReadInDayCopyWithImpl<$Res, PagesReadInDay>;
   @useResult
   $Res call({DateTime dateTime, int pages});
 }
 
 /// @nodoc
-class _$PagesRedInDayCopyWithImpl<$Res, $Val extends PagesRedInDay>
-    implements $PagesRedInDayCopyWith<$Res> {
-  _$PagesRedInDayCopyWithImpl(this._value, this._then);
+class _$PagesReadInDayCopyWithImpl<$Res, $Val extends PagesReadInDay>
+    implements $PagesReadInDayCopyWith<$Res> {
+  _$PagesReadInDayCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -330,7 +330,7 @@ class _$PagesRedInDayCopyWithImpl<$Res, $Val extends PagesRedInDay>
 
 /// @nodoc
 abstract class _$$_PagesRedInDayCopyWith<$Res>
-    implements $PagesRedInDayCopyWith<$Res> {
+    implements $PagesReadInDayCopyWith<$Res> {
   factory _$$_PagesRedInDayCopyWith(
           _$_PagesRedInDay value, $Res Function(_$_PagesRedInDay) then) =
       __$$_PagesRedInDayCopyWithImpl<$Res>;
@@ -341,7 +341,7 @@ abstract class _$$_PagesRedInDayCopyWith<$Res>
 
 /// @nodoc
 class __$$_PagesRedInDayCopyWithImpl<$Res>
-    extends _$PagesRedInDayCopyWithImpl<$Res, _$_PagesRedInDay>
+    extends _$PagesReadInDayCopyWithImpl<$Res, _$_PagesRedInDay>
     implements _$$_PagesRedInDayCopyWith<$Res> {
   __$$_PagesRedInDayCopyWithImpl(
       _$_PagesRedInDay _value, $Res Function(_$_PagesRedInDay) _then)
@@ -381,14 +381,14 @@ class _$_PagesRedInDay with DiagnosticableTreeMixin implements _PagesRedInDay {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PagesRedInDay(dateTime: $dateTime, pages: $pages)';
+    return 'PagesReadInDay(dateTime: $dateTime, pages: $pages)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'PagesRedInDay'))
+      ..add(DiagnosticsProperty('type', 'PagesReadInDay'))
       ..add(DiagnosticsProperty('dateTime', dateTime))
       ..add(DiagnosticsProperty('pages', pages));
   }
@@ -421,7 +421,7 @@ class _$_PagesRedInDay with DiagnosticableTreeMixin implements _PagesRedInDay {
   }
 }
 
-abstract class _PagesRedInDay implements PagesRedInDay {
+abstract class _PagesRedInDay implements PagesReadInDay {
   const factory _PagesRedInDay(
       {required final DateTime dateTime,
       required final int pages}) = _$_PagesRedInDay;

@@ -13,7 +13,7 @@ ChallengeState _$ChallengeStateFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const [],
       listOfRedsPages: (json['listOfRedsPages'] as List<dynamic>?)
-              ?.map((e) => PagesRedInDay.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PagesReadInDay.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

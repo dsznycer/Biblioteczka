@@ -21,12 +21,12 @@ class ChallengeItem with _$ChallengeItem {
 }
 
 @freezed
-class PagesRedInDay with _$PagesRedInDay {
-  const factory PagesRedInDay({
+class PagesReadInDay with _$PagesReadInDay {
+  const factory PagesReadInDay({
     required DateTime dateTime,
     required int pages,
   }) = _PagesRedInDay;
 
-  factory PagesRedInDay.fromJson(Map<String, dynamic> json) =>
-      _$PagesRedInDayFromJson(json);
+  factory PagesReadInDay.fromJson(Map<String, dynamic> json) =>
+      _$PagesReadInDayFromJson(json);
 }
